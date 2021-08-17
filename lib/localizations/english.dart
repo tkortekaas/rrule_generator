@@ -23,7 +23,7 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
 
   String get endsAfter => 'Ends after';
 
-  String get endsOnDate => 'Ends on date' ;
+  String get endsOnDate => 'Ends on date';
 
   @override
   List<String> get daysInMonth => [

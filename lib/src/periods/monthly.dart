@@ -6,6 +6,7 @@ import 'package:rrule_generator/src/periods/period.dart';
 class Monthly extends StatelessWidget implements Period {
   final RRuleTextDelegate textDelegate;
   final Function onChange;
+  final String initialRRule;
 
   final monthTypeNotifier = ValueNotifier(0);
   final monthDayNotifier = ValueNotifier(1);
@@ -13,7 +14,44 @@ class Monthly extends StatelessWidget implements Period {
   final dayNotifier = ValueNotifier(1);
   final intervalController = TextEditingController(text: '1');
 
-  Monthly(this.textDelegate, this.onChange);
+  Monthly(this.textDelegate, this.onChange, this.initialRRule) {
+    if (initialRRule.contains('MONTHLY')) handleInitialRRule();
+  }
+
+  void handleInitialRRule() {
+    if (initialRRule.contains('BYMONTHDAY')) {
+      monthTypeNotifier.value = 0;
+      int dayIndex = initialRRule.indexOf('BYMONTHDAY=') + 11;
+      String day = initialRRule.substring(
+          dayIndex, dayIndex + (initialRRule.length > dayIndex + 1 ? 2 : 1));
+      if (day.length == 1 || day[1] != ';')
+        dayNotifier.value = int.parse(day);
+      else
+        dayNotifier.value = int.parse(day[0]);
+
+      int intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
+      int intervalEnd = initialRRule.indexOf(';', intervalIndex);
+      String interval = initialRRule.substring(
+          intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
+      intervalController.text = interval;
+    } else {
+      monthTypeNotifier.value = 1;
+
+      int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
+      String monthDay =
+          initialRRule.substring(monthDayIndex, monthDayIndex + 1);
+
+      if (monthDay == '-')
+        monthDayNotifier.value = 4;
+      else
+        monthDayNotifier.value = int.parse(monthDay) - 1;
+
+      int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
+      String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
+
+      weekdayNotifier.value = weekdaysShort.indexOf(weekday);
+    }
+  }
 
   String getRRule() {
     if (monthTypeNotifier.value == 0) {
@@ -71,7 +109,7 @@ class Monthly extends StatelessWidget implements Period {
                         items: List.generate(
                           31,
                           (index) => DropdownMenuItem(
-                            value: index,
+                            value: index + 1,
                             child: Text(
                               (index + 1).toString(),
                             ),

@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 class RRuleGenerator extends StatelessWidget {
   final RRuleTextDelegate textDelegate;
   final Function(String newValue)? onChange;
+  final String initialRRule;
 
   final frequencyNotifier = ValueNotifier(0);
   final countTypeNotifier = ValueNotifier(0);
@@ -20,13 +21,40 @@ class RRuleGenerator extends StatelessWidget {
   final List<Period> periodWidgets = [];
 
   RRuleGenerator(
-      {this.textDelegate = const EnglishRRuleTextDelegate(), this.onChange}) {
+      {this.textDelegate = const EnglishRRuleTextDelegate(),
+      this.onChange,
+      this.initialRRule = ''}) {
     periodWidgets.addAll([
-      Yearly(textDelegate, valueChanged),
-      Monthly(textDelegate, valueChanged),
-      Weekly(textDelegate, valueChanged),
-      Daily(textDelegate, valueChanged)
+      Yearly(textDelegate, valueChanged, initialRRule),
+      Monthly(textDelegate, valueChanged, initialRRule),
+      Weekly(textDelegate, valueChanged, initialRRule),
+      Daily(textDelegate, valueChanged, initialRRule)
     ]);
+
+    if (initialRRule != '') handleInitialRRule();
+  }
+
+  void handleInitialRRule() {
+    if (initialRRule.contains('MONTHLY'))
+      frequencyNotifier.value = 1;
+    else if (initialRRule.contains('WEEKLY'))
+      frequencyNotifier.value = 2;
+    else if (initialRRule.contains('DAILY')) frequencyNotifier.value = 3;
+
+    if (initialRRule.contains('COUNT')) {
+      countTypeNotifier.value = 1;
+      instancesController.text = initialRRule.substring(
+          initialRRule.indexOf('COUNT=') + 6, initialRRule.length);
+    } else if (initialRRule.contains('UNTIL')) {
+      countTypeNotifier.value = 2;
+      int dateIndex = initialRRule.indexOf('UNTIL=') + 6;
+      int year = int.parse(initialRRule.substring(dateIndex, dateIndex + 4));
+      int month =
+          int.parse(initialRRule.substring(dateIndex + 4, dateIndex + 6));
+      int day = int.parse(initialRRule.substring(dateIndex + 6, dateIndex + 8));
+
+      pickedDateNotifier.value = DateTime(year, month, day);
+    }
   }
 
   void valueChanged() {
@@ -41,7 +69,7 @@ class RRuleGenerator extends StatelessWidget {
           ';COUNT=${instancesController.text}';
     DateTime pickedDate = pickedDateNotifier.value;
     return periodWidgets[frequencyNotifier.value].getRRule() +
-        ';COUNT=${pickedDate.year}${pickedDate.month}${pickedDate.day}';
+        ';UNTIL=${pickedDate.year}${pickedDate.month}${pickedDate.day}';
   }
 
   @override

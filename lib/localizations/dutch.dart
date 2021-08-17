@@ -23,49 +23,49 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
 
   String get endsAfter => 'Eindigt na';
 
-  String get endsOnDate => 'Eindigt op datum' ;
+  String get endsOnDate => 'Eindigt op datum';
 
   @override
   List<String> get daysInMonth => [
-    '1e',
-    '2e',
-    '3e',
-    '4e',
-    'Laatste',
-  ];
+        '1e',
+        '2e',
+        '3e',
+        '4e',
+        'Laatste',
+      ];
 
   @override
   List<String> get allMonths => [
-    'Januari',
-    'Februari',
-    'Maart',
-    'April',
-    'Mei',
-    'Juni',
-    'Juli',
-    'Augustus',
-    'September',
-    'Oktober',
-    'November',
-    'December',
-  ];
+        'Januari',
+        'Februari',
+        'Maart',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Augustus',
+        'September',
+        'Oktober',
+        'November',
+        'December',
+      ];
 
   @override
   List<String> get weekdays => [
-    'Maandag',
-    'Dinsdag',
-    'Woensdag',
-    'Donderdag',
-    'Vrijdag',
-    'Zaterdag',
-    'Zondag',
-  ];
+        'Maandag',
+        'Dinsdag',
+        'Woensdag',
+        'Donderdag',
+        'Vrijdag',
+        'Zaterdag',
+        'Zondag',
+      ];
 
   @override
   List<String> get periods => [
-    'Jaarlijks',
-    'Maandelijks',
-    'Wekelijks',
-    'Dagelijks',
-  ];
+        'Jaarlijks',
+        'Maandelijks',
+        'Wekelijks',
+        'Dagelijks',
+      ];
 }

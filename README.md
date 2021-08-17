@@ -1,9 +1,9 @@
 # rrule_generator
 
-RRuleGenerator is a widget for generating recurring rules, such as described
+RRuleGenerator is a widget for generating recurrence rules, such as described
 in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 
-
+![Example one](https://jelter.net/rrule_example.png)
 
 ## Installation
 
@@ -19,6 +19,7 @@ Add the widget to your app like this:
 
 ```dart
 RRuleGenerator(
+  initialRRule: 'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
   textDelegate: const EnglishRRuleTextDelegate(),
   onChange: (String newValue) => print(newValue),
 );

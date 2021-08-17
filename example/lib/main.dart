@@ -15,9 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: Scaffold(
         appBar: AppBar(),
-        body: RRuleGenerator(
-          textDelegate: const EnglishRRuleTextDelegate(),
-          onChange: (String newValue) => print(newValue),
+        body: SingleChildScrollView(
+          child: RRuleGenerator(
+            initialRRule: 'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+            textDelegate: const EnglishRRuleTextDelegate(),
+            onChange: (String newValue) => print(newValue),
+          ),
         ),
       ),
     );

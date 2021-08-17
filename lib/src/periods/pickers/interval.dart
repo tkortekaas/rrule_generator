@@ -21,6 +21,6 @@ class _IntervalPickerState extends State<IntervalPicker> {
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],
-        onChanged: widget.onChange(),
+        onChanged: (_) => widget.onChange(),
       );
 }

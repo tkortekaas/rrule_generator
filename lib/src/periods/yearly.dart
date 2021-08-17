@@ -5,22 +5,63 @@ import 'package:rrule_generator/src/periods/period.dart';
 class Yearly extends StatelessWidget implements Period {
   final RRuleTextDelegate textDelegate;
   final Function onChange;
+  final String initialRRule;
 
   final monthTypeNotifier = ValueNotifier(0);
   final monthDayNotifier = ValueNotifier(1);
   final weekdayNotifier = ValueNotifier(0);
-  final monthNotifier = ValueNotifier(0);
+  final monthNotifier = ValueNotifier(1);
   final dayNotifier = ValueNotifier(1);
 
-  Yearly(this.textDelegate, this.onChange);
+  Yearly(this.textDelegate, this.onChange, this.initialRRule) {
+    if (initialRRule.contains('YEARLY')) handleInitialRRule();
+  }
+
+  void handleInitialRRule() {
+    if (initialRRule.contains('BYMONTHDAY')) {
+      monthTypeNotifier.value = 0;
+      int dayIndex = initialRRule.indexOf('BYMONTHDAY=') + 11;
+      String day = initialRRule.substring(
+          dayIndex, dayIndex + (initialRRule.length > dayIndex + 1 ? 2 : 1));
+      if (day.length == 1 || day[1] != ';')
+        dayNotifier.value = int.parse(day);
+      else
+        dayNotifier.value = int.parse(day[0]);
+    } else {
+      monthTypeNotifier.value = 1;
+
+      int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
+      String monthDay =
+          initialRRule.substring(monthDayIndex, monthDayIndex + 1);
+
+      if (monthDay == '-')
+        monthDayNotifier.value = 4;
+      else
+        monthDayNotifier.value = int.parse(monthDay) - 1;
+
+      int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
+      String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
+
+      weekdayNotifier.value = weekdaysShort.indexOf(weekday);
+    }
+
+    int monthIndex = initialRRule.indexOf('BYMONTH=') + 8;
+    String month = initialRRule.substring(monthIndex,
+        monthIndex + (initialRRule.length > monthIndex + 1 ? 2 : 1));
+    if (month.length == 1 || month[1] != ';') {
+      monthNotifier.value = int.parse(month);
+    } else {
+      monthNotifier.value = int.parse(month[0]);
+    }
+  }
 
   String getRRule() {
     if (monthTypeNotifier.value == 0) {
-      int byMonth = monthNotifier.value + 1;
+      int byMonth = monthNotifier.value;
       int byMonthDay = dayNotifier.value;
       return 'FREQ=YEARLY;BYMONTH=$byMonth;BYMONTHDAY=$byMonthDay';
     } else {
-      int byMonth = monthNotifier.value + 1;
+      int byMonth = monthNotifier.value;
       String byDay = weekdaysShort[weekdayNotifier.value];
       int bySetPos =
           (monthDayNotifier.value < 4) ? monthDayNotifier.value + 1 : -1;
@@ -66,7 +107,7 @@ class Yearly extends StatelessWidget implements Period {
                         items: List.generate(
                           12,
                           (index) => DropdownMenuItem(
-                            value: index,
+                            value: index + 1,
                             child: Text(
                               textDelegate.allMonths[index],
                             ),
@@ -86,7 +127,7 @@ class Yearly extends StatelessWidget implements Period {
                         items: List.generate(
                           31,
                           (index) => DropdownMenuItem(
-                            value: index,
+                            value: index + 1,
                             child: Text(
                               (index + 1).toString(),
                             ),
@@ -149,7 +190,7 @@ class Yearly extends StatelessWidget implements Period {
                         items: List.generate(
                           12,
                           (index) => DropdownMenuItem(
-                            value: index,
+                            value: index + 1,
                             child: Text(
                               textDelegate.allMonths[index],
                             ),
