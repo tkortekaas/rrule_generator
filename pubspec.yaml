@@ -1,0 +1,15 @@
+name: rrule_generator
+description: A simple widget for generating rrules
+version: 0.0.1
+homepage: https://www.jelter.net
+repository: https://github.com/tkortekaas/rrule_generator
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  intl: ^0.17.0
