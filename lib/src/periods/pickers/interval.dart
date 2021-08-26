@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 class IntervalPicker extends StatefulWidget {
   final Function onChange;
-
   final TextEditingController controller;
 
   IntervalPicker(this.controller, this.onChange);

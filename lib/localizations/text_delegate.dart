@@ -1,5 +1,4 @@
 class RRuleTextDelegate {
-
   String get byDayInMonth => 'By day in Month';
 
   String get byNthDayInMonth => 'By nth day in Month';
@@ -20,7 +19,7 @@ class RRuleTextDelegate {
 
   String get endsAfter => 'Ends after';
 
-  String get endsOnDate => 'Ends on date' ;
+  String get endsOnDate => 'Ends on date';
 
   List<String> get daysInMonth => [
         '1st',
