@@ -26,12 +26,15 @@ class Weekly extends StatelessWidget implements Period {
         intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
     intervalController.text = interval;
 
-    int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
-    int weekdayEnd = initialRRule.indexOf(';', weekdayIndex);
-    String weekdays = initialRRule.substring(
-        weekdayIndex, weekdayEnd == -1 ? initialRRule.length : weekdayEnd);
-    for (int i = 0; i < 7; i++)
-      if (weekdays.contains(weekdaysShort[i])) weekdayNotifiers[i].value = true;
+    if (initialRRule.indexOf('BYDAY=') != -1) {
+      int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
+      int weekdayEnd = initialRRule.indexOf(';', weekdayIndex);
+      String weekdays = initialRRule.substring(
+          weekdayIndex, weekdayEnd == -1 ? initialRRule.length : weekdayEnd);
+      for (int i = 0; i < 7; i++)
+        if (weekdays.contains(weekdaysShort[i]))
+          weekdayNotifiers[i].value = true;
+    }
   }
 
   String getRRule() {
