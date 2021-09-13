@@ -28,7 +28,7 @@ class Weekly extends StatelessWidget implements Period {
     int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
     int weekdayEnd = initialRRule.indexOf(';', weekdayIndex);
     String weekdays = initialRRule.substring(
-        weekdayIndex, weekdayEnd == -1 ? initialRRule.length : intervalEnd);
+        weekdayIndex, weekdayEnd == -1 ? initialRRule.length : weekdayEnd);
     for (int i = 0; i < 7; i++)
       if (weekdays.contains(weekdaysShort[i])) weekdayNotifiers[i].value = true;
   }

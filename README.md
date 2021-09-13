@@ -10,7 +10,7 @@ in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.0.3
+rrule_generator: ^0.0.3+1
 ```
 
 ## How to use
@@ -19,7 +19,7 @@ Add the widget to your app like this:
 
 ```dart
 RRuleGenerator(
-  initialRRule: 'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+  initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
   textDelegate: const EnglishRRuleTextDelegate(),
   onChange: (String newValue) => print(newValue),
 );

@@ -1,3 +1,7 @@
+## 0.0.3+1
+
+Fix minor bug in handleInitialRRule() for the Weekly-period
+
 ## 0.0.3
 
 Add "RRule:" in advance of the String, as needed in the RRule plugin
