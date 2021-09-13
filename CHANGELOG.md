@@ -1,3 +1,7 @@
+## 0.0.3+2
+
+Fix another bug in the Weekly-period
+
 ## 0.0.3+1
 
 Fix minor bug in handleInitialRRule() for the Weekly-period

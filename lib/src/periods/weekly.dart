@@ -39,8 +39,10 @@ class Weekly extends StatelessWidget implements Period {
     for (int i = 0; i < 7; i++)
       if (weekdayNotifiers[i].value) weekdayList.add(weekdaysShort[i]);
 
-    return 'FREQ=WEEKLY;INTERVAL=${interval >= 0 ? interval : 0};'
-        'BYDAY=${weekdayList.join(",")}';
+    return weekdayList.isEmpty
+        ? 'FREQ=WEEKLY;INTERVAL=${interval >= 0 ? interval : 0}'
+        : 'FREQ=WEEKLY;INTERVAL=${interval >= 0 ? interval : 0};'
+            'BYDAY=${weekdayList.join(",")}';
   }
 
   @override
