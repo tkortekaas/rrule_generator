@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(),
         body: SingleChildScrollView(
           child: RRuleGenerator(
-            initialRRule: 'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+            initialRRule:
+                'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;UNTIL=2021128',
             textDelegate: const EnglishRRuleTextDelegate(),
             onChange: (String newValue) => print(newValue),
           ),

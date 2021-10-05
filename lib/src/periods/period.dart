@@ -16,7 +16,8 @@ class Period extends Widget {
   final Function onChange;
   final String initialRRule;
 
-  Period(this.textDelegate, this.onChange, this.initialRRule);
+  const Period(this.textDelegate, this.onChange, this.initialRRule, {Key? key})
+      : super(key: key);
 
   String getRRule() => throw UnimplementedError();
 

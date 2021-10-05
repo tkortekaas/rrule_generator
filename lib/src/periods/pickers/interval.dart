@@ -5,7 +5,8 @@ class IntervalPicker extends StatefulWidget {
   final Function onChange;
   final TextEditingController controller;
 
-  IntervalPicker(this.controller, this.onChange);
+  const IntervalPicker(this.controller, this.onChange, {Key? key})
+      : super(key: key);
 
   @override
   State<IntervalPicker> createState() => _IntervalPickerState();

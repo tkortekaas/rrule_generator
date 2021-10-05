@@ -1,3 +1,7 @@
+## 0.0.5
+- Fix issue when parsing UNTIL
+- Refactoring and code cleanup
+
 ## 0.0.4
 
 Fix bugs in the Weekly-period

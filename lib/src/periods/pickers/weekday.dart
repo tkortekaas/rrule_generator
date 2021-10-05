@@ -7,7 +7,9 @@ class WeekdayPicker extends StatelessWidget {
 
   final List<ValueNotifier<bool>> weekdayNotifiers;
 
-  WeekdayPicker(this.weekdayNotifiers, this.textDelegate, this.onChange);
+  const WeekdayPicker(this.weekdayNotifiers, this.textDelegate, this.onChange,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(

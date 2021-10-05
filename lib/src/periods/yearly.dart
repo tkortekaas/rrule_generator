@@ -3,8 +3,11 @@ import 'package:rrule_generator/localizations/text_delegate.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 
 class Yearly extends StatelessWidget implements Period {
+  @override
   final RRuleTextDelegate textDelegate;
+  @override
   final Function onChange;
+  @override
   final String initialRRule;
 
   final monthTypeNotifier = ValueNotifier(0);
@@ -13,20 +16,23 @@ class Yearly extends StatelessWidget implements Period {
   final monthNotifier = ValueNotifier(1);
   final dayNotifier = ValueNotifier(1);
 
-  Yearly(this.textDelegate, this.onChange, this.initialRRule) {
+  Yearly(this.textDelegate, this.onChange, this.initialRRule, {Key? key})
+      : super(key: key) {
     if (initialRRule.contains('YEARLY')) handleInitialRRule();
   }
 
+  @override
   void handleInitialRRule() {
     if (initialRRule.contains('BYMONTHDAY')) {
       monthTypeNotifier.value = 0;
       int dayIndex = initialRRule.indexOf('BYMONTHDAY=') + 11;
       String day = initialRRule.substring(
           dayIndex, dayIndex + (initialRRule.length > dayIndex + 1 ? 2 : 1));
-      if (day.length == 1 || day[1] != ';')
+      if (day.length == 1 || day[1] != ';') {
         dayNotifier.value = int.parse(day);
-      else
+      } else {
         dayNotifier.value = int.parse(day[0]);
+      }
     } else {
       monthTypeNotifier.value = 1;
 
@@ -34,10 +40,11 @@ class Yearly extends StatelessWidget implements Period {
       String monthDay =
           initialRRule.substring(monthDayIndex, monthDayIndex + 1);
 
-      if (monthDay == '-')
+      if (monthDay == '-') {
         monthDayNotifier.value = 4;
-      else
+      } else {
         monthDayNotifier.value = int.parse(monthDay) - 1;
+      }
 
       int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
       String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
@@ -55,6 +62,7 @@ class Yearly extends StatelessWidget implements Period {
     }
   }
 
+  @override
   String getRRule() {
     if (monthTypeNotifier.value == 0) {
       int byMonth = monthNotifier.value;
@@ -91,115 +99,114 @@ class Yearly extends StatelessWidget implements Period {
                 child: Text(textDelegate.byNthDayInMonth),
               ),
             ],
-          )
-        ]..addAll(
-            monthType == 0
-                ? [
-                    ValueListenableBuilder(
-                      valueListenable: monthNotifier,
-                      builder: (BuildContext context, int month, _) =>
-                          DropdownButton(
-                        value: month,
-                        onChanged: (int? newMonth) {
-                          monthNotifier.value = newMonth!;
-                          onChange();
-                        },
-                        items: List.generate(
-                          12,
-                          (index) => DropdownMenuItem(
-                            value: index + 1,
-                            child: Text(
-                              textDelegate.allMonths[index],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: dayNotifier,
-                      builder: (BuildContext context, int day, _) =>
-                          DropdownButton(
-                        value: day,
-                        onChanged: (int? newDay) {
-                          dayNotifier.value = newDay!;
-                          onChange();
-                        },
-                        items: List.generate(
-                          31,
-                          (index) => DropdownMenuItem(
-                            value: index + 1,
-                            child: Text(
-                              (index + 1).toString(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ]
-                : [
-                    ValueListenableBuilder(
-                      valueListenable: monthDayNotifier,
-                      builder: (BuildContext context, int dayInMonth, _) =>
-                          DropdownButton(
-                        value: dayInMonth,
-                        onChanged: (int? dayInMonth) {
-                          monthDayNotifier.value = dayInMonth!;
-                          onChange();
-                        },
-                        items: List.generate(
-                          5,
-                          (index) => DropdownMenuItem(
-                            value: index,
-                            child: Text(
-                              textDelegate.daysInMonth[index],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: weekdayNotifier,
-                      builder: (BuildContext context, int weekday, _) =>
-                          DropdownButton(
-                        value: weekday,
-                        onChanged: (int? newWeekday) {
-                          weekdayNotifier.value = newWeekday!;
-                          onChange();
-                        },
-                        items: List.generate(
-                          7,
-                          (index) => DropdownMenuItem(
-                            value: index,
-                            child: Text(
-                              textDelegate.weekdays[index].toString(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Text(textDelegate.of),
-                    ValueListenableBuilder(
-                      valueListenable: monthNotifier,
-                      builder: (BuildContext context, int month, _) =>
-                          DropdownButton(
-                        value: month,
-                        onChanged: (int? newMonth) {
-                          monthNotifier.value = newMonth!;
-                          onChange();
-                        },
-                        items: List.generate(
-                          12,
-                          (index) => DropdownMenuItem(
-                            value: index + 1,
-                            child: Text(
-                              textDelegate.allMonths[index],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
           ),
+          ...monthType == 0
+              ? [
+                  ValueListenableBuilder(
+                    valueListenable: monthNotifier,
+                    builder: (BuildContext context, int month, _) =>
+                        DropdownButton(
+                      value: month,
+                      onChanged: (int? newMonth) {
+                        monthNotifier.value = newMonth!;
+                        onChange();
+                      },
+                      items: List.generate(
+                        12,
+                        (index) => DropdownMenuItem(
+                          value: index + 1,
+                          child: Text(
+                            textDelegate.allMonths[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: dayNotifier,
+                    builder: (BuildContext context, int day, _) =>
+                        DropdownButton(
+                      value: day,
+                      onChanged: (int? newDay) {
+                        dayNotifier.value = newDay!;
+                        onChange();
+                      },
+                      items: List.generate(
+                        31,
+                        (index) => DropdownMenuItem(
+                          value: index + 1,
+                          child: Text(
+                            (index + 1).toString(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]
+              : [
+                  ValueListenableBuilder(
+                    valueListenable: monthDayNotifier,
+                    builder: (BuildContext context, int dayInMonth, _) =>
+                        DropdownButton(
+                      value: dayInMonth,
+                      onChanged: (int? dayInMonth) {
+                        monthDayNotifier.value = dayInMonth!;
+                        onChange();
+                      },
+                      items: List.generate(
+                        5,
+                        (index) => DropdownMenuItem(
+                          value: index,
+                          child: Text(
+                            textDelegate.daysInMonth[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: weekdayNotifier,
+                    builder: (BuildContext context, int weekday, _) =>
+                        DropdownButton(
+                      value: weekday,
+                      onChanged: (int? newWeekday) {
+                        weekdayNotifier.value = newWeekday!;
+                        onChange();
+                      },
+                      items: List.generate(
+                        7,
+                        (index) => DropdownMenuItem(
+                          value: index,
+                          child: Text(
+                            textDelegate.weekdays[index].toString(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(textDelegate.of),
+                  ValueListenableBuilder(
+                    valueListenable: monthNotifier,
+                    builder: (BuildContext context, int month, _) =>
+                        DropdownButton(
+                      value: month,
+                      onChanged: (int? newMonth) {
+                        monthNotifier.value = newMonth!;
+                        onChange();
+                      },
+                      items: List.generate(
+                        12,
+                        (index) => DropdownMenuItem(
+                          value: index + 1,
+                          child: Text(
+                            textDelegate.allMonths[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]
+        ],
       ),
     );
   }
