@@ -21,9 +21,11 @@ class RRuleGenerator extends StatelessWidget {
   final List<Period> periodWidgets = [];
 
   RRuleGenerator(
-      {Key? key, this.textDelegate = const EnglishRRuleTextDelegate(),
+      {Key? key,
+      this.textDelegate = const EnglishRRuleTextDelegate(),
       this.onChange,
-      this.initialRRule = ''}) : super(key: key) {
+      this.initialRRule = ''})
+      : super(key: key) {
     periodWidgets.addAll([
       Yearly(textDelegate, valueChanged, initialRRule),
       Monthly(textDelegate, valueChanged, initialRRule),
@@ -51,23 +53,18 @@ class RRuleGenerator extends StatelessWidget {
       countTypeNotifier.value = 2;
       int dateIndex = initialRRule.indexOf('UNTIL=') + 6;
       int year = int.parse(initialRRule.substring(dateIndex, dateIndex + 4));
-      int month, day;
-      if (initialRRule[dateIndex + 4] == '1') {
-        month = int.parse(initialRRule.substring(dateIndex + 4, dateIndex + 6));
-        day = int.parse(
-            initialRRule.substring(dateIndex + 6, initialRRule.length));
-      } else {
-        month = int.parse(initialRRule.substring(dateIndex + 4, dateIndex + 5));
-        day = int.parse(
-            initialRRule.substring(dateIndex + 5, initialRRule.length));
-      }
+      int month =
+          int.parse(initialRRule.substring(dateIndex + 4, dateIndex + 6));
+      int day =
+          int.parse(initialRRule.substring(dateIndex + 6, initialRRule.length));
 
       pickedDateNotifier.value = DateTime(year, month, day);
     }
   }
 
   void valueChanged() {
-    if (onChange != null) onChange!(getRRule());
+    Function(String newValue)? fun = onChange;
+    if (fun != null) fun(getRRule());
   }
 
   String getRRule() {
@@ -79,9 +76,15 @@ class RRuleGenerator extends StatelessWidget {
           ';COUNT=${instancesController.text}';
     }
     DateTime pickedDate = pickedDateNotifier.value;
+
+    String day =
+        pickedDate.day > 9 ? '${pickedDate.day}' : '0${pickedDate.day}';
+    String month =
+        pickedDate.month > 9 ? '${pickedDate.month}' : '0${pickedDate.month}';
+
     return 'RRULE:' +
         periodWidgets[frequencyNotifier.value].getRRule() +
-        ';UNTIL=${pickedDate.year}${pickedDate.month}${pickedDate.day}';
+        ';UNTIL=${pickedDate.year}$month$day';
   }
 
   @override
@@ -147,25 +150,27 @@ class RRuleGenerator extends StatelessWidget {
                     return ValueListenableBuilder(
                       valueListenable: pickedDateNotifier,
                       builder: (BuildContext context, DateTime pickedDate,
-                          Widget? child) => ElevatedButton(
-                          onPressed: () async {
-                            DateTime? picked = await showDatePicker(
-                              context: context,
-                              initialDate: pickedDate,
-                              firstDate: DateTime.fromMillisecondsSinceEpoch(0),
-                              lastDate: DateTime(2025),
-                            );
+                              Widget? child) =>
+                          ElevatedButton(
+                        onPressed: () async {
+                          DateTime? picked = await showDatePicker(
+                            context: context,
+                            initialDate: pickedDate,
+                            firstDate: DateTime.fromMillisecondsSinceEpoch(0),
+                            lastDate: DateTime(2025),
+                          );
 
-                            if (picked != null && picked != pickedDate) {
-                              pickedDateNotifier.value = picked;
-                            }
-                          },
-                          child: Text(
-                            DateFormat.yMd(Intl.getCurrentLocale()).format(
-                              pickedDate,
-                            ),
+                          if (picked != null && picked != pickedDate) {
+                            pickedDateNotifier.value = picked;
+                            valueChanged();
+                          }
+                        },
+                        child: Text(
+                          DateFormat.yMd(Intl.getCurrentLocale()).format(
+                            pickedDate,
                           ),
                         ),
+                      ),
                     );
                   default:
                     return Container();

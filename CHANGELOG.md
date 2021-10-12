@@ -1,3 +1,6 @@
+## 0.0.6
+Format UNTIL-date correctly
+
 ## 0.0.5
 - Fix issue when parsing UNTIL
 - Refactoring and code cleanup

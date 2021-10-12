@@ -10,7 +10,7 @@ in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.0.5
+rrule_generator: ^0.0.6
 ```
 
 ## How to use
