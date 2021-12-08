@@ -38,9 +38,9 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1e',
-        '2e',
-        '3e',
+        '1ste',
+        '2de',
+        '3de',
         '4e',
         'Laatste',
       ];

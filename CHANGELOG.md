@@ -1,3 +1,6 @@
+## 0.0.7
+Add Indonesian translation
+
 ## 0.0.6
 Format UNTIL-date correctly
 
