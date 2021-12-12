@@ -18,22 +18,10 @@ rrule_generator: ^0.0.8
 Add the widget to your app like this:
 
 ```dart
-RRuleGenerator
-(
-initialRRule: '
-RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9
-'
-,
-textDelegate: const EnglishRRuleTextDelegate()
-,
-onChange: (
-
-String newValue
-)
-=>
-print
-(
-newValue),
+RRuleGenerator(
+  initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+  textDelegate: const EnglishRRuleTextDelegate(),
+  onChange: (String newValue) => print(newValue),
 );
 ```
 

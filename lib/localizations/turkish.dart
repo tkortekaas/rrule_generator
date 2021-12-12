@@ -1,7 +1,7 @@
 import 'package:rrule_generator/localizations/text_delegate.dart';
 
-class DutchRRuleTextDelegate implements RRuleTextDelegate {
-  const DutchRRuleTextDelegate();
+class TurkishRRuleTextDelegate implements RRuleTextDelegate {
+  const TurkishRRuleTextDelegate();
 
   @override
   String get byDayInMonth => 'Ay içinde güne göre';
