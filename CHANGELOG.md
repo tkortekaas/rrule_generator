@@ -1,3 +1,6 @@
+## 0.0.8
+Add Turkish translation
+
 ## 0.0.7
 Add Indonesian translation
 
