@@ -42,7 +42,7 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
     '2.',
     '3.',
     '4.',
-    'Las',
+    'Son',
   ];
 
   @override

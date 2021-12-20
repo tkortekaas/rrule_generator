@@ -1,6 +1,6 @@
 name: rrule_generator
 description: RRuleGenerator is a widget for generating recurrence rules, such as described in the iCalendar RFC
-version: 0.0.8
+version: 0.0.9
 homepage: https://www.jelter.net
 repository: https://github.com/tkortekaas/rrule_generator
 

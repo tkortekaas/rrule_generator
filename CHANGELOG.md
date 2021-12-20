@@ -1,4 +1,8 @@
-## 0.0.8
+## 0.0.9
+- Add French translation
+- Fix mistake in Turkish translation
+
+## 0.0.8+1
 Add Turkish translation
 
 ## 0.0.7
