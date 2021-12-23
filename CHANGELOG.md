@@ -1,3 +1,6 @@
+## 0.1.0
+- Add 'Never' as a period option
+
 ## 0.0.9
 - Add French translation
 - Fix mistake in Turkish translation

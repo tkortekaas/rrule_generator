@@ -78,5 +78,6 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
         'Monthly',
         'Weekly',
         'Daily',
+        'Never',
       ];
 }

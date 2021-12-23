@@ -59,5 +59,6 @@ class RRuleTextDelegate {
         'Monthly',
         'Weekly',
         'Daily',
+        'Never',
       ];
 }

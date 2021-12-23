@@ -78,5 +78,6 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
         'Bulanan',
         'Mingguan',
         'Harian',
+        'Tak pernah',
       ];
 }

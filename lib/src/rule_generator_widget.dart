@@ -43,6 +43,8 @@ class RRuleGenerator extends StatelessWidget {
       frequencyNotifier.value = 2;
     } else if (initialRRule.contains('DAILY')) {
       frequencyNotifier.value = 3;
+    } else if (initialRRule == '') {
+      frequencyNotifier.value = 4;
     }
 
     if (initialRRule.contains('COUNT')) {
@@ -68,6 +70,10 @@ class RRuleGenerator extends StatelessWidget {
   }
 
   String getRRule() {
+    if (frequencyNotifier.value == 4)  {
+      return '';
+    }
+
     if (countTypeNotifier.value == 0) {
       return 'RRULE:' + periodWidgets[frequencyNotifier.value].getRRule();
     } else if (countTypeNotifier.value == 1) {
@@ -100,7 +106,7 @@ class RRuleGenerator extends StatelessWidget {
                 valueChanged();
               },
               items: List.generate(
-                4,
+                5,
                 (index) => DropdownMenuItem(
                   value: index,
                   child: Text(
@@ -109,74 +115,81 @@ class RRuleGenerator extends StatelessWidget {
                 ),
               ),
             ),
-            periodWidgets[period],
-            ValueListenableBuilder(
-              valueListenable: countTypeNotifier,
-              builder: (BuildContext context, int countType, Widget? child) =>
-                  DropdownButton(
-                value: countType,
-                onChanged: (int? newCountType) {
-                  countTypeNotifier.value = newCountType!;
-                  valueChanged();
-                },
-                items: [
-                  DropdownMenuItem(
-                    child: Text(textDelegate.neverEnds),
-                    value: 0,
-                  ),
-                  DropdownMenuItem(
-                    child: Text(textDelegate.endsAfter),
-                    value: 1,
-                  ),
-                  DropdownMenuItem(
-                    child: Text(textDelegate.endsOnDate),
-                    value: 2,
-                  ),
-                ],
-              ),
-            ),
-            ValueListenableBuilder(
-              valueListenable: countTypeNotifier,
-              builder: (BuildContext context, int countType, Widget? child) {
-                switch (countType) {
-                  case 1:
-                    return Column(
-                      children: [
-                        IntervalPicker(instancesController, valueChanged),
-                        Text(textDelegate.instances)
-                      ],
-                    );
-                  case 2:
-                    return ValueListenableBuilder(
-                      valueListenable: pickedDateNotifier,
-                      builder: (BuildContext context, DateTime pickedDate,
-                              Widget? child) =>
-                          ElevatedButton(
-                        onPressed: () async {
-                          DateTime? picked = await showDatePicker(
-                            context: context,
-                            initialDate: pickedDate,
-                            firstDate: DateTime.fromMillisecondsSinceEpoch(0),
-                            lastDate: DateTime(2025),
-                          );
-
-                          if (picked != null && picked != pickedDate) {
-                            pickedDateNotifier.value = picked;
-                            valueChanged();
-                          }
-                        },
-                        child: Text(
-                          DateFormat.yMd(Intl.getCurrentLocale()).format(
-                            pickedDate,
-                          ),
+            period == 4 ? Container() : periodWidgets[period],
+            period == 4
+                ? Container()
+                : ValueListenableBuilder(
+                    valueListenable: countTypeNotifier,
+                    builder:
+                        (BuildContext context, int countType, Widget? child) =>
+                            DropdownButton(
+                      value: countType,
+                      onChanged: (int? newCountType) {
+                        countTypeNotifier.value = newCountType!;
+                        valueChanged();
+                      },
+                      items: [
+                        DropdownMenuItem(
+                          child: Text(textDelegate.neverEnds),
+                          value: 0,
                         ),
-                      ),
-                    );
-                  default:
-                    return Container();
-                }
-              },
-            )
+                        DropdownMenuItem(
+                          child: Text(textDelegate.endsAfter),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(textDelegate.endsOnDate),
+                          value: 2,
+                        ),
+                      ],
+                    ),
+                  ),
+            period == 4
+                ? Container()
+                : ValueListenableBuilder(
+                    valueListenable: countTypeNotifier,
+                    builder:
+                        (BuildContext context, int countType, Widget? child) {
+                      switch (countType) {
+                        case 1:
+                          return Column(
+                            children: [
+                              IntervalPicker(instancesController, valueChanged),
+                              Text(textDelegate.instances)
+                            ],
+                          );
+                        case 2:
+                          return ValueListenableBuilder(
+                            valueListenable: pickedDateNotifier,
+                            builder: (BuildContext context, DateTime pickedDate,
+                                    Widget? child) =>
+                                ElevatedButton(
+                              onPressed: () async {
+                                DateTime? picked = await showDatePicker(
+                                  context: context,
+                                  initialDate: pickedDate,
+                                  firstDate:
+                                      DateTime.fromMillisecondsSinceEpoch(0),
+                                  lastDate: DateTime(2025),
+                                );
+
+                                if (picked != null && picked != pickedDate) {
+                                  pickedDateNotifier.value = picked;
+                                  valueChanged();
+                                }
+                              },
+                              child: Text(
+                                DateFormat.yMd(Intl.getCurrentLocale()).format(
+                                  pickedDate,
+                                ),
+                              ),
+                            ),
+                          );
+                        default:
+                          return Container();
+                      }
+                    },
+                  )
           ],
         ),
       );

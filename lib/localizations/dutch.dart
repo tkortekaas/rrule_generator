@@ -78,5 +78,6 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
         'Maandelijks',
         'Wekelijks',
         'Dagelijks',
+        'Nooit',
       ];
 }
