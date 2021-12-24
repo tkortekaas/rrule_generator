@@ -33,7 +33,7 @@ class RRuleGenerator extends StatelessWidget {
       Daily(textDelegate, valueChanged, initialRRule)
     ]);
 
-    if (initialRRule != '') handleInitialRRule();
+    handleInitialRRule();
   }
 
   void handleInitialRRule() {
