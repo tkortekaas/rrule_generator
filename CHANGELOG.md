@@ -1,3 +1,6 @@
+## 0.1.1
+- Add Finnish translation
+
 ## 0.1.0+1
 - Add 'Never' as a period option
 
