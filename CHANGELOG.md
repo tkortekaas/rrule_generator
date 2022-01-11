@@ -1,3 +1,6 @@
+## 0.1.2
+- Add Danish translation
+
 ## 0.1.1
 - Add Finnish translation
 
