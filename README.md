@@ -10,7 +10,7 @@ in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.1.2
+rrule_generator: ^0.1.3
 ```
 
 ## How to use
@@ -25,5 +25,5 @@ RRuleGenerator(
 );
 ```
 
-The current version of the widget has 6 text delegates that you can already use. One in English, one in Dutch, one in
-Turkish, French, Danish, Finnish, and one in Indonesian. You can easily create your own ones as well!
+The current version of the widget has 8 text delegates that you can already use. One in English, one in Dutch, one in
+Turkish, French, Danish, Finnish, Bulgarian, German, and one in Indonesian. You can easily create your own ones as well!

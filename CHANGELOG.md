@@ -1,3 +1,6 @@
+## 0.1.3
+- Add German and Bulgarian translation
+
 ## 0.1.2
 - Add Danish translation
 
