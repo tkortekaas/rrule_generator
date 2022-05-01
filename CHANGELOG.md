@@ -1,3 +1,6 @@
+## 0.1.4
+- Automatically use today for the "Yearly" period
+
 ## 0.1.3
 - Add German and Bulgarian translation
 

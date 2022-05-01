@@ -13,8 +13,8 @@ class Yearly extends StatelessWidget implements Period {
   final monthTypeNotifier = ValueNotifier(0);
   final monthDayNotifier = ValueNotifier(1);
   final weekdayNotifier = ValueNotifier(0);
-  final monthNotifier = ValueNotifier(1);
-  final dayNotifier = ValueNotifier(1);
+  final monthNotifier = ValueNotifier(DateTime.now().month);
+  final dayNotifier = ValueNotifier(DateTime.now().day);
 
   Yearly(this.textDelegate, this.onChange, this.initialRRule, {Key? key})
       : super(key: key) {
