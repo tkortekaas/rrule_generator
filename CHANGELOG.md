@@ -1,3 +1,6 @@
+## 0.1.5
+- Add Spanish translation
+
 ## 0.1.4
 - Automatically use today for the "Yearly" period
 
