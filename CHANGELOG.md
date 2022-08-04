@@ -1,3 +1,6 @@
+## 0.1.6
+- Add Slovenian and Italian translation
+
 ## 0.1.5
 - Add Spanish translation
 
