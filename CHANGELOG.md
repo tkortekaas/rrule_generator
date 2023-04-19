@@ -1,6 +1,8 @@
+## 0.2.1
+- Widen intl dependency to >=0.17.0 <0.19.0 and add Estonian language
+
 ## 0.2.0
 - Upgrade intl dependency to 0.18.0
-
 
 ## 0.1.6
 - Add Slovenian and Italian translation
