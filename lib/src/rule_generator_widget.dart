@@ -13,6 +13,7 @@ class RRuleGenerator extends StatelessWidget {
   final RRuleTextDelegate textDelegate;
   final Function(String newValue)? onChange;
   final String initialRRule;
+  late DateTime initialDate;
 
   final frequencyNotifier = ValueNotifier(0);
   final countTypeNotifier = ValueNotifier(0);
@@ -23,13 +24,15 @@ class RRuleGenerator extends StatelessWidget {
   RRuleGenerator({Key? key,
     this.textDelegate = const EnglishRRuleTextDelegate(),
     this.onChange,
-    this.initialRRule = ''})
+    this.initialRRule = '',
+    DateTime? initialDate
+    })
       : super(key: key) {
     periodWidgets.addAll([
-      Yearly(textDelegate, valueChanged, initialRRule),
-      Monthly(textDelegate, valueChanged, initialRRule),
-      Weekly(textDelegate, valueChanged, initialRRule),
-      Daily(textDelegate, valueChanged, initialRRule)
+      Yearly(textDelegate, valueChanged, initialRRule, initialDate ?? DateTime.now()),
+      Monthly(textDelegate, valueChanged, initialRRule, initialDate ?? DateTime.now()),
+      Weekly(textDelegate, valueChanged, initialRRule, initialDate ?? DateTime.now()),
+      Daily(textDelegate, valueChanged, initialRRule, initialDate ?? DateTime.now())
     ]);
 
     handleInitialRRule();

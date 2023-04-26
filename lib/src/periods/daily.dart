@@ -10,10 +10,13 @@ class Daily extends StatelessWidget implements Period {
   final Function onChange;
   @override
   final String initialRRule;
+  @override
+  final DateTime initialDate;
 
   final intervalController = TextEditingController(text: '1');
 
-  Daily(this.textDelegate, this.onChange, this.initialRRule, {Key? key})
+  Daily(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
+      {Key? key})
       : super(key: key) {
     if (initialRRule.contains('DAILY')) handleInitialRRule();
   }

@@ -11,6 +11,8 @@ class Weekly extends StatelessWidget implements Period {
   final Function onChange;
   @override
   final String initialRRule;
+  @override
+  final DateTime initialDate;
 
   final intervalController = TextEditingController(text: '1');
   final weekdayNotifiers = List.generate(
@@ -18,9 +20,13 @@ class Weekly extends StatelessWidget implements Period {
     (index) => ValueNotifier(false),
   );
 
-  Weekly(this.textDelegate, this.onChange, this.initialRRule, {Key? key})
+  Weekly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
+      {Key? key})
       : super(key: key) {
     if (initialRRule.contains('WEEKLY')) handleInitialRRule();
+    else {
+      weekdayNotifiers[initialDate.weekday].value = true;
+    }
   }
 
   @override

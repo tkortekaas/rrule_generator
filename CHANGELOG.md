@@ -1,3 +1,6 @@
+## 0.2.2
+- Add an initial date
+
 ## 0.2.1
 - Widen intl dependency to >=0.17.0 <0.19.0 and add Estonian language
 

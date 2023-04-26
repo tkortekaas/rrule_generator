@@ -10,6 +10,8 @@ class Monthly extends StatelessWidget implements Period {
   final Function onChange;
   @override
   final String initialRRule;
+  @override
+  final DateTime initialDate;
 
   final monthTypeNotifier = ValueNotifier(0);
   final monthDayNotifier = ValueNotifier(1);
@@ -17,9 +19,13 @@ class Monthly extends StatelessWidget implements Period {
   final dayNotifier = ValueNotifier(1);
   final intervalController = TextEditingController(text: '1');
 
-  Monthly(this.textDelegate, this.onChange, this.initialRRule, {Key? key})
+  Monthly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate, {Key? key})
       : super(key: key) {
     if (initialRRule.contains('MONTHLY')) handleInitialRRule();
+    else {
+      dayNotifier.value = initialDate.day;
+      weekdayNotifier.value = initialDate.weekday;
+    }
   }
 
   @override
