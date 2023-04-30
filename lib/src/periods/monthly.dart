@@ -24,7 +24,7 @@ class Monthly extends StatelessWidget implements Period {
     if (initialRRule.contains('MONTHLY')) handleInitialRRule();
     else {
       dayNotifier.value = initialDate.day;
-      weekdayNotifier.value = initialDate.weekday;
+      weekdayNotifier.value = initialDate.weekday - 1;
     }
   }
 

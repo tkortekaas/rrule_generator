@@ -1,3 +1,6 @@
+## 0.2.3
+- Fix weekday issue
+
 ## 0.2.2
 - Add an initial date
 
