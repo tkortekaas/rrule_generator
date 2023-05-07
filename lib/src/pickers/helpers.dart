@@ -29,10 +29,9 @@ Column buildElement({required Widget child, required String title}) {
   );
 }
 
-Container buildContainer({required Widget child}) {
-  return Container(
+Padding buildContainer({required Widget child}) {
+  return Padding(
     child: child,
-    color: Colors.white,
     padding: const EdgeInsets.all(8),
   );
 }
@@ -70,10 +69,6 @@ Widget buildToggleItem({
             ),
             Switch(value: value, onChanged: onChanged),
           ],
-        ),
-        Divider(),
-        const SizedBox(
-          height: 10,
         ),
         child,
       ],

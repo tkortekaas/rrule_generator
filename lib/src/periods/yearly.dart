@@ -163,6 +163,7 @@ class Yearly extends StatelessWidget implements Period {
               ),
             ),
           ),
+          const Divider(),
           buildToggleItem(
             onChanged: (bool selected) {
               monthTypeNotifier.value = selected ? 1 : 0;
@@ -234,7 +235,6 @@ class Yearly extends StatelessWidget implements Period {
                       ),
                     ],
                   ),
-                  SizedBox(height: 8,),
                   buildElement(
                     title: textDelegate.of,
                     child: buildDropdown(

@@ -143,9 +143,7 @@ class Monthly extends StatelessWidget implements Period {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const Divider(),
               buildToggleItem(
                 title: textDelegate.byDayInMonth,
                 value: monthType == 1,
