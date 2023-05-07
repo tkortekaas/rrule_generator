@@ -4,10 +4,16 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
   const SpanishRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Por día en Mes';
+  String get repeat => 'Repetir';
 
   @override
-  String get byNthDayInMonth => 'Por día específico en Mes';
+  String get day => 'Fecha';
+
+  @override
+  String get byDayInMonth => 'Repetir en';
+
+  @override
+  String get byNthDayInMonth => 'Repetir en el';
 
   @override
   String get every => 'Cada';
@@ -25,6 +31,12 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Día(s)';
 
   @override
+  String get date => 'Fecha';
+
+  @override
+  String get on => 'En';
+
+  @override
   String get instances => 'veces';
 
   @override
@@ -38,10 +50,10 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1º',
-        '2do',
-        '3ro',
-        '4º',
+        'Primero',
+        'Segundo',
+        'Tercero',
+        'Cuatro',
         'Último',
       ];
 

@@ -4,10 +4,16 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   const GermanRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Pro Tag im Monat';
+  String get repeat => 'Wiederhole';
 
   @override
-  String get byNthDayInMonth => 'Pro bestimmten Tag im Monat';
+  String get day => 'Tag';
+
+  @override
+  String get byDayInMonth => 'Wiederhole am';
+
+  @override
+  String get byNthDayInMonth => 'Wiederhole am der';
 
   @override
   String get every => 'Jeden';
@@ -25,6 +31,12 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Tage(n)';
 
   @override
+  String get date => 'Date';
+
+  @override
+  String get on => 'Am';
+
+  @override
   String get instances => 'mal(s)';
 
   @override
@@ -38,10 +50,10 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1.',
-        '2.',
-        '3.',
-        '4.',
+        'Erste',
+        'Zweite',
+        'Dritte',
+        'Vierte',
         'Letzten  ',
       ];
 

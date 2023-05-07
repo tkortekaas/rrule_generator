@@ -15,9 +15,16 @@ class IntervalPicker extends StatefulWidget {
 class _IntervalPickerState extends State<IntervalPicker> {
   @override
   Widget build(BuildContext context) => TextField(
-        textAlign: TextAlign.center,
         controller: widget.controller,
         keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+        ),
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],

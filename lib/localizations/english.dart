@@ -4,10 +4,16 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
   const EnglishRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'By day in Month';
+  String get repeat => 'Repeat';
 
   @override
-  String get byNthDayInMonth => 'By nth day in Month';
+  String get day => 'Day';
+
+  @override
+  String get byDayInMonth => 'Repeat on';
+
+  @override
+  String get byNthDayInMonth => 'Repeat on the';
 
   @override
   String get every => 'Every';
@@ -24,6 +30,10 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
   @override
   String get days => 'Day(s)';
 
+  String get date => 'Date';
+
+  String get on => 'On';
+
   @override
   String get instances => 'instance(s)';
 
@@ -38,10 +48,10 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1st',
-        '2nd',
-        '3rd',
-        '4rd',
+        'First',
+        'Second',
+        'Third',
+        'Fourth',
         'Last',
       ];
 

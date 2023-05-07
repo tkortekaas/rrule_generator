@@ -4,10 +4,16 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
   const FinnishRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Per päivä kuukaudessa';
+  String get repeat => 'Toistaa';
 
   @override
-  String get byNthDayInMonth => 'Tietyn päivän mukaan kuukaudessa';
+  String get day => 'Päivä';
+
+  @override
+  String get byDayInMonth => 'Toistaa';
+
+  @override
+  String get byNthDayInMonth => 'Toista kohdassa';
 
   @override
   String get every => 'Joka';
@@ -25,6 +31,12 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Päivä';
 
   @override
+  String get date => 'Datum';
+
+  @override
+  String get on => 'Dag';
+
+  @override
   String get instances => 'kertaa';
 
   @override
@@ -38,10 +50,10 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1.',
-        '2.',
-        '3.',
-        '4.',
+        'Ensimmäinen',
+        'Toinen',
+        'Kolmanneksi',
+        'Neljäs',
         'Viimeinen',
       ];
 

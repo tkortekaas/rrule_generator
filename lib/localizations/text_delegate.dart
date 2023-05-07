@@ -1,7 +1,11 @@
 class RRuleTextDelegate {
-  String get byDayInMonth => 'By day in Month';
+  String get repeat => 'Repeat';
 
-  String get byNthDayInMonth => 'By nth day in Month';
+  String get day => 'Day';
+
+  String get byDayInMonth => 'Repeat on';
+
+  String get byNthDayInMonth => 'Repeat on the';
 
   String get every => 'Every';
 
@@ -12,6 +16,10 @@ class RRuleTextDelegate {
   String get weeks => 'Week(s)';
 
   String get days => 'Day(s)';
+
+  String get date => 'Date';
+
+  String get on => 'On';
 
   String get instances => 'instance(s)';
 

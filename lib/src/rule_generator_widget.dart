@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rrule_generator/localizations/english.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
 import 'package:rrule_generator/src/periods/period.dart';
-import 'package:rrule_generator/src/periods/pickers/interval.dart';
+import 'package:rrule_generator/src/pickers/interval.dart';
 import 'package:rrule_generator/src/periods/yearly.dart';
 import 'package:rrule_generator/src/periods/monthly.dart';
 import 'package:rrule_generator/src/periods/weekly.dart';
 import 'package:rrule_generator/src/periods/daily.dart';
+import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:intl/intl.dart';
 
 class RRuleGenerator extends StatelessWidget {
@@ -100,103 +101,167 @@ class RRuleGenerator extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => ValueListenableBuilder(
-        valueListenable: frequencyNotifier,
-        builder: (BuildContext context, int period, Widget? child) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DropdownButton(
-              value: period,
-              onChanged: (int? newPeriod) {
-                frequencyNotifier.value = newPeriod!;
-                valueChanged();
-              },
-              items: List.generate(
-                5,
-                (index) => DropdownMenuItem(
-                  value: index,
-                  child: Text(
-                    textDelegate.periods[index],
+  Widget build(BuildContext context) => Container(
+        color: Colors.grey.shade300,
+        child: ValueListenableBuilder(
+          valueListenable: frequencyNotifier,
+          builder: (BuildContext context, int period, Widget? child) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildContainer(
+                child: buildElement(
+                  title: textDelegate.repeat,
+                  child: buildDropdown(
+                    child: DropdownButton(
+                      value: period,
+                      onChanged: (int? newPeriod) {
+                        frequencyNotifier.value = newPeriod!;
+                        valueChanged();
+                      },
+                      items: List.generate(
+                        5,
+                        (index) => DropdownMenuItem(
+                          value: index,
+                          child: Text(
+                            textDelegate.periods[index],
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-            period == 4 ? Container() : periodWidgets[period],
-            period == 4
-                ? Container()
-                : ValueListenableBuilder(
-                    valueListenable: countTypeNotifier,
-                    builder:
-                        (BuildContext context, int countType, Widget? child) =>
-                            DropdownButton(
-                      value: countType,
-                      onChanged: (int? newCountType) {
-                        countTypeNotifier.value = newCountType!;
-                        valueChanged();
-                      },
-                      items: [
-                        DropdownMenuItem(
-                          child: Text(textDelegate.neverEnds),
-                          value: 0,
-                        ),
-                        DropdownMenuItem(
-                          child: Text(textDelegate.endsAfter),
-                          value: 1,
-                        ),
-                        DropdownMenuItem(
-                          child: Text(textDelegate.endsOnDate),
-                          value: 2,
-                        ),
-                      ],
-                    ),
-                  ),
-            period == 4
-                ? Container()
-                : ValueListenableBuilder(
-                    valueListenable: countTypeNotifier,
-                    builder:
-                        (BuildContext context, int countType, Widget? child) {
-                      switch (countType) {
-                        case 1:
-                          return Column(
-                            children: [
-                              IntervalPicker(instancesController, valueChanged),
-                              Text(textDelegate.instances)
-                            ],
-                          );
-                        case 2:
-                          return ValueListenableBuilder(
-                            valueListenable: pickedDateNotifier,
-                            builder: (BuildContext context, DateTime pickedDate,
-                                    Widget? child) =>
-                                ElevatedButton(
-                              onPressed: () async {
-                                DateTime? picked = await showDatePicker(
-                                  context: context,
-                                  initialDate: pickedDate,
-                                  firstDate:
-                                      DateTime.fromMillisecondsSinceEpoch(0),
-                                  lastDate: DateTime(2025),
-                                );
-
-                                if (picked != null && picked != pickedDate) {
-                                  pickedDateNotifier.value = picked;
-                                  valueChanged();
-                                }
-                              },
-                              child: Text(
-                                DateFormat.yMd(Intl.getCurrentLocale()).format(
-                                  pickedDate,
+              SizedBox(
+                height: 10,
+              ),
+              if (period != 4) periodWidgets[period],
+              const SizedBox(
+                height: 10,
+              ),
+              if (period != 4)
+                buildContainer(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: buildElement(
+                              title: 'End',
+                              child: buildDropdown(
+                                child: ValueListenableBuilder(
+                                  valueListenable: countTypeNotifier,
+                                  builder: (BuildContext context, int countType,
+                                          Widget? child) =>
+                                      DropdownButton(
+                                    value: countType,
+                                    onChanged: (int? newCountType) {
+                                      countTypeNotifier.value = newCountType!;
+                                      valueChanged();
+                                    },
+                                    items: [
+                                      DropdownMenuItem(
+                                        child: Text(textDelegate.neverEnds),
+                                        value: 0,
+                                      ),
+                                      DropdownMenuItem(
+                                        child: Text(textDelegate.endsAfter),
+                                        value: 1,
+                                      ),
+                                      DropdownMenuItem(
+                                        child: Text(textDelegate.endsOnDate),
+                                        value: 2,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          );
-                        default:
-                          return Container();
-                      }
-                    },
-                  )
-          ],
+                          ),
+                          ValueListenableBuilder(
+                            valueListenable: countTypeNotifier,
+                            builder: (BuildContext context, int countType,
+                                    Widget? child) =>
+                                SizedBox(
+                              width: countType == 0 ? 0 : 8,
+                            ),
+                          ),
+                          ValueListenableBuilder(
+                            valueListenable: countTypeNotifier,
+                            builder: (BuildContext context, int countType,
+                                Widget? child) {
+                              switch (countType) {
+                                case 1:
+                                  return Expanded(
+                                    child: buildElement(
+                                      title: textDelegate.instances,
+                                      child: IntervalPicker(
+                                          instancesController, valueChanged),
+                                    ),
+                                  );
+                                case 2:
+                                  return Expanded(
+                                    child: buildElement(
+                                      title: textDelegate.date,
+                                      child: ValueListenableBuilder(
+                                        valueListenable: pickedDateNotifier,
+                                        builder: (BuildContext context,
+                                                DateTime pickedDate,
+                                                Widget? child) =>
+                                            OutlinedButton(
+                                          onPressed: () async {
+                                            DateTime? picked =
+                                                await showDatePicker(
+                                              context: context,
+                                              initialDate: pickedDate,
+                                              firstDate:
+                                                  DateTime.utc(2020, 10, 24),
+                                              lastDate: DateTime(2100),
+                                            );
+
+                                            if (picked != null &&
+                                                picked != pickedDate) {
+                                              pickedDateNotifier.value = picked;
+                                              valueChanged();
+                                            }
+                                          },
+                                          child: SizedBox(
+                                            width: double.maxFinite,
+                                            child: Text(
+                                              DateFormat.yMd(
+                                                      Intl.getCurrentLocale())
+                                                  .format(
+                                                pickedDate,
+                                              ),
+                                              style:
+                                                  TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          style: OutlinedButton.styleFrom(
+                                            side: BorderSide(
+                                              color: Colors.black,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            padding: EdgeInsets.symmetric(vertical: 24),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                default:
+                                  return Container();
+                              }
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
         ),
       );
 }

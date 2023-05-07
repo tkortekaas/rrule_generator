@@ -4,10 +4,16 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
   const DanishRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Per dag i Måneden';
+  String get repeat => 'Gentage';
 
   @override
-  String get byNthDayInMonth => 'Efter en bestemt dag i Måneden';
+  String get day => 'Ден';
+
+  @override
+  String get byDayInMonth => 'Gentag videre';
+
+  @override
+  String get byNthDayInMonth => 'Gentag på';
 
   @override
   String get every => 'Hver';
@@ -25,6 +31,12 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Dag(e)';
 
   @override
+  String get date => 'Dato';
+
+  @override
+  String get on => 'Den';
+
+  @override
   String get instances => 'gange';
 
   @override
@@ -38,10 +50,10 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1.',
-        '2.',
-        '3.',
-        '4.',
+        'Først',
+        'Anden',
+        'Tredje',
+        'Fjerde',
         'Sidste',
       ];
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
-import 'package:rrule_generator/src/periods/pickers/interval.dart';
+import 'package:rrule_generator/src/pickers/helpers.dart';
+import 'package:rrule_generator/src/pickers/interval.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 
 class Daily extends StatelessWidget implements Period {
@@ -37,11 +38,18 @@ class Daily extends StatelessWidget implements Period {
   }
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Text(textDelegate.every),
-          IntervalPicker(intervalController, onChange),
-          Text(textDelegate.days),
-        ],
-      );
+  Widget build(BuildContext context) => buildContainer(
+    child: buildElement(
+          title: textDelegate.every,
+          child: Row(
+            children: [
+              Expanded(child: IntervalPicker(intervalController, onChange)),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(textDelegate.days),
+              ),
+            ],
+          ),
+        ),
+  );
 }

@@ -4,10 +4,16 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   const IndonesianRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Menurut hari dalam Bulan';
+  String get repeat => 'Mengulang';
 
   @override
-  String get byNthDayInMonth => 'Pada hari ke-n dalam Bulan';
+  String get day => 'Tanggal';
+
+  @override
+  String get byDayInMonth => 'Ulangi';
+
+  @override
+  String get byNthDayInMonth => 'Ulangi pada';
 
   @override
   String get every => 'Setiap';
@@ -25,6 +31,12 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Hari';
 
   @override
+  String get date => 'Tanggal';
+
+  @override
+  String get on => 'Pada';
+
+  @override
   String get instances => 'contoh';
 
   @override
@@ -38,10 +50,10 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1',
-        '2',
-        '3',
-        '4',
+        'Pertama',
+        'Kedua',
+        'Ketiga',
+        'Keempat',
         'Terakhir',
       ];
 

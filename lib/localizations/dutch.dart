@@ -4,10 +4,16 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   const DutchRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Per dag in Maand';
+  String get repeat => 'Herhaal';
 
   @override
-  String get byNthDayInMonth => 'Per nde dag in Maand';
+  String get day => 'Dag';
+
+  @override
+  String get byDayInMonth => 'Herhaal op';
+
+  @override
+  String get byNthDayInMonth => 'Herhaal op de';
 
   @override
   String get every => 'Elke';
@@ -25,6 +31,12 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Dag(en)';
 
   @override
+  String get date => 'Datum';
+
+  @override
+  String get on => 'Op';
+
+  @override
   String get instances => 'keren';
 
   @override
@@ -38,10 +50,10 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1ste',
-        '2de',
-        '3de',
-        '4e',
+        'Eerste',
+        'Tweede',
+        'Derde',
+        'Vierde',
         'Laatste',
       ];
 

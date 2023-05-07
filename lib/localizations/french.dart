@@ -4,10 +4,16 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
   const FrenchRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Par jour du mois';
+  String get repeat => 'Répéter';
 
   @override
-  String get byNthDayInMonth => 'Par jour spécifique du mois';
+  String get day => 'Jour';
+
+  @override
+  String get byDayInMonth => 'Répéter sur';
+
+  @override
+  String get byNthDayInMonth => 'Répéter sur le';
 
   @override
   String get every => 'Tous';
@@ -25,6 +31,12 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Jours';
 
   @override
+  String get date => 'Date';
+
+  @override
+  String get on => 'Le';
+
+  @override
   String get instances => 'fois';
 
   @override
@@ -38,10 +50,10 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1er',
-        '2e',
-        '3e',
-        '4e',
+        'Premier',
+        'Deuxième',
+        'Troisième',
+        'Quatrième',
         'Dernier',
       ];
 

@@ -1,3 +1,6 @@
+## 0.3.0
+- Complete UI rework
+
 ## 0.2.3
 - Fix weekday issue
 

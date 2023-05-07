@@ -4,10 +4,16 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   const TurkishRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Ay içinde güne göre';
+  String get repeat => 'Tekrarlamak';
 
   @override
-  String get byNthDayInMonth => 'Ayın n. gününe kadar';
+  String get day => 'Tarih';
+
+  @override
+  String get byDayInMonth => '\'ta tekrar';
+
+  @override
+  String get byNthDayInMonth => 'Güne göre tekrarla';
 
   @override
   String get every => 'Her';
@@ -25,6 +31,12 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Gün(ler)';
 
   @override
+  String get date => 'Tarih';
+
+  @override
+  String get on => '';
+
+  @override
   String get instances => 'örnekler';
 
   @override
@@ -38,10 +50,10 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1.',
-        '2.',
-        '3.',
-        '4.',
+        'Birinci',
+        'Ikinci',
+        'Üçüncü',
+        'Dördüncü',
         'Son',
       ];
 

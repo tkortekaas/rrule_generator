@@ -4,10 +4,16 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   const ItalianRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Di giorno in mese';
+  String get repeat => 'Ripetere';
 
   @override
-  String get byNthDayInMonth => 'Per giorno specifico nel mese';
+  String get day => 'Data';
+
+  @override
+  String get byDayInMonth => 'Ripeti';
+
+  @override
+  String get byNthDayInMonth => 'Ripeti il';
 
   @override
   String get every => 'Ogni';
@@ -25,6 +31,12 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Giorni';
 
   @override
+  String get date => 'Data';
+
+  @override
+  String get on => 'Il';
+
+  @override
   String get instances => 'istanze';
 
   @override
@@ -38,10 +50,10 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1°',
-        '2°',
-        '3°',
-        '4°',
+        'Primo',
+        'Secondo',
+        'Terzo',
+        'Il quarto',
         'Ultimo',
       ];
 

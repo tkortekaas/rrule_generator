@@ -3,14 +3,14 @@
 RRuleGenerator is a widget for generating recurrence rules, such as described
 in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 
-![Example one](https://jelter.net/rrule_example.png)
+![Example one](https://jelter.net/rrule_example.jpg)
 
 ## Installation
 
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.2.1
+rrule_generator: ^0.3.0
 ```
 
 ## How to use

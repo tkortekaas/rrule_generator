@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rrule_generator/rrule_generator.dart';
-import 'package:rrule_generator/localizations/english.dart';
 
 void main() {
   runApp(const MyApp());

@@ -4,10 +4,16 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
   const SlovenianRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Podľa dňa v mesiaci';
+  String get repeat => 'Ponovi';
 
   @override
-  String get byNthDayInMonth => 'Podľa konkrétneho dňa v mesiaci';
+  String get day => 'Datum';
+
+  @override
+  String get byDayInMonth => 'Ponovi naprej';
+
+  @override
+  String get byNthDayInMonth => 'Ponovite prvi';
 
   @override
   String get every => 'Každý';
@@ -25,6 +31,12 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Dni';
 
   @override
+  String get date => 'Datum';
+
+  @override
+  String get on => 'Na';
+
+  @override
   String get instances => 'Prípadov';
 
   @override
@@ -38,10 +50,10 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-    '1',
-    '2',
-    '3',
-    '4',
+    'Prvi',
+    'Drugo',
+    'Tretji',
+    'Četrtič',
     'Posledný',
   ];
 

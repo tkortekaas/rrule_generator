@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
-import 'package:rrule_generator/src/periods/pickers/interval.dart';
+import 'package:rrule_generator/src/pickers/interval.dart';
 import 'package:rrule_generator/src/periods/period.dart';
-import 'package:rrule_generator/src/periods/pickers/weekday.dart';
+import 'package:rrule_generator/src/pickers/weekday.dart';
+
+import '../pickers/helpers.dart';
 
 class Weekly extends StatelessWidget implements Period {
   @override
@@ -23,7 +25,8 @@ class Weekly extends StatelessWidget implements Period {
   Weekly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
       {Key? key})
       : super(key: key) {
-    if (initialRRule.contains('WEEKLY')) handleInitialRRule();
+    if (initialRRule.contains('WEEKLY'))
+      handleInitialRRule();
     else {
       weekdayNotifiers[initialDate.weekday - 1].value = true;
     }
@@ -65,12 +68,25 @@ class Weekly extends StatelessWidget implements Period {
   }
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Text(textDelegate.every),
-          IntervalPicker(intervalController, onChange),
-          Text(textDelegate.weeks),
-          WeekdayPicker(weekdayNotifiers, textDelegate, onChange),
-        ],
+  Widget build(BuildContext context) => buildContainer(
+        child: buildElement(
+          title: textDelegate.every,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: IntervalPicker(intervalController, onChange),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(textDelegate.weeks),
+                  ),
+                ],
+              ),
+              WeekdayPicker(weekdayNotifiers, textDelegate, onChange),
+            ],
+          ),
+        ),
       );
 }

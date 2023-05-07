@@ -4,10 +4,16 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
   const EstonianRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'Kuupäeva järgi';
+  String get repeat => 'Korda';
 
   @override
-  String get byNthDayInMonth => 'Mitmenda nädalapäeva järgi';
+  String get day => 'Päeval';
+
+  @override
+  String get byDayInMonth => 'Korda';
+
+  @override
+  String get byNthDayInMonth => 'Korrake';
 
   @override
   String get every => 'Iga';
@@ -23,6 +29,10 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get days => 'Päevadel';
+
+  String get date => 'Kuupäev';
+
+  String get on => '';
 
   @override
   String get instances => 'korda';

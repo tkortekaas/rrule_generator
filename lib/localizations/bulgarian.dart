@@ -4,10 +4,16 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   const BulgarianRRuleTextDelegate();
 
   @override
-  String get byDayInMonth => 'По ден в месеца';
+  String get repeat => 'Повтори';
 
   @override
-  String get byNthDayInMonth => 'По определен ден в месеца';
+  String get day => 'Ден';
+
+  @override
+  String get byDayInMonth => 'Повтори на';
+
+  @override
+  String get byNthDayInMonth => 'Повтори на ден';
 
   @override
   String get every => 'Всеки';
@@ -25,6 +31,12 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   String get days => 'Ден(а)';
 
   @override
+  String get date => 'Дата';
+
+  @override
+  String get on => 'На';
+
+  @override
   String get instances => 'случай/и';
 
   @override
@@ -38,11 +50,11 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-    '1ви',
-    '2ри',
-    '3ти',
-    '4ти',
-    'последен',
+    'Първи',
+    'Второ',
+    'Трети',
+    'Четвърто',
+    'Последен',
   ];
 
   @override
