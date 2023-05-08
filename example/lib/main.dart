@@ -14,14 +14,26 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: Scaffold(
         appBar: AppBar(),
-        body: SingleChildScrollView(
-          child: RRuleGenerator(
-            initialRRule:
-                'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;UNTIL=2021128',
-            textDelegate: const EnglishRRuleTextDelegate(),
-            onChange: (String newValue) => print(newValue),
-          ),
-        ),
+        body: Builder(builder: (context) {
+          return Center(
+            child: ElevatedButton(
+              child: Text('Open'),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    content: RRuleGenerator(
+                      initialRRule:
+                          'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;UNTIL=2021128',
+                      textDelegate: const EnglishRRuleTextDelegate(),
+                      onChange: print,
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        }),
       ),
     );
   }

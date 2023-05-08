@@ -82,11 +82,9 @@ class RRuleGenerator extends StatelessWidget {
     }
 
     if (countTypeNotifier.value == 0) {
-      return 'RRULE:' + periodWidgets[frequencyNotifier.value].getRRule();
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}';
     } else if (countTypeNotifier.value == 1) {
-      return 'RRULE:' +
-          periodWidgets[frequencyNotifier.value].getRRule() +
-          ';COUNT=${instancesController.text}';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instancesController.text}';
     }
     DateTime pickedDate = pickedDateNotifier.value;
 
@@ -95,169 +93,173 @@ class RRuleGenerator extends StatelessWidget {
     String month =
         pickedDate.month > 9 ? '${pickedDate.month}' : '0${pickedDate.month}';
 
-    return 'RRULE:' +
-        periodWidgets[frequencyNotifier.value].getRRule() +
-        ';UNTIL=${pickedDate.year}$month$day';
+    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day';
   }
 
   @override
-  Widget build(BuildContext context) => ValueListenableBuilder(
-        valueListenable: frequencyNotifier,
-        builder: (BuildContext context, int period, Widget? child) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            buildContainer(
-              child: buildElement(
-                title: textDelegate.repeat,
-                child: buildDropdown(
-                  child: DropdownButton(
-                    value: period,
-                    onChanged: (int? newPeriod) {
-                      frequencyNotifier.value = newPeriod!;
-                      valueChanged();
-                    },
-                    items: List.generate(
-                      5,
-                      (index) => DropdownMenuItem(
-                        value: index,
-                        child: Text(
-                          textDelegate.periods[index],
+  Widget build(BuildContext context) => SizedBox(
+        width: double.maxFinite,
+        child: ValueListenableBuilder(
+          valueListenable: frequencyNotifier,
+          builder: (BuildContext context, int period, Widget? child) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildContainer(
+                child: buildElement(
+                  title: textDelegate.repeat,
+                  child: buildDropdown(
+                    child: DropdownButton(
+                      isExpanded: true,
+                      value: period,
+                      onChanged: (int? newPeriod) {
+                        frequencyNotifier.value = newPeriod!;
+                        valueChanged();
+                      },
+                      items: List.generate(
+                        5,
+                        (index) => DropdownMenuItem(
+                          value: index,
+                          child: Text(
+                            textDelegate.periods[index],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            if (period != 4) ...[
-              const Divider(),
-              periodWidgets[period],
-              const Divider(),
-              buildContainer(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: buildElement(
-                            title: 'End',
-                            child: buildDropdown(
-                              child: ValueListenableBuilder(
-                                valueListenable: countTypeNotifier,
-                                builder: (BuildContext context, int countType,
-                                        Widget? child) =>
-                                    DropdownButton(
-                                  value: countType,
-                                  onChanged: (int? newCountType) {
-                                    countTypeNotifier.value = newCountType!;
-                                    valueChanged();
-                                  },
-                                  items: [
-                                    DropdownMenuItem(
-                                      child: Text(textDelegate.neverEnds),
-                                      value: 0,
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text(textDelegate.endsAfter),
-                                      value: 1,
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text(textDelegate.endsOnDate),
-                                      value: 2,
-                                    ),
-                                  ],
+              if (period != 4) ...[
+                const Divider(),
+                periodWidgets[period],
+                const Divider(),
+                buildContainer(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: buildElement(
+                              title: 'End',
+                              child: buildDropdown(
+                                child: ValueListenableBuilder(
+                                  valueListenable: countTypeNotifier,
+                                  builder: (BuildContext context, int countType,
+                                          Widget? child) =>
+                                      DropdownButton(
+                                    isExpanded: true,
+                                    value: countType,
+                                    onChanged: (int? newCountType) {
+                                      countTypeNotifier.value = newCountType!;
+                                      valueChanged();
+                                    },
+                                    items: [
+                                      DropdownMenuItem(
+                                        value: 0,
+                                        child: Text(textDelegate.neverEnds),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: 1,
+                                        child: Text(textDelegate.endsAfter),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: 2,
+                                        child: Text(textDelegate.endsOnDate),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        ValueListenableBuilder(
-                          valueListenable: countTypeNotifier,
-                          builder: (BuildContext context, int countType,
-                                  Widget? child) =>
-                              SizedBox(
-                            width: countType == 0 ? 0 : 8,
+                          ValueListenableBuilder(
+                            valueListenable: countTypeNotifier,
+                            builder: (BuildContext context, int countType,
+                                    Widget? child) =>
+                                SizedBox(
+                              width: countType == 0 ? 0 : 8,
+                            ),
                           ),
-                        ),
-                        ValueListenableBuilder(
-                          valueListenable: countTypeNotifier,
-                          builder: (BuildContext context, int countType,
-                              Widget? child) {
-                            switch (countType) {
-                              case 1:
-                                return Expanded(
-                                  child: buildElement(
-                                    title: textDelegate.instances,
-                                    child: IntervalPicker(
-                                        instancesController, valueChanged),
-                                  ),
-                                );
-                              case 2:
-                                return Expanded(
-                                  child: buildElement(
-                                    title: textDelegate.date,
-                                    child: ValueListenableBuilder(
-                                      valueListenable: pickedDateNotifier,
-                                      builder: (BuildContext context,
-                                              DateTime pickedDate,
-                                              Widget? child) =>
-                                          OutlinedButton(
-                                        onPressed: () async {
-                                          DateTime? picked =
-                                              await showDatePicker(
-                                            context: context,
-                                            initialDate: pickedDate,
-                                            firstDate:
-                                                DateTime.utc(2020, 10, 24),
-                                            lastDate: DateTime(2100),
-                                          );
+                          ValueListenableBuilder(
+                            valueListenable: countTypeNotifier,
+                            builder: (BuildContext context, int countType,
+                                Widget? child) {
+                              switch (countType) {
+                                case 1:
+                                  return Expanded(
+                                    child: buildElement(
+                                      title: textDelegate.instances,
+                                      child: IntervalPicker(
+                                          instancesController, valueChanged),
+                                    ),
+                                  );
+                                case 2:
+                                  return Expanded(
+                                    child: buildElement(
+                                      title: textDelegate.date,
+                                      child: ValueListenableBuilder(
+                                        valueListenable: pickedDateNotifier,
+                                        builder: (BuildContext context,
+                                                DateTime pickedDate,
+                                                Widget? child) =>
+                                            OutlinedButton(
+                                          onPressed: () async {
+                                            DateTime? picked =
+                                                await showDatePicker(
+                                              context: context,
+                                              initialDate: pickedDate,
+                                              firstDate:
+                                                  DateTime.utc(2020, 10, 24),
+                                              lastDate: DateTime(2100),
+                                            );
 
-                                          if (picked != null &&
-                                              picked != pickedDate) {
-                                            pickedDateNotifier.value = picked;
-                                            valueChanged();
-                                          }
-                                        },
-                                        child: SizedBox(
-                                          width: double.maxFinite,
-                                          child: Text(
-                                            DateFormat.yMd(
-                                                    Intl.getCurrentLocale())
-                                                .format(
-                                              pickedDate,
+                                            if (picked != null &&
+                                                picked != pickedDate) {
+                                              pickedDateNotifier.value = picked;
+                                              valueChanged();
+                                            }
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            side: const BorderSide(
+                                              color: Colors.black,
                                             ),
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 24,
+                                            ),
                                           ),
-                                        ),
-                                        style: OutlinedButton.styleFrom(
-                                          side: BorderSide(
-                                            color: Colors.black,
+                                          child: SizedBox(
+                                            width: double.maxFinite,
+                                            child: Text(
+                                              DateFormat.yMd(
+                                                      Intl.getCurrentLocale())
+                                                  .format(
+                                                pickedDate,
+                                              ),
+                                              style: const TextStyle(
+                                                  color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
                                           ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 24),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              default:
-                                return Container();
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ],
+                                  );
+                                default:
+                                  return Container();
+                              }
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ]
-          ],
+              ]
+            ],
+          ),
         ),
       );
 }

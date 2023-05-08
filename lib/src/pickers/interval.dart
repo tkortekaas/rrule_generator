@@ -17,7 +17,7 @@ class _IntervalPickerState extends State<IntervalPicker> {
   Widget build(BuildContext context) => TextField(
         controller: widget.controller,
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
             borderRadius: BorderRadius.all(

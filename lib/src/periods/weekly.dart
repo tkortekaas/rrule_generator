@@ -25,9 +25,9 @@ class Weekly extends StatelessWidget implements Period {
   Weekly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
       {Key? key})
       : super(key: key) {
-    if (initialRRule.contains('WEEKLY'))
+    if (initialRRule.contains('WEEKLY')) {
       handleInitialRRule();
-    else {
+    } else {
       weekdayNotifiers[initialDate.weekday - 1].value = true;
     }
   }

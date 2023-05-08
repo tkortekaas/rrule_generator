@@ -20,7 +20,7 @@ Column buildElement({required Widget child, required String title}) {
     children: [
       Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
         ),
       ),
@@ -31,8 +31,8 @@ Column buildElement({required Widget child, required String title}) {
 
 Padding buildContainer({required Widget child}) {
   return Padding(
-    child: child,
     padding: const EdgeInsets.all(8),
+    child: child,
   );
 }
 
@@ -42,20 +42,21 @@ Widget buildToggleItem({
   required String title,
   required bool value,
 }) {
-  if (!value)
+  if (!value) {
     return buildContainer(
       child: Row(
         children: [
           Expanded(
             child: Text(
               title,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
           Switch(value: value, onChanged: onChanged),
         ],
       ),
     );
+  }
   return buildContainer(
     child: Column(
       children: [
@@ -64,7 +65,7 @@ Widget buildToggleItem({
             Expanded(
               child: Text(
                 title,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
             Switch(value: value, onChanged: onChanged),

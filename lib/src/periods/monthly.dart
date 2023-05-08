@@ -23,9 +23,9 @@ class Monthly extends StatelessWidget implements Period {
   Monthly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
       {Key? key})
       : super(key: key) {
-    if (initialRRule.contains('MONTHLY'))
+    if (initialRRule.contains('MONTHLY')) {
       handleInitialRRule();
-    else {
+    } else {
       dayNotifier.value = initialDate.day;
       weekdayNotifier.value = initialDate.weekday - 1;
     }
@@ -124,6 +124,7 @@ class Monthly extends StatelessWidget implements Period {
                       valueListenable: dayNotifier,
                       builder: (BuildContext context, int day, _) =>
                           DropdownButton(
+                        isExpanded: true,
                         value: day,
                         onChanged: (int? newDay) {
                           dayNotifier.value = newDay!;
@@ -161,6 +162,7 @@ class Monthly extends StatelessWidget implements Period {
                               title: textDelegate.on,
                               child: buildDropdown(
                                 child: DropdownButton(
+                                  isExpanded: true,
                                   value: dayInMonth,
                                   onChanged: (int? dayInMonth) {
                                     monthDayNotifier.value = dayInMonth!;
@@ -191,6 +193,7 @@ class Monthly extends StatelessWidget implements Period {
                                   builder:
                                       (BuildContext context, int weekday, _) =>
                                           DropdownButton(
+                                    isExpanded: true,
                                     value: weekday,
                                     onChanged: (int? newWeekday) {
                                       weekdayNotifier.value = newWeekday!;

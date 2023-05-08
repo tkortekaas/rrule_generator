@@ -1,3 +1,7 @@
+## 0.3.1
+
+- Add lints
+
 ## 0.3.0+1
 
 - Make widget more compatible for use with different background colors

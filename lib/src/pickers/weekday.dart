@@ -13,8 +13,8 @@ class WeekdayPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 8.0),
-    child: Row(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
           children: List.generate(
             7,
             (index) => ValueListenableBuilder(
@@ -33,7 +33,7 @@ class WeekdayPicker extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5)),
                     child: Text(
                       textDelegate.weekdays[index].substring(0, 3),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   onTap: () {
@@ -45,5 +45,5 @@ class WeekdayPicker extends StatelessWidget {
             ),
           ),
         ),
-  );
+      );
 }
