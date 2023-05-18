@@ -30,8 +30,10 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
   @override
   String get days => 'Day(s)';
 
+  @override
   String get date => 'Date';
 
+  @override
   String get on => 'On';
 
   @override

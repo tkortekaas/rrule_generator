@@ -97,7 +97,7 @@ class Yearly extends StatelessWidget implements Period {
             onChanged: (bool selected) {
               monthTypeNotifier.value = selected ? 0 : 1;
             },
-            title: textDelegate.byNthDayInMonth,
+            title: textDelegate.byDayInMonth,
             value: monthType == 0,
             child: buildContainer(
               child: Row(
@@ -135,7 +135,7 @@ class Yearly extends StatelessWidget implements Period {
                   ),
                   Expanded(
                     child: buildElement(
-                      title: 'Day',
+                      title: textDelegate.day,
                       child: buildDropdown(
                         child: ValueListenableBuilder(
                           valueListenable: dayNotifier,
@@ -170,7 +170,7 @@ class Yearly extends StatelessWidget implements Period {
             onChanged: (bool selected) {
               monthTypeNotifier.value = selected ? 1 : 0;
             },
-            title: textDelegate.byDayInMonth,
+            title: textDelegate.byNthDayInMonth,
             value: monthType == 1,
             child: Column(
               children: [

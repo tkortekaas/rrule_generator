@@ -30,8 +30,10 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
   @override
   String get days => 'Päevadel';
 
+  @override
   String get date => 'Kuupäev';
 
+  @override
   String get on => '';
 
   @override
@@ -84,9 +86,9 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get periods => [
-    "Iga-aastane",
+    'Iga-aastane',
     'Igakuine',
-    "Iganädalane",
+    'Iganädalane',
     'Igapäevane',
     'Mitte kunagi',
   ];

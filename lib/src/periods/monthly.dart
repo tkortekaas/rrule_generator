@@ -112,7 +112,7 @@ class Monthly extends StatelessWidget implements Period {
               Column(
             children: [
               buildToggleItem(
-                title: textDelegate.byNthDayInMonth,
+                title: textDelegate.byDayInMonth,
                 value: monthType == 0,
                 onChanged: (bool selected) {
                   monthTypeNotifier.value = selected ? 0 : 1;
@@ -146,7 +146,7 @@ class Monthly extends StatelessWidget implements Period {
               ),
               const Divider(),
               buildToggleItem(
-                title: textDelegate.byDayInMonth,
+                title: textDelegate.byNthDayInMonth,
                 value: monthType == 1,
                 onChanged: (bool selected) {
                   monthTypeNotifier.value = selected ? 1 : 0;
@@ -186,7 +186,7 @@ class Monthly extends StatelessWidget implements Period {
                           ),
                           Expanded(
                             child: buildElement(
-                              title: 'Day',
+                              title: textDelegate.day,
                               child: buildDropdown(
                                 child: ValueListenableBuilder(
                                   valueListenable: weekdayNotifier,

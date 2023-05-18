@@ -1,3 +1,7 @@
+## 0.3.2
+
+- Resolves localization issue
+
 ## 0.3.1
 
 - Add lints
