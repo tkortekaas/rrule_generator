@@ -1,3 +1,7 @@
+## 0.3.3
+
+- Add Hungarian translation
+
 ## 0.3.2
 
 - Resolves localization issue
