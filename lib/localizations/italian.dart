@@ -40,6 +40,9 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'istanze';
 
   @override
+  String get end => 'Fine';
+
+  @override
   String get neverEnds => 'Non finisce mai';
 
   @override

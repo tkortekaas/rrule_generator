@@ -40,6 +40,9 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'instance(s)';
 
   @override
+  String get end => 'End';
+
+  @override
   String get neverEnds => 'Never ends';
 
   @override

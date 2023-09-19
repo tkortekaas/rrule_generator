@@ -40,6 +40,9 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'mal(s)';
 
   @override
+  String get end => 'Ende';
+
+  @override
   String get neverEnds => 'Endet nicht';
 
   @override

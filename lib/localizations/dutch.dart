@@ -40,6 +40,9 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'keren';
 
   @override
+  String get end => 'Einde';
+
+  @override
   String get neverEnds => 'Eindigt nooit';
 
   @override

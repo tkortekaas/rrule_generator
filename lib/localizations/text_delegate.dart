@@ -23,6 +23,8 @@ class RRuleTextDelegate {
 
   String get instances => 'instance(s)';
 
+  String get end => 'End';
+
   String get neverEnds => 'Never ends';
 
   String get endsAfter => 'Ends after';

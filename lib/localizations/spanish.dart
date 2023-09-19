@@ -40,6 +40,9 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'veces';
 
   @override
+  String get end => 'Fin';
+
+  @override
   String get neverEnds => 'Nunca termina';
 
   @override

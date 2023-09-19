@@ -139,7 +139,7 @@ class RRuleGenerator extends StatelessWidget {
                         children: [
                           Expanded(
                             child: buildElement(
-                              title: 'End',
+                              title: textDelegate.end,
                               child: buildDropdown(
                                 child: ValueListenableBuilder(
                                   valueListenable: countTypeNotifier,

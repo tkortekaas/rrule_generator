@@ -40,6 +40,9 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'korda';
 
   @override
+  String get end => 'Lõpp';
+
+  @override
   String get neverEnds => 'Ei lõppe kunagi';
 
   @override
@@ -50,46 +53,46 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-    'Esimene',
-    'Teine',
-    'Kolmas',
-    'Neljas',
-    'Viimane',
-  ];
+        'Esimene',
+        'Teine',
+        'Kolmas',
+        'Neljas',
+        'Viimane',
+      ];
 
   @override
   List<String> get allMonths => [
-    'Jaanuar',
-    'Veebruar',
-    'Märts',
-    'Aprill',
-    'Mai',
-    'Juuni',
-    'Juuli',
-    'August',
-    'Septembril',
-    'Oktoober',
-    'Novembril',
-    'Detsember',
-  ];
+        'Jaanuar',
+        'Veebruar',
+        'Märts',
+        'Aprill',
+        'Mai',
+        'Juuni',
+        'Juuli',
+        'August',
+        'Septembril',
+        'Oktoober',
+        'Novembril',
+        'Detsember',
+      ];
 
   @override
   List<String> get weekdays => [
-    'Esmaspäev',
-    'Teisipäev',
-    'Kolmapäev',
-    'Neljapäev',
-    'Reede',
-    'Laupäev',
-    'Pühapäev',
-  ];
+        'Esmaspäev',
+        'Teisipäev',
+        'Kolmapäev',
+        'Neljapäev',
+        'Reede',
+        'Laupäev',
+        'Pühapäev',
+      ];
 
   @override
   List<String> get periods => [
-    'Iga-aastane',
-    'Igakuine',
-    'Iganädalane',
-    'Igapäevane',
-    'Mitte kunagi',
-  ];
+        'Iga-aastane',
+        'Igakuine',
+        'Iganädalane',
+        'Igapäevane',
+        'Mitte kunagi',
+      ];
 }

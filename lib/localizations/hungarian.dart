@@ -40,6 +40,9 @@ class HungarianRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'alkalommal';
 
   @override
+  String get end => 'Vége';
+
+  @override
   String get neverEnds => 'Soha nem ér véget';
 
   @override

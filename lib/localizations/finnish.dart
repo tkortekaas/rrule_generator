@@ -40,6 +40,9 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'kertaa';
 
   @override
+  String get end => 'Loppu';
+
+  @override
   String get neverEnds => 'Ei lopu koskaan';
 
   @override

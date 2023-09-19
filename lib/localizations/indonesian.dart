@@ -40,6 +40,9 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'contoh';
 
   @override
+  String get end => 'Akhir';
+
+  @override
   String get neverEnds => 'Tidak pernah berakhir';
 
   @override

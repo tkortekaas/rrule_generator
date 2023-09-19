@@ -40,6 +40,9 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'örnekler';
 
   @override
+  String get end => 'Son';
+
+  @override
   String get neverEnds => 'Asla bitmez';
 
   @override

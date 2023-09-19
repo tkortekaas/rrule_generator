@@ -1,3 +1,7 @@
+## 0.3.4
+
+- Add Chinese translation
+
 ## 0.3.3
 
 - Add Hungarian translation

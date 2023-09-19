@@ -2,6 +2,7 @@ library rrule_generator;
 
 export 'package:rrule_generator/src/rule_generator_widget.dart';
 export 'package:rrule_generator/localizations/bulgarian.dart';
+export 'package:rrule_generator/localizations/chinese.dart';
 export 'package:rrule_generator/localizations/danish.dart';
 export 'package:rrule_generator/localizations/dutch.dart';
 export 'package:rrule_generator/localizations/english.dart';

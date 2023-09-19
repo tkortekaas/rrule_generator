@@ -40,6 +40,9 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'Prípadov';
 
   @override
+  String get end => 'Koniec';
+
+  @override
   String get neverEnds => 'Nikdy nekončí';
 
   @override

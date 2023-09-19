@@ -40,6 +40,9 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'fois';
 
   @override
+  String get end => 'Fin';
+
+  @override
   String get neverEnds => 'Ne finit jamais';
 
   @override

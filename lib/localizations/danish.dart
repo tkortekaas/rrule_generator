@@ -40,6 +40,9 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
   String get instances => 'gange';
 
   @override
+  String get end => 'Ende';
+
+  @override
   String get neverEnds => 'Slutter aldrig';
 
   @override
