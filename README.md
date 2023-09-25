@@ -3,6 +3,10 @@
 RRuleGenerator is a widget for generating recurrence rules, such as described
 in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 
+This widget is based on the [rrule](https://pub.dev/packages/rrule) package.
+
+The widget is actively used in the [Calendar Clock](https://calendarclock.app) app.
+
 ![Example one](https://jelter.net/rrule_example.jpg)
 
 ## Installation
