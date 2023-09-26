@@ -24,11 +24,14 @@ class Daily extends StatelessWidget implements Period {
 
   @override
   void handleInitialRRule() {
-    int intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
-    int intervalEnd = initialRRule.indexOf(';', intervalIndex);
-    String interval = initialRRule.substring(
-        intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
-    intervalController.text = interval;
+    if (initialRRule.contains('INTERVAL=')) {
+      final intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
+      int intervalEnd = initialRRule.indexOf(';', intervalIndex);
+      intervalEnd = intervalEnd == -1 ? initialRRule.length : intervalEnd;
+      String interval = initialRRule.substring(
+          intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
+      intervalController.text = interval;
+    }
   }
 
   @override

@@ -44,28 +44,34 @@ class Monthly extends StatelessWidget implements Period {
         dayNotifier.value = int.parse(day[0]);
       }
 
-      int intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
-      int intervalEnd = initialRRule.indexOf(';', intervalIndex);
-      String interval = initialRRule.substring(
-          intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
-      intervalController.text = interval;
+      if (initialRRule.contains('INTERVAL=')) {
+        final intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
+        int intervalEnd = initialRRule.indexOf(';', intervalIndex);
+        intervalEnd = intervalEnd == -1 ? initialRRule.length : intervalEnd;
+        String interval = initialRRule.substring(
+            intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
+        intervalController.text = interval;
+      }
     } else {
       monthTypeNotifier.value = 1;
 
-      int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
-      String monthDay =
-          initialRRule.substring(monthDayIndex, monthDayIndex + 1);
+      if (initialRRule.contains('BYSETPOS=')) {
+        int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
+        String monthDay =
+        initialRRule.substring(monthDayIndex, monthDayIndex + 1);
 
-      if (monthDay == '-') {
-        monthDayNotifier.value = 4;
-      } else {
-        monthDayNotifier.value = int.parse(monthDay) - 1;
+        if (monthDay == '-') {
+          monthDayNotifier.value = 4;
+        } else {
+          monthDayNotifier.value = int.parse(monthDay) - 1;
+        }
       }
 
-      int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
-      String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
-
-      weekdayNotifier.value = weekdaysShort.indexOf(weekday);
+      if (initialRRule.contains('BYDAY=')) {
+        int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
+        String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
+        weekdayNotifier.value = weekdaysShort.indexOf(weekday);
+      }
     }
   }
 

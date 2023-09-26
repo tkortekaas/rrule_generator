@@ -46,29 +46,35 @@ class Yearly extends StatelessWidget implements Period {
     } else {
       monthTypeNotifier.value = 1;
 
-      int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
-      String monthDay =
-          initialRRule.substring(monthDayIndex, monthDayIndex + 1);
+      if (initialRRule.contains('BYSETPOS=')) {
+        int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
+        String monthDay =
+            initialRRule.substring(monthDayIndex, monthDayIndex + 1);
 
-      if (monthDay == '-') {
-        monthDayNotifier.value = 4;
-      } else {
-        monthDayNotifier.value = int.parse(monthDay) - 1;
+        if (monthDay == '-') {
+          monthDayNotifier.value = 4;
+        } else {
+          monthDayNotifier.value = int.parse(monthDay) - 1;
+        }
       }
 
-      int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
-      String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
+      if (initialRRule.contains('BYDAY=')) {
+        int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
+        String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
 
-      weekdayNotifier.value = weekdaysShort.indexOf(weekday);
+        weekdayNotifier.value = weekdaysShort.indexOf(weekday);
+      }
     }
 
-    int monthIndex = initialRRule.indexOf('BYMONTH=') + 8;
-    String month = initialRRule.substring(monthIndex,
-        monthIndex + (initialRRule.length > monthIndex + 1 ? 2 : 1));
-    if (month.length == 1 || month[1] != ';') {
-      monthNotifier.value = int.parse(month);
-    } else {
-      monthNotifier.value = int.parse(month[0]);
+    if (initialRRule.contains('BYMONTH=')) {
+      int monthIndex = initialRRule.indexOf('BYMONTH=') + 8;
+      String month = initialRRule.substring(monthIndex,
+          monthIndex + (initialRRule.length > monthIndex + 1 ? 2 : 1));
+      if (month.length == 1 || month[1] != ';') {
+        monthNotifier.value = int.parse(month);
+      } else {
+        monthNotifier.value = int.parse(month[0]);
+      }
     }
   }
 

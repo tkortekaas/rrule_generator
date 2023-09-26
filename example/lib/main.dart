@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
                   builder: (BuildContext context) => AlertDialog(
                     content: RRuleGenerator(
                       initialRRule:
-                          'FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;UNTIL=2021128',
+                          'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,TH;COUNT=10',
                       textDelegate: const EnglishRRuleTextDelegate(),
                       onChange: print,
                     ),

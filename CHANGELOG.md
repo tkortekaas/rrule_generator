@@ -1,3 +1,7 @@
+## 0.4
+
+- Parse more rrule formats
+
 ## 0.3.4
 
 - Add Chinese translation
