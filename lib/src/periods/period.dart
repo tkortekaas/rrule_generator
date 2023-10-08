@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
 
+import '../rrule_generator_config.dart';
+
 final weekdaysShort = [
   'MO',
   'TU',
@@ -11,14 +13,15 @@ final weekdaysShort = [
   'SU',
 ];
 
-class Period extends Widget {
+abstract class Period extends Widget {
+  final RRuleGeneratorConfig config;
   final RRuleTextDelegate textDelegate;
-  final Function onChange;
+  final void Function() onChange;
   final String initialRRule;
   final DateTime initialDate;
 
-  const Period(
-      this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
+  const Period(this.config, this.textDelegate, this.onChange, this.initialRRule,
+      this.initialDate,
       {Key? key})
       : super(key: key);
 

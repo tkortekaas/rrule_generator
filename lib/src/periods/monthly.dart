@@ -4,11 +4,15 @@ import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 
+import '../rrule_generator_config.dart';
+
 class Monthly extends StatelessWidget implements Period {
+  @override
+  final RRuleGeneratorConfig config;
   @override
   final RRuleTextDelegate textDelegate;
   @override
-  final Function onChange;
+  final void Function() onChange;
   @override
   final String initialRRule;
   @override
@@ -20,7 +24,8 @@ class Monthly extends StatelessWidget implements Period {
   final dayNotifier = ValueNotifier(1);
   final intervalController = TextEditingController(text: '1');
 
-  Monthly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
+  Monthly(this.config, this.textDelegate, this.onChange, this.initialRRule,
+      this.initialDate,
       {Key? key})
       : super(key: key) {
     if (initialRRule.contains('MONTHLY')) {
@@ -48,8 +53,8 @@ class Monthly extends StatelessWidget implements Period {
         final intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
         int intervalEnd = initialRRule.indexOf(';', intervalIndex);
         intervalEnd = intervalEnd == -1 ? initialRRule.length : intervalEnd;
-        String interval = initialRRule.substring(
-            intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
+        String interval = initialRRule.substring(intervalIndex,
+            intervalEnd == -1 ? initialRRule.length : intervalEnd);
         intervalController.text = interval;
       }
     } else {
@@ -58,7 +63,7 @@ class Monthly extends StatelessWidget implements Period {
       if (initialRRule.contains('BYSETPOS=')) {
         int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
         String monthDay =
-        initialRRule.substring(monthDayIndex, monthDayIndex + 1);
+            initialRRule.substring(monthDayIndex, monthDayIndex + 1);
 
         if (monthDay == '-') {
           monthDayNotifier.value = 4;
@@ -98,12 +103,21 @@ class Monthly extends StatelessWidget implements Period {
         buildContainer(
           child: buildElement(
             title: textDelegate.every,
+            style: config.textStyle,
             child: Row(
               children: [
-                Expanded(child: IntervalPicker(intervalController, onChange)),
+                Expanded(
+                    child: IntervalPicker(
+                  intervalController,
+                  onChange,
+                  config: config,
+                )),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(textDelegate.months),
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Text(
+                    textDelegate.months,
+                    style: config.textStyle,
+                  ),
                 ),
               ],
             ),
@@ -114,25 +128,25 @@ class Monthly extends StatelessWidget implements Period {
         ),
         ValueListenableBuilder(
           valueListenable: monthTypeNotifier,
-          builder: (BuildContext context, int monthType, Widget? child) =>
-              Column(
+          builder: (context, monthType, child) => Column(
             children: [
               buildToggleItem(
                 title: textDelegate.byDayInMonth,
+                style: config.textStyle,
                 value: monthType == 0,
-                onChanged: (bool selected) {
+                onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 0 : 1;
                 },
                 child: buildElement(
                   title: textDelegate.on,
+                  style: config.textStyle,
                   child: buildDropdown(
                     child: ValueListenableBuilder(
                       valueListenable: dayNotifier,
-                      builder: (BuildContext context, int day, _) =>
-                          DropdownButton(
+                      builder: (context, day, _) => DropdownButton(
                         isExpanded: true,
                         value: day,
-                        onChanged: (int? newDay) {
+                        onChanged: (newDay) {
                           dayNotifier.value = newDay!;
                           onChange();
                         },
@@ -141,7 +155,8 @@ class Monthly extends StatelessWidget implements Period {
                           (index) => DropdownMenuItem(
                             value: index + 1,
                             child: Text(
-                              (index + 1).toString(),
+                              '${index + 1}.',
+                              style: config.textStyle,
                             ),
                           ),
                         ),
@@ -153,24 +168,26 @@ class Monthly extends StatelessWidget implements Period {
               const Divider(),
               buildToggleItem(
                 title: textDelegate.byNthDayInMonth,
+                style: config.textStyle,
                 value: monthType == 1,
-                onChanged: (bool selected) {
+                onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 1 : 0;
                 },
                 child: Column(
                   children: [
                     ValueListenableBuilder(
                       valueListenable: monthDayNotifier,
-                      builder: (BuildContext context, int dayInMonth, _) => Row(
+                      builder: (context, dayInMonth, _) => Row(
                         children: [
                           Expanded(
                             child: buildElement(
                               title: textDelegate.on,
+                              style: config.textStyle,
                               child: buildDropdown(
                                 child: DropdownButton(
                                   isExpanded: true,
                                   value: dayInMonth,
-                                  onChanged: (int? dayInMonth) {
+                                  onChanged: (dayInMonth) {
                                     monthDayNotifier.value = dayInMonth!;
                                     onChange();
                                   },
@@ -180,6 +197,7 @@ class Monthly extends StatelessWidget implements Period {
                                       value: index,
                                       child: Text(
                                         textDelegate.daysInMonth[index],
+                                        style: config.textStyle,
                                       ),
                                     ),
                                   ),
@@ -193,15 +211,15 @@ class Monthly extends StatelessWidget implements Period {
                           Expanded(
                             child: buildElement(
                               title: textDelegate.day,
+                              style: config.textStyle,
                               child: buildDropdown(
                                 child: ValueListenableBuilder(
                                   valueListenable: weekdayNotifier,
-                                  builder:
-                                      (BuildContext context, int weekday, _) =>
-                                          DropdownButton(
+                                  builder: (context, weekday, _) =>
+                                      DropdownButton(
                                     isExpanded: true,
                                     value: weekday,
-                                    onChanged: (int? newWeekday) {
+                                    onChanged: (newWeekday) {
                                       weekdayNotifier.value = newWeekday!;
                                       onChange();
                                     },
@@ -212,6 +230,7 @@ class Monthly extends StatelessWidget implements Period {
                                         child: Text(
                                           textDelegate.weekdays[index]
                                               .toString(),
+                                          style: config.textStyle,
                                         ),
                                       ),
                                     ),

@@ -14,16 +14,21 @@ Container buildDropdown({required Widget child}) {
   );
 }
 
-Column buildElement({required Widget child, required String title}) {
+Column buildElement({
+  String? title,
+  required Widget child,
+  required TextStyle style,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-        ),
-      ),
+      if (title != null)
+        Text(
+          title,
+          style: style,
+        )
+      else
+        Container(),
       child,
     ],
   );
@@ -38,9 +43,10 @@ Padding buildContainer({required Widget child}) {
 
 Widget buildToggleItem({
   required Widget child,
-  required Function(bool) onChanged,
+  required void Function(bool) onChanged,
   required String title,
   required bool value,
+  required TextStyle style,
 }) {
   if (!value) {
     return buildContainer(
@@ -49,7 +55,7 @@ Widget buildToggleItem({
           Expanded(
             child: Text(
               title,
-              style: const TextStyle(fontSize: 16),
+              style: style.copyWith(fontSize: 16),
             ),
           ),
           Switch(value: value, onChanged: onChanged),
@@ -65,7 +71,7 @@ Widget buildToggleItem({
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 16),
+                style: style.copyWith(fontSize: 16),
               ),
             ),
             Switch(value: value, onChanged: onChanged),

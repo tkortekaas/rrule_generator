@@ -1,4 +1,8 @@
-## 0.4
+## 0.5.0
+
+- Customize the widget with the new RRuleGeneratorConfig class. Thanks to @DrBu7cher!
+
+## 0.4.0
 
 - Parse more rrule formats
 

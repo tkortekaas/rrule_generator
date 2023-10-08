@@ -4,11 +4,15 @@ import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 
+import '../rrule_generator_config.dart';
+
 class Daily extends StatelessWidget implements Period {
+  @override
+  final RRuleGeneratorConfig config;
   @override
   final RRuleTextDelegate textDelegate;
   @override
-  final Function onChange;
+  final void Function() onChange;
   @override
   final String initialRRule;
   @override
@@ -16,7 +20,8 @@ class Daily extends StatelessWidget implements Period {
 
   final intervalController = TextEditingController(text: '1');
 
-  Daily(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
+  Daily(this.config, this.textDelegate, this.onChange, this.initialRRule,
+      this.initialDate,
       {Key? key})
       : super(key: key) {
     if (initialRRule.contains('DAILY')) handleInitialRRule();
@@ -42,11 +47,17 @@ class Daily extends StatelessWidget implements Period {
 
   @override
   Widget build(BuildContext context) => buildContainer(
-    child: buildElement(
+        child: buildElement(
           title: textDelegate.every,
+          style: config.textStyle,
           child: Row(
             children: [
-              Expanded(child: IntervalPicker(intervalController, onChange)),
+              Expanded(
+                  child: IntervalPicker(
+                intervalController,
+                onChange,
+                config: config,
+              )),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Text(textDelegate.days),
@@ -54,5 +65,5 @@ class Daily extends StatelessWidget implements Period {
             ],
           ),
         ),
-  );
+      );
 }

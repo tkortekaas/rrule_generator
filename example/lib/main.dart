@@ -22,11 +22,14 @@ class MyApp extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    content: RRuleGenerator(
-                      initialRRule:
-                          'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,TH;COUNT=10',
-                      textDelegate: const EnglishRRuleTextDelegate(),
-                      onChange: print,
+                    content: SingleChildScrollView(
+                      child: RRuleGenerator(
+                        config: RRuleGeneratorConfig(),
+                        initialRRule:
+                            'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,TH;COUNT=10',
+                        textDelegate: const EnglishRRuleTextDelegate(),
+                        onChange: print,
+                      ),
                     ),
                   ),
                 );

@@ -5,12 +5,15 @@ import 'package:rrule_generator/src/periods/period.dart';
 import 'package:rrule_generator/src/pickers/weekday.dart';
 
 import '../pickers/helpers.dart';
+import '../rrule_generator_config.dart';
 
 class Weekly extends StatelessWidget implements Period {
   @override
+  final RRuleGeneratorConfig config;
+  @override
   final RRuleTextDelegate textDelegate;
   @override
-  final Function onChange;
+  final void Function() onChange;
   @override
   final String initialRRule;
   @override
@@ -22,7 +25,8 @@ class Weekly extends StatelessWidget implements Period {
     (index) => ValueNotifier(false),
   );
 
-  Weekly(this.textDelegate, this.onChange, this.initialRRule, this.initialDate,
+  Weekly(this.config, this.textDelegate, this.onChange, this.initialRRule,
+      this.initialDate,
       {Key? key})
       : super(key: key) {
     if (initialRRule.contains('WEEKLY')) {
@@ -75,20 +79,33 @@ class Weekly extends StatelessWidget implements Period {
   Widget build(BuildContext context) => buildContainer(
         child: buildElement(
           title: textDelegate.every,
+          style: config.textStyle,
           child: Column(
             children: [
               Row(
                 children: [
                   Expanded(
-                    child: IntervalPicker(intervalController, onChange),
+                    child: IntervalPicker(
+                      intervalController,
+                      onChange,
+                      config: config,
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(textDelegate.weeks),
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      textDelegate.weeks,
+                      style: config.textStyle,
+                    ),
                   ),
                 ],
               ),
-              WeekdayPicker(weekdayNotifiers, textDelegate, onChange),
+              WeekdayPicker(
+                weekdayNotifiers,
+                textDelegate,
+                onChange,
+                config: config,
+              ),
             ],
           ),
         ),

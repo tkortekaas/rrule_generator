@@ -10,25 +10,25 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get day => 'Tag';
 
   @override
-  String get byDayInMonth => 'Wiederhole am';
+  String get byDayInMonth => 'Tag im Monat';
 
   @override
-  String get byNthDayInMonth => 'Wiederhole am der';
+  String get byNthDayInMonth => 'Wiederhole immer am';
 
   @override
-  String get every => 'Jeden';
+  String get every => 'Alle';
 
   @override
   String get of => 'im';
 
   @override
-  String get months => 'Monat(e)';
+  String get months => 'Monate';
 
   @override
-  String get weeks => 'Woche(n)';
+  String get weeks => 'Wochen';
 
   @override
-  String get days => 'Tage(n)';
+  String get days => 'Tage';
 
   @override
   String get date => 'Date';
@@ -37,7 +37,7 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get on => 'Am';
 
   @override
-  String get instances => 'mal(s)';
+  String get instances => 'Wiederholungen';
 
   @override
   String get end => 'Ende';
@@ -46,18 +46,18 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get neverEnds => 'Endet nicht';
 
   @override
-  String get endsAfter => 'Endet nach';
+  String get endsAfter => 'Endet nach (Anzahl)';
 
   @override
-  String get endsOnDate => 'Ended am Datum';
+  String get endsOnDate => 'Endet am (Datum)';
 
   @override
   List<String> get daysInMonth => [
-        'Erste',
-        'Zweite',
-        'Dritte',
-        'Vierte',
-        'Letzten  ',
+        'Ersten',
+        'Zweiten',
+        'Dritten',
+        'Vierten',
+        'Letzten',
       ];
 
   @override
@@ -90,7 +90,7 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   @override
   List<String> get periods => [
         'Jährlich',
-        'Montlich',
+        'Monatlich',
         'Wöchentlich',
         'Täglich',
         'Keine Wiederholung',
