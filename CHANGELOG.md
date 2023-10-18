@@ -1,3 +1,6 @@
+## 0.5.1
+- Fixed an issue where an empty interval or count could be chosen.
+
 ## 0.5.0
 
 - Customize the widget with the new RRuleGeneratorConfig class. Thanks to @DrBu7cher!

@@ -33,7 +33,7 @@ class Daily extends StatelessWidget implements Period {
       final intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
       int intervalEnd = initialRRule.indexOf(';', intervalIndex);
       intervalEnd = intervalEnd == -1 ? initialRRule.length : intervalEnd;
-      String interval = initialRRule.substring(
+      final interval = initialRRule.substring(
           intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
       intervalController.text = interval;
     }
@@ -41,7 +41,7 @@ class Daily extends StatelessWidget implements Period {
 
   @override
   String getRRule() {
-    int interval = int.tryParse(intervalController.text) ?? 0;
+    final interval = int.tryParse(intervalController.text) ?? 0;
     return 'FREQ=DAILY;INTERVAL=${interval > 0 ? interval : 1}';
   }
 

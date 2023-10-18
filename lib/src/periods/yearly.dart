@@ -40,8 +40,8 @@ class Yearly extends StatelessWidget implements Period {
   void handleInitialRRule() {
     if (initialRRule.contains('BYMONTHDAY')) {
       monthTypeNotifier.value = 0;
-      int dayIndex = initialRRule.indexOf('BYMONTHDAY=') + 11;
-      String day = initialRRule.substring(
+      final dayIndex = initialRRule.indexOf('BYMONTHDAY=') + 11;
+      final day = initialRRule.substring(
           dayIndex, dayIndex + (initialRRule.length > dayIndex + 1 ? 2 : 1));
       if (day.length == 1 || day[1] != ';') {
         dayNotifier.value = int.parse(day);
@@ -52,8 +52,8 @@ class Yearly extends StatelessWidget implements Period {
       monthTypeNotifier.value = 1;
 
       if (initialRRule.contains('BYSETPOS=')) {
-        int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
-        String monthDay =
+        final monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
+        final monthDay =
             initialRRule.substring(monthDayIndex, monthDayIndex + 1);
 
         if (monthDay == '-') {
@@ -64,16 +64,16 @@ class Yearly extends StatelessWidget implements Period {
       }
 
       if (initialRRule.contains('BYDAY=')) {
-        int weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
-        String weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
+        final weekdayIndex = initialRRule.indexOf('BYDAY=') + 6;
+        final weekday = initialRRule.substring(weekdayIndex, weekdayIndex + 2);
 
         weekdayNotifier.value = weekdaysShort.indexOf(weekday);
       }
     }
 
     if (initialRRule.contains('BYMONTH=')) {
-      int monthIndex = initialRRule.indexOf('BYMONTH=') + 8;
-      String month = initialRRule.substring(monthIndex,
+      final monthIndex = initialRRule.indexOf('BYMONTH=') + 8;
+      final month = initialRRule.substring(monthIndex,
           monthIndex + (initialRRule.length > monthIndex + 1 ? 2 : 1));
       if (month.length == 1 || month[1] != ';') {
         monthNotifier.value = int.parse(month);
@@ -86,13 +86,13 @@ class Yearly extends StatelessWidget implements Period {
   @override
   String getRRule() {
     if (monthTypeNotifier.value == 0) {
-      int byMonth = monthNotifier.value;
-      int byMonthDay = dayNotifier.value;
+      final byMonth = monthNotifier.value;
+      final byMonthDay = dayNotifier.value;
       return 'FREQ=YEARLY;BYMONTH=$byMonth;BYMONTHDAY=$byMonthDay';
     } else {
-      int byMonth = monthNotifier.value;
-      String byDay = weekdaysShort[weekdayNotifier.value];
-      int bySetPos =
+      final byMonth = monthNotifier.value;
+      final byDay = weekdaysShort[weekdayNotifier.value];
+      final bySetPos =
           (monthDayNotifier.value < 4) ? monthDayNotifier.value + 1 : -1;
       return 'FREQ=YEARLY;BYMONTH=$byMonth;BYDAY=$byDay;BYSETPOS=$bySetPos';
     }

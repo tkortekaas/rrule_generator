@@ -109,7 +109,8 @@ class RRuleGenerator extends StatelessWidget {
     if (countTypeNotifier.value == 0) {
       return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}';
     } else if (countTypeNotifier.value == 1) {
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instancesController.text}';
+      final instances = int.tryParse(instancesController.text) ?? 0;
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}';
     }
     final pickedDate = pickedDateNotifier.value;
 
