@@ -22,8 +22,7 @@ abstract class Period extends Widget {
 
   const Period(this.config, this.textDelegate, this.onChange, this.initialRRule,
       this.initialDate,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   String getRRule() => throw UnimplementedError();
 

@@ -1,3 +1,7 @@
+## 0.5.2
+
+- Add Czech translation
+
 ## 0.5.1
 - Fixed an issue where an empty interval or count could be chosen.
 

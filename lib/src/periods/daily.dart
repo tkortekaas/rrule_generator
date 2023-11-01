@@ -22,8 +22,7 @@ class Daily extends StatelessWidget implements Period {
 
   Daily(this.config, this.textDelegate, this.onChange, this.initialRRule,
       this.initialDate,
-      {Key? key})
-      : super(key: key) {
+      {super.key}) {
     if (initialRRule.contains('DAILY')) handleInitialRRule();
   }
 

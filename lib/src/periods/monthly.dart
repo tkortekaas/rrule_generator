@@ -26,8 +26,7 @@ class Monthly extends StatelessWidget implements Period {
 
   Monthly(this.config, this.textDelegate, this.onChange, this.initialRRule,
       this.initialDate,
-      {Key? key})
-      : super(key: key) {
+      {super.key}) {
     if (initialRRule.contains('MONTHLY')) {
       handleInitialRRule();
     } else {

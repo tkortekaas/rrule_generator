@@ -25,8 +25,7 @@ class Yearly extends StatelessWidget implements Period {
 
   Yearly(this.config, this.textDelegate, this.onChange, this.initialRRule,
       this.initialDate,
-      {Key? key})
-      : super(key: key) {
+      {super.key}) {
     if (initialRRule.contains('YEARLY')) {
       handleInitialRRule();
     } else {

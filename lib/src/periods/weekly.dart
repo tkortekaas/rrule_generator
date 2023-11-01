@@ -27,8 +27,7 @@ class Weekly extends StatelessWidget implements Period {
 
   Weekly(this.config, this.textDelegate, this.onChange, this.initialRRule,
       this.initialDate,
-      {Key? key})
-      : super(key: key) {
+      {super.key}) {
     if (initialRRule.contains('WEEKLY')) {
       handleInitialRRule();
     } else {
