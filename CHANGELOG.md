@@ -1,3 +1,7 @@
+## 0.5.3
+
+- Add Swedish translation
+
 ## 0.5.2
 
 - Add Czech translation
