@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                       child: RRuleGenerator(
                         config: RRuleGeneratorConfig(),
                         initialRRule:
-                            'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,TH;COUNT=10',
+                            'RRULE:FREQ=WEEKLY;UNTIL=20231211T000000;INTERVAL=1;BYDAY=MO',
                         textDelegate: const EnglishRRuleTextDelegate(),
                         onChange: print,
                       ),

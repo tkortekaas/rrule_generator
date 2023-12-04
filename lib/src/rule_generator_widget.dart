@@ -86,13 +86,11 @@ class RRuleGenerator extends StatelessWidget {
     } else if (initialRRule.contains('UNTIL')) {
       countTypeNotifier.value = 2;
       final dateIndex = initialRRule.indexOf('UNTIL=') + 6;
-      int year = int.parse(initialRRule.substring(dateIndex, dateIndex + 4));
-      int month =
-          int.parse(initialRRule.substring(dateIndex + 4, dateIndex + 6));
-      int day =
-          int.parse(initialRRule.substring(dateIndex + 6, initialRRule.length));
-
-      pickedDateNotifier.value = DateTime(year, month, day);
+      final dateEnd = initialRRule.indexOf(';', dateIndex);
+      pickedDateNotifier.value = DateTime.parse(
+        initialRRule.substring(
+            dateIndex, dateEnd == -1 ? initialRRule.length : dateEnd),
+      );
     }
   }
 

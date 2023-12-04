@@ -14,7 +14,7 @@ The widget is actively used in the [Calendar Clock](https://calendarclock.app) a
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.5.3
+rrule_generator: ^0.5.4
 ```
 
 ## How to use

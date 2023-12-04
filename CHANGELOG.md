@@ -1,3 +1,7 @@
+## 0.5.4
+
+- Resolves an issue which can occur when parsing the "until" date
+
 ## 0.5.3
 
 - Add Swedish translation
