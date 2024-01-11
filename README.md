@@ -30,7 +30,7 @@ RRuleGenerator(
 );
 ```
 
-The current version of the widget has 17 text delegates that you can already use:
+The current version of the widget has 18 text delegates that you can already use:
 - English (default)
 - Dutch
 - Turkish
@@ -48,4 +48,5 @@ The current version of the widget has 17 text delegates that you can already use
 - Indonesian
 - Czech
 - Swedish
+- Lithuanian
 You can easily create your own ones as well!

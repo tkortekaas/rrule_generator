@@ -1,3 +1,7 @@
+## 0.5.6
+
+- Add Lithuanian translation
+
 ## 0.5.5
 
 - Set wider INTL dependency range
