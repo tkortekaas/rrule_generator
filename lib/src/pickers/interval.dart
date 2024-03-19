@@ -41,6 +41,6 @@ class _IntervalPickerState extends State<IntervalPicker> {
         currentFocus.unfocus();
       }
     },
-    onEditingComplete: widget.onChange,
+    onChanged: (_) => widget.onChange(),
   );
 }

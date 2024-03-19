@@ -1,7 +1,7 @@
 import 'package:rrule_generator/localizations/text_delegate.dart';
 
-class LithuanianRRuleDelegate implements RRuleTextDelegate {
-  const LithuanianRRuleDelegate();
+class LithuanianRRuleTextDelegate implements RRuleTextDelegate {
+  const LithuanianRRuleTextDelegate();
 
   @override
   String get repeat => 'Kartoti';

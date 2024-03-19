@@ -1,3 +1,9 @@
+## 0.6.0
+
+- Update example
+- Update interval values on change instead of on editing complete
+- Prevent weekday text from overflowing
+
 ## 0.5.6
 
 - Add Lithuanian translation

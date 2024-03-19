@@ -37,12 +37,14 @@ class WeekdayPicker extends StatelessWidget {
                         ? config.weekdaySelectedBackgroundColor
                         : config.weekdayBackgroundColor,
                     borderRadius: BorderRadius.circular(5)),
-                child: Text(
-                  textDelegate.weekdays[index].substring(0, 3),
-                  style: config.textStyle.copyWith(
-                      color: value
-                          ? config.weekdaySelectedColor
-                          : config.weekdayColor),
+                child: FittedBox(
+                  child: Text(
+                    textDelegate.weekdays[index].substring(0, 3),
+                    style: config.textStyle.copyWith(
+                        color: value
+                            ? config.weekdaySelectedColor
+                            : config.weekdayColor),
+                  ),
                 ),
               ),
               onTap: () {
