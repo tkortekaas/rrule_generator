@@ -1,3 +1,6 @@
+## 0.7.0
+- Add (optional) support for EXDATE
+
 ## 0.6.0
 
 - Update example
