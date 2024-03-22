@@ -3,7 +3,7 @@
 RRuleGenerator is a widget for generating recurrence rules, such as described
 in [the iCalendar RFC](https://datatracker.ietf.org/doc/html/rfc5545)
 
-This widget is based on the [rrule](https://pub.dev/packages/rrule) package.
+This widget is based on the [rrule](https://pub.dev/packages/rrule) and [teno_rrule](https://pub.dev/packages/teno_rrule) packages.
 
 The widget is actively used in the [Calendar Clock](https://calendarclock.app) app.
 
@@ -14,7 +14,7 @@ The widget is actively used in the [Calendar Clock](https://calendarclock.app) a
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.6.0
+rrule_generator: ^0.7.0
 ```
 
 ## How to use
@@ -26,7 +26,8 @@ RRuleGenerator(
   config: RRuleGeneratorConfig(),
   initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
   textDelegate: const EnglishRRuleTextDelegate(),
-  onChange: (String newValue) => print(newValue),
+  withExcludeDates: true,
+  onChange: print,
 );
 ```
 

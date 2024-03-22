@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
                         initialRRule:
                             'RRULE:FREQ=WEEKLY;UNTIL=20231211T000000;INTERVAL=1;BYDAY=MO',
                         textDelegate: const EnglishRRuleTextDelegate(),
+                        withExcludeDates: true,
                         onChange: print,
                       ),
                     ),

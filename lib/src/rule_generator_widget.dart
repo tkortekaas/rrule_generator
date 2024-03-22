@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rrule_generator/localizations/english.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
 import 'package:rrule_generator/src/periods/period.dart';
+import 'package:rrule_generator/src/pickers/exclude_dates.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
 import 'package:rrule_generator/src/periods/yearly.dart';
 import 'package:rrule_generator/src/periods/monthly.dart';
@@ -17,11 +18,13 @@ class RRuleGenerator extends StatelessWidget {
   final void Function(String newValue)? onChange;
   final String initialRRule;
   final DateTime? initialDate;
+  final bool withExcludeDates;
   final frequencyNotifier = ValueNotifier(0);
   final countTypeNotifier = ValueNotifier(0);
   final pickedDateNotifier = ValueNotifier(DateTime.now());
   final instancesController = TextEditingController(text: '1');
   final List<Period> periodWidgets = [];
+  late final ExcludeDates? _excludeDatesPicker;
 
   RRuleGenerator(
       {super.key,
@@ -29,6 +32,7 @@ class RRuleGenerator extends StatelessWidget {
       this.textDelegate = const EnglishRRuleTextDelegate(),
       this.onChange,
       this.initialRRule = '',
+      this.withExcludeDates = false,
       this.initialDate}) {
     this.config = config ?? RRuleGeneratorConfig();
 
@@ -62,6 +66,15 @@ class RRuleGenerator extends StatelessWidget {
         initialDate ?? DateTime.now(),
       )
     ]);
+    _excludeDatesPicker = withExcludeDates
+        ? ExcludeDates(
+            this.config,
+            textDelegate,
+            valueChanged,
+            initialRRule,
+            initialDate ?? DateTime.now(),
+          )
+        : null;
 
     handleInitialRRule();
   }
@@ -105,10 +118,10 @@ class RRuleGenerator extends StatelessWidget {
     }
 
     if (countTypeNotifier.value == 0) {
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}${_excludeDatesPicker?.getRRule()}';
     } else if (countTypeNotifier.value == 1) {
       final instances = int.tryParse(instancesController.text) ?? 0;
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}${_excludeDatesPicker?.getRRule()}';
     }
     final pickedDate = pickedDateNotifier.value;
 
@@ -116,7 +129,7 @@ class RRuleGenerator extends StatelessWidget {
     final month =
         pickedDate.month > 9 ? '${pickedDate.month}' : '0${pickedDate.month}';
 
-    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day';
+    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day${_excludeDatesPicker?.getRRule()}';
   }
 
   @override
@@ -290,9 +303,12 @@ class RRuleGenerator extends StatelessWidget {
                     ],
                   ),
                 ),
-              ]
+              ],
+              if (child != null) const Divider(),
+              if (child != null) child,
             ],
           ),
+          child: _excludeDatesPicker,
         ),
       );
 }

@@ -52,6 +52,9 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Termina en fecha';
 
   @override
+  String get excludeDate => 'Excluir fecha';
+
+  @override
   List<String> get daysInMonth => [
         'Primero',
         'Segundo',

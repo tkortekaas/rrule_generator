@@ -52,6 +52,9 @@ class CzechRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Končí na datum';
 
   @override
+  String get excludeDate => 'Vyloučit datum';
+
+  @override
   List<String> get daysInMonth => [
         'První',
         'Druhý',

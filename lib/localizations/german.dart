@@ -52,6 +52,9 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Endet am (Datum)';
 
   @override
+  String get excludeDate => 'Datum ausschließen';
+
+  @override
   List<String> get daysInMonth => [
         'Ersten',
         'Zweiten',

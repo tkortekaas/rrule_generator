@@ -52,6 +52,9 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Eindigt op datum';
 
   @override
+  String get excludeDate => 'Sluit datum uit';
+
+  @override
   List<String> get daysInMonth => [
         'Eerste',
         'Tweede',

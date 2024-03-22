@@ -52,6 +52,9 @@ class LithuanianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Baigiasi data';
 
   @override
+  String get excludeDate => 'Išskirti datą';
+
+  @override
   List<String> get daysInMonth => [
         'Pirmas',
         'Antras',

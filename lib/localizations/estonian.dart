@@ -52,6 +52,9 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Lõpeb kindlal päeval';
 
   @override
+  String get excludeDate => 'Välja arvatud kuupäev';
+
+  @override
   List<String> get daysInMonth => [
         'Esimene',
         'Teine',

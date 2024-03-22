@@ -52,6 +52,9 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Slutter på dato';
 
   @override
+  String get excludeDate => 'Ekskluder dato';
+
+  @override
   List<String> get daysInMonth => [
         'Først',
         'Anden',

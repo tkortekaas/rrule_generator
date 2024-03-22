@@ -52,6 +52,9 @@ class HungarianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'A dátumon véget ért';
 
   @override
+  String get excludeDate => 'Kizárja a dátumot';
+
+  @override
   List<String> get daysInMonth => [
         'Első',
         'Második',

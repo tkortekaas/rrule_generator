@@ -52,6 +52,9 @@ class SwedishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Slutar på datum';
 
   @override
+  String get excludeDate => 'Exkludera datum';
+
+  @override
   List<String> get daysInMonth => [
         'Första',
         'Andra',

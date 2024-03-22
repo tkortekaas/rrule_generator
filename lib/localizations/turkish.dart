@@ -52,6 +52,9 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Tarihte biter';
 
   @override
+  String get excludeDate => 'Tarihi hariç tut';
+
+  @override
   List<String> get daysInMonth => [
         'Birinci',
         'Ikinci',

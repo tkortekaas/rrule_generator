@@ -52,6 +52,9 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Berakhir pada tanggal';
 
   @override
+  String get excludeDate => 'Kecualikan tanggal';
+
+  @override
   List<String> get daysInMonth => [
         'Pertama',
         'Kedua',

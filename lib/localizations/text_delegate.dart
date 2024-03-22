@@ -31,6 +31,8 @@ class RRuleTextDelegate {
 
   String get endsOnDate => 'Ends on date';
 
+  String get excludeDate => 'Exclude date';
+
   List<String> get daysInMonth => [
         '1st',
         '2nd',

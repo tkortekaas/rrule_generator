@@ -52,6 +52,9 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Termina in data';
 
   @override
+  String get excludeDate => 'Escludi data';
+
+  @override
   List<String> get daysInMonth => [
         'Primo',
         'Secondo',

@@ -52,6 +52,9 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Приключва на дата';
 
   @override
+  String get excludeDate => 'Изключи дата';
+
+  @override
   List<String> get daysInMonth => [
         'Първи',
         'Второ',

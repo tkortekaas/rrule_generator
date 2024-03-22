@@ -52,6 +52,9 @@ class ChineseRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => '结束日期';
 
   @override
+  String get excludeDate => '排除日期';
+
+  @override
   List<String> get daysInMonth => [
         '第一的',
         '第二',
