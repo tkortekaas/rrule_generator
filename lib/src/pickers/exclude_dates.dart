@@ -19,7 +19,7 @@ class ExcludeDates extends StatefulWidget {
 
   String getRRule() {
     if (excludeDates.isEmpty) return '';
-    String rrule = '\nEXDATE=';
+    String rrule = ';EXDATE=';
     for (int i = 0; i < excludeDates.length; i++) {
       rrule += excludeDates[i]
           .toIso8601String()

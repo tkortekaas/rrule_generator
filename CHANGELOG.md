@@ -1,3 +1,6 @@
+## 0.7.0+1
+- Change EXDATE start from '\n' to ';' to support rrule package
+
 ## 0.7.0
 - Add (optional) support for EXDATE
 
