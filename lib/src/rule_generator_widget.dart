@@ -117,11 +117,12 @@ class RRuleGenerator extends StatelessWidget {
       return '';
     }
 
+    final String excludeDates = _excludeDatesPicker?.getRRule() ?? '';
     if (countTypeNotifier.value == 0) {
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}${_excludeDatesPicker?.getRRule()}';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}$excludeDates';
     } else if (countTypeNotifier.value == 1) {
       final instances = int.tryParse(instancesController.text) ?? 0;
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}${_excludeDatesPicker?.getRRule()}';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}$excludeDates';
     }
     final pickedDate = pickedDateNotifier.value;
 
@@ -129,7 +130,7 @@ class RRuleGenerator extends StatelessWidget {
     final month =
         pickedDate.month > 9 ? '${pickedDate.month}' : '0${pickedDate.month}';
 
-    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day${_excludeDatesPicker?.getRRule()}';
+    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day$excludeDates';
   }
 
   @override
