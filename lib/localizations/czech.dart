@@ -4,6 +4,8 @@ class CzechRRuleTextDelegate implements RRuleTextDelegate {
   const CzechRRuleTextDelegate();
 
   @override
+  String get locale => 'cs';
+  @override
   String get repeat => 'Opakovat';
 
   @override

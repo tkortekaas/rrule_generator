@@ -4,6 +4,8 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
   const DanishRRuleTextDelegate();
 
   @override
+  String get locale => 'da';
+  @override
   String get repeat => 'Gentage';
 
   @override

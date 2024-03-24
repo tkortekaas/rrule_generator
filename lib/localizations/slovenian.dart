@@ -4,6 +4,8 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
   const SlovenianRRuleTextDelegate();
 
   @override
+  String get locale => 'sl';
+  @override
   String get repeat => 'Ponovi';
 
   @override

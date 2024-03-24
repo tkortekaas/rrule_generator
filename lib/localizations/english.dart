@@ -4,6 +4,8 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
   const EnglishRRuleTextDelegate();
 
   @override
+  String get locale => 'en';
+  @override
   String get repeat => 'Repeat';
 
   @override

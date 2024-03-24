@@ -1,4 +1,6 @@
 class RRuleTextDelegate {
+  String get locale => 'en';
+
   String get repeat => 'Repeat';
 
   String get day => 'Day';

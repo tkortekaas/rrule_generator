@@ -4,6 +4,8 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   const DutchRRuleTextDelegate();
 
   @override
+  String get locale => 'nl';
+  @override
   String get repeat => 'Herhaal';
 
   @override

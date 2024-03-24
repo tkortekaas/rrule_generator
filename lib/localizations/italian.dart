@@ -4,6 +4,8 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   const ItalianRRuleTextDelegate();
 
   @override
+  String get locale => 'it';
+  @override
   String get repeat => 'Ripetere';
 
   @override

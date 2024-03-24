@@ -4,6 +4,8 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   const IndonesianRRuleTextDelegate();
 
   @override
+  String get locale => 'id';
+  @override
   String get repeat => 'Mengulang';
 
   @override

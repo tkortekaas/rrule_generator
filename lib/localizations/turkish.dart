@@ -4,6 +4,9 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   const TurkishRRuleTextDelegate();
 
   @override
+  String get locale => 'tr';
+
+  @override
   String get repeat => 'Tekrarlamak';
 
   @override

@@ -4,6 +4,8 @@ class LithuanianRRuleTextDelegate implements RRuleTextDelegate {
   const LithuanianRRuleTextDelegate();
 
   @override
+  String get locale => 'lt';
+  @override
   String get repeat => 'Kartoti';
 
   @override

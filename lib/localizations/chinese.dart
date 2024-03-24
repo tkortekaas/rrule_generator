@@ -4,6 +4,8 @@ class ChineseRRuleTextDelegate implements RRuleTextDelegate {
   const ChineseRRuleTextDelegate();
 
   @override
+  String get locale => 'zh';
+  @override
   String get repeat => '重复';
 
   @override

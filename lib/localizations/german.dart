@@ -4,6 +4,8 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   const GermanRRuleTextDelegate();
 
   @override
+  String get locale => 'de';
+  @override
   String get repeat => 'Wiederhole';
 
   @override

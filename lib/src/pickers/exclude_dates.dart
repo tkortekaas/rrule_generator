@@ -83,7 +83,10 @@ class _ExcludeDatesState extends State<ExcludeDates> {
                 children: [
                   for (final date in widget.excludeDates)
                     ListTile(
-                      title: Text(DateFormat.yMMMd().format(date)),
+                      title: Text(
+                        DateFormat.yMMMd(widget.textDelegate.locale)
+                            .format(date),
+                      ),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete),
                         onPressed: () {

@@ -4,6 +4,8 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
   const EstonianRRuleTextDelegate();
 
   @override
+  String get locale => 'et';
+  @override
   String get repeat => 'Korda';
 
   @override

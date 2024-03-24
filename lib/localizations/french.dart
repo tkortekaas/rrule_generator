@@ -4,6 +4,8 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
   const FrenchRRuleTextDelegate();
 
   @override
+  String get locale => 'fr';
+  @override
   String get repeat => 'Répéter';
 
   @override

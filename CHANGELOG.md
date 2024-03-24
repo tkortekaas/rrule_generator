@@ -1,3 +1,6 @@
+## 0.8.0
+- Localize date pickers
+
 ## 0.7.0+1
 - Change EXDATE start from '\n' to ';' to support rrule package
 

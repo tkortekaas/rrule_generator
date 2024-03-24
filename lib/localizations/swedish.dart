@@ -4,6 +4,8 @@ class SwedishRRuleTextDelegate implements RRuleTextDelegate {
   const SwedishRRuleTextDelegate();
 
   @override
+  String get locale => 'sv';
+  @override
   String get repeat => 'Upprepa';
 
   @override

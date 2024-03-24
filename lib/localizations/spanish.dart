@@ -4,6 +4,8 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
   const SpanishRRuleTextDelegate();
 
   @override
+  String get locale => 'es';
+  @override
   String get repeat => 'Repetir';
 
   @override

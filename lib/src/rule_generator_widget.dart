@@ -253,6 +253,9 @@ class RRuleGenerator extends StatelessWidget {
                                           onPressed: () async {
                                             final picked = await showDatePicker(
                                               context: context,
+                                              locale: Locale(
+                                                textDelegate.locale,
+                                              ),
                                               initialDate: pickedDate,
                                               firstDate:
                                                   DateTime.utc(2020, 10, 24),

@@ -4,6 +4,8 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
   const FinnishRRuleTextDelegate();
 
   @override
+  String get locale => 'fi';
+  @override
   String get repeat => 'Toistaa';
 
   @override

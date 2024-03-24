@@ -4,6 +4,8 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   const BulgarianRRuleTextDelegate();
 
   @override
+  String get locale => 'bg';
+  @override
   String get repeat => 'Повтори';
 
   @override
