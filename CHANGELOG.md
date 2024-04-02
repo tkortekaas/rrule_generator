@@ -1,3 +1,6 @@
+## 0.8.1
+- Add Greek translation
+
 ## 0.8.0
 - Localize date pickers
 
