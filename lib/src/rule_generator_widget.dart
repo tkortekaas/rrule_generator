@@ -284,10 +284,8 @@ class RRuleGenerator extends StatelessWidget {
                                             width: double.maxFinite,
                                             child: Text(
                                               DateFormat.yMd(
-                                                      Intl.getCurrentLocale())
-                                                  .format(
-                                                pickedDate,
-                                              ),
+                                                textDelegate.locale,
+                                              ).format(pickedDate),
                                               style: config.textStyle.copyWith(
                                                   color: Colors.black),
                                               textAlign: TextAlign.center,

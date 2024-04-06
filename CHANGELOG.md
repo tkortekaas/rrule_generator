@@ -1,3 +1,6 @@
+## 0.8.2
+- Fix inconsistency between two pickers in their date formatting
+
 ## 0.8.1
 - Add Greek translation
 
