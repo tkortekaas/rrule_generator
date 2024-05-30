@@ -1,3 +1,6 @@
+## 0.8.3
+- Minor language changes in the Bulgarian, Dutch, English, and German text delegates
+
 ## 0.8.2
 - Fix inconsistency between two pickers in their date formatting
 

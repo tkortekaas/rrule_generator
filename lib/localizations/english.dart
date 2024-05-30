@@ -51,7 +51,7 @@ class EnglishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsAfter => 'Ends after';
 
   @override
-  String get endsOnDate => 'Ends on date';
+  String get endsOnDate => 'Ends on';
 
   @override
   String get excludeDate => 'Exclude date';

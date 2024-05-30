@@ -51,7 +51,7 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsAfter => 'Приключва след';
 
   @override
-  String get endsOnDate => 'Приключва на дата';
+  String get endsOnDate => 'Приключва на';
 
   @override
   String get excludeDate => 'Изключи дата';

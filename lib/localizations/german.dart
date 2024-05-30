@@ -48,10 +48,10 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get neverEnds => 'Endet nicht';
 
   @override
-  String get endsAfter => 'Endet nach (Anzahl)';
+  String get endsAfter => 'Endet nach';
 
   @override
-  String get endsOnDate => 'Endet am (Datum)';
+  String get endsOnDate => 'Endet am';
 
   @override
   String get excludeDate => 'Datum ausschließen';

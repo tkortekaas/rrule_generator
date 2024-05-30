@@ -51,7 +51,7 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   String get endsAfter => 'Eindigt na';
 
   @override
-  String get endsOnDate => 'Eindigt op datum';
+  String get endsOnDate => 'Herhaal t/m';
 
   @override
   String get excludeDate => 'Sluit datum uit';
