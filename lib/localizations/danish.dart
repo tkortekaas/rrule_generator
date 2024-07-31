@@ -5,6 +5,7 @@ class DanishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'da';
+
   @override
   String get repeat => 'Gentage';
 

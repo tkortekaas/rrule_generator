@@ -14,7 +14,7 @@ The widget is actively used in the [Calendar Clock](https://calendarclock.app) a
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.8.3
+rrule_generator: ^0.8.4
 ```
 
 ## How to use
@@ -31,7 +31,7 @@ RRuleGenerator(
 );
 ```
 
-The current version of the widget has 19 text delegates that you can already use:
+The current version of the widget has 20 text delegates that you can already use:
 - English (default)
 - Dutch
 - Turkish
@@ -51,4 +51,5 @@ The current version of the widget has 19 text delegates that you can already use
 - Czech
 - Swedish
 - Lithuanian
+- Croatian
 You can easily create your own ones as well!

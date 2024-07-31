@@ -5,6 +5,7 @@ class CzechRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'cs';
+
   @override
   String get repeat => 'Opakovat';
 

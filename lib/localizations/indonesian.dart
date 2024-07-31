@@ -5,6 +5,7 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'id';
+
   @override
   String get repeat => 'Mengulang';
 

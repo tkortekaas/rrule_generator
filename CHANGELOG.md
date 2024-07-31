@@ -1,3 +1,6 @@
+# 0.8.4
+- Add Croatian translation
+
 ## 0.8.3
 - Minor language changes in the Bulgarian, Dutch, English, and German text delegates
 

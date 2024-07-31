@@ -5,6 +5,7 @@ class HungarianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'hu';
+
   @override
   String get repeat => 'Ismétlés';
 

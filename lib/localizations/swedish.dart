@@ -5,6 +5,7 @@ class SwedishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'sv';
+
   @override
   String get repeat => 'Upprepa';
 

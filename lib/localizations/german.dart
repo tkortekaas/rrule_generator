@@ -5,6 +5,7 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'de';
+
   @override
   String get repeat => 'Wiederhole';
 

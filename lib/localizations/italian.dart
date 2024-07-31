@@ -5,6 +5,7 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'it';
+
   @override
   String get repeat => 'Ripetere';
 

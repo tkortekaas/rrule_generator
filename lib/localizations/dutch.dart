@@ -5,6 +5,7 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'nl';
+
   @override
   String get repeat => 'Herhaal';
 

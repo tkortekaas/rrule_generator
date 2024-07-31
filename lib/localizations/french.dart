@@ -5,6 +5,7 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   String get locale => 'fr';
+
   @override
   String get repeat => 'Répéter';
 
