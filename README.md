@@ -52,4 +52,5 @@ The current version of the widget has 20 text delegates that you can already use
 - Swedish
 - Lithuanian
 - Croatian
+- Brazilian Portuguese
 You can easily create your own ones as well!

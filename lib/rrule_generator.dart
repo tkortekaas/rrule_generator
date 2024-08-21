@@ -20,5 +20,6 @@ export 'package:rrule_generator/localizations/slovenian.dart';
 export 'package:rrule_generator/localizations/spanish.dart';
 export 'package:rrule_generator/localizations/swedish.dart';
 export 'package:rrule_generator/localizations/turkish.dart';
+export 'package:rrule_generator/localizations/portuguese_br.dart';
 export 'package:rrule_generator/localizations/text_delegate.dart';
 export 'package:rrule_generator/src/rrule_generator_config.dart';
