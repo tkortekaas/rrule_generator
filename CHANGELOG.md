@@ -1,3 +1,6 @@
+# 0.8.5
+- Add Brazilian Portuguese translation, thanks to @rinconrj!
+
 # 0.8.4
 - Add Croatian translation
 

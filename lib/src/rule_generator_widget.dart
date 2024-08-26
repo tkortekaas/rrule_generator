@@ -254,7 +254,13 @@ class RRuleGenerator extends StatelessWidget {
                                             final picked = await showDatePicker(
                                               context: context,
                                               locale: Locale(
-                                                textDelegate.locale,
+                                                textDelegate.locale
+                                                    .split('-')[0],
+                                                textDelegate.locale
+                                                        .contains('-')
+                                                    ? textDelegate.locale
+                                                        .split('-')[1]
+                                                    : '',
                                               ),
                                               initialDate: pickedDate,
                                               firstDate:

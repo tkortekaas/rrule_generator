@@ -4,7 +4,7 @@ class PortugueseRRuleTextDelegate implements RRuleTextDelegate {
   const PortugueseRRuleTextDelegate();
 
   @override
-  String get locale => 'pt-br';
+  String get locale => 'pt-BR';
 
   @override
   String get repeat => 'Repetir';

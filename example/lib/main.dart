@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         body: Builder(builder: (context) {
           return Center(
             child: ElevatedButton(
-              child: Text('Open'),
+              child: const Text('Open'),
               onPressed: () {
                 showDialog(
                   context: context,
