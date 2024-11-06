@@ -1,3 +1,6 @@
+# 0.8.8
+- Add Polish
+
 # 0.8.7
 - Add Latvian translation
 

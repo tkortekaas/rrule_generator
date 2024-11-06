@@ -14,6 +14,7 @@ export 'package:rrule_generator/localizations/french.dart';
 export 'package:rrule_generator/localizations/german.dart';
 export 'package:rrule_generator/localizations/greek.dart';
 export 'package:rrule_generator/localizations/norwegian.dart';
+export 'package:rrule_generator/localizations/polish.dart';
 export 'package:rrule_generator/localizations/hungarian.dart';
 export 'package:rrule_generator/localizations/indonesian.dart';
 export 'package:rrule_generator/localizations/italian.dart';
