@@ -67,33 +67,6 @@ class ChineseRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        '一月',
-        '二月',
-        '行进',
-        '四月',
-        '可能',
-        '六月',
-        '七月',
-        '八月',
-        '九月',
-        '十月',
-        '十一月',
-        '十二月',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        '周一',
-        '周二',
-        '周三',
-        '周四',
-        '星期五',
-        '周六',
-        '周日',
-      ];
-
-  @override
   List<String> get periods => [
         '年度的',
         '每月',

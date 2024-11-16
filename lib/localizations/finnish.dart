@@ -67,33 +67,6 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Tammikuu',
-        'Helmikuu',
-        'Maaliskuta',
-        'Huhtikuu',
-        'Saattaa',
-        'kesäkuu',
-        'Heinäkuu',
-        'Elokuu',
-        'Syyskuu',
-        'Lokakuu',
-        'Marraskuu',
-        'Joulukuu',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Maanantai',
-        'Tiistai',
-        'Keskiviikko',
-        'Torstai',
-        'Perjantai',
-        'lauantai',
-        'Sunnuntai',
-      ];
-
-  @override
   List<String> get periods => [
         'Vuotuinen',
         'Kuukausittain',

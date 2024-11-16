@@ -67,33 +67,6 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Enero',
-        'Febrero',
-        'Marzo',
-        'Abril',
-        'Puede',
-        'Junio',
-        'Julio',
-        'Agosto',
-        'Septiembre',
-        'Octubre',
-        'Noviembre',
-        'Diciembre',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Lunes',
-        'Martes',
-        'Miércoles',
-        'Jueves',
-        'Viernes',
-        'Sábado',
-        'Domingo',
-      ];
-
-  @override
   List<String> get periods => [
         'Anual',
         'Mensual',

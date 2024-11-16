@@ -67,33 +67,6 @@ class LithuanianRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Sausis',
-        'Vasaris',
-        'Kovas',
-        'Balandis',
-        'Gegužė',
-        'Birželis',
-        'Liepa',
-        'Rugpjūtis',
-        'Rugsėjis',
-        'Spalis',
-        'Lapkritis',
-        'Gruodis',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Pirmadienis',
-        'Antradienis',
-        'Trečiadienis',
-        'Ketvirtadienis',
-        'Penktadienis',
-        'Šeštadienis',
-        'Sekmadienis',
-      ];
-
-  @override
   List<String> get periods => [
         'Metinis',
         'Kas mėnesį',

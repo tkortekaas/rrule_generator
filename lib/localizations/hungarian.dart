@@ -67,33 +67,6 @@ class HungarianRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Január',
-        'Február',
-        'Március',
-        'Április',
-        'Lehet',
-        'Június',
-        'Július',
-        'Augusztus',
-        'Szeptember',
-        'Október',
-        'November',
-        'December',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Hétfő',
-        'Kedd',
-        'Szerda',
-        'Csütörtök',
-        'Péntek',
-        'Szombat',
-        'Vasárnap',
-      ];
-
-  @override
   List<String> get periods => [
         'Évi',
         'Havi',

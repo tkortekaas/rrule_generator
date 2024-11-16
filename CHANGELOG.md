@@ -1,5 +1,11 @@
 # 0.8.9
 - FIX: Trigger onChange on Monthly and Yearly toggles
+- Add Persian translation
+- Add Russian translation
+- Add Icelandic translation
+- Add Serbian translation
+- Add Arabic translation
+- Add Albanian translation
 
 # 0.8.8
 - Add Polish

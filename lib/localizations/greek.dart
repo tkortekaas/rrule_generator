@@ -67,33 +67,6 @@ class GreekRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Ιανουάριος',
-        'Φεβρουάριος',
-        'Μάρτιος',
-        'Απρίλιος',
-        'Μάιος',
-        'Ιούνιος',
-        'Ιούλιος',
-        'Αύγουστος',
-        'Σεπτέμβριος',
-        'Οκτώβριος',
-        'Νοέμβριος',
-        'Δεκέμβριος',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Δευτέρα',
-        'Τρίτη',
-        'Τετάρτη',
-        'Πέμπτη',
-        'Παρασκευή',
-        'Σάββατο',
-        'Κυριακή',
-      ];
-
-  @override
   List<String> get periods => [
         'Ετη',
         'Μήνες',

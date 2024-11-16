@@ -67,33 +67,6 @@ class NorwegianRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Januar',
-        'Februar',
-        'Mars',
-        'April',
-        'Mai',
-        'Juni',
-        'Juli',
-        'August',
-        'September',
-        'Oktober',
-        'November',
-        'Desember',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Mandag',
-        'Tirsdag',
-        'Onsdag',
-        'Torsdag',
-        'Fredag',
-        'Lørdag',
-        'Søndag',
-      ];
-
-  @override
   List<String> get periods => [
         'Årlig',
         'Månedlig',

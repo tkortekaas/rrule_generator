@@ -67,32 +67,5 @@ class CzechRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Leden',
-        'Únor',
-        'Březen',
-        'Duben',
-        'Květen',
-        'Červen',
-        'Červenec',
-        'Srpen',
-        'Září',
-        'Říjen',
-        'Listopad',
-        'Prosinec',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Pondělí',
-        'Úterý',
-        'Středa',
-        'Čtvrtek',
-        'Pátek',
-        'Sobota',
-        'Neděle',
-      ];
-
-  @override
   List<String> get periods => ['Denně', 'Týdně', 'Měsíčně', 'Ročně', 'Nikdy'];
 }

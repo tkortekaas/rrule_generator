@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 import 'package:rrule_generator/src/pickers/helpers.dart';
@@ -130,13 +131,21 @@ class Yearly extends StatelessWidget implements Period {
                             },
                             items: List.generate(
                               12,
-                              (index) => DropdownMenuItem(
-                                value: index + 1,
-                                child: Text(
-                                  textDelegate.allMonths[index],
-                                  style: config.textStyle,
-                                ),
-                              ),
+                              (index) {
+                                // Start with January (1)
+                                final date = DateTime(2023, index + 1, 1);
+                                final month =
+                                    DateFormat.MMMM(textDelegate.locale)
+                                        .format(date);
+
+                                return DropdownMenuItem(
+                                  value: index + 1,
+                                  child: Text(
+                                    month,
+                                    style: config.textStyle,
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -240,13 +249,21 @@ class Yearly extends StatelessWidget implements Period {
                               },
                               items: List.generate(
                                 7,
-                                (index) => DropdownMenuItem(
-                                  value: index,
-                                  child: Text(
-                                    textDelegate.weekdays[index].toString(),
-                                    style: config.textStyle,
-                                  ),
-                                ),
+                                (index) {
+                                  // Start with Monday as per ISO-8601 (Monday = 1, Sunday = 7)
+                                  final date = DateTime(2023, 1, 2 + index);
+                                  final weekday =
+                                      DateFormat.EEEE(textDelegate.locale)
+                                          .format(date);
+
+                                  return DropdownMenuItem(
+                                    value: index,
+                                    child: Text(
+                                      weekday,
+                                      style: config.textStyle,
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -270,13 +287,19 @@ class Yearly extends StatelessWidget implements Period {
                         },
                         items: List.generate(
                           12,
-                          (index) => DropdownMenuItem(
-                            value: index + 1,
-                            child: Text(
-                              textDelegate.allMonths[index],
-                              style: config.textStyle,
-                            ),
-                          ),
+                          (index) {
+                            // Start with January (1)
+                            final date = DateTime(2023, index + 1, 1);
+                            final month = DateFormat.MMMM(textDelegate.locale)
+                                .format(date);
+                            return DropdownMenuItem(
+                              value: index + 1,
+                              child: Text(
+                                month,
+                                style: config.textStyle,
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ),

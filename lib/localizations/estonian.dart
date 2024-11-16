@@ -67,33 +67,6 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Jaanuar',
-        'Veebruar',
-        'Märts',
-        'Aprill',
-        'Mai',
-        'Juuni',
-        'Juuli',
-        'August',
-        'Septembril',
-        'Oktoober',
-        'Novembril',
-        'Detsember',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Esmaspäev',
-        'Teisipäev',
-        'Kolmapäev',
-        'Neljapäev',
-        'Reede',
-        'Laupäev',
-        'Pühapäev',
-      ];
-
-  @override
   List<String> get periods => [
         'Iga-aastane',
         'Igakuine',

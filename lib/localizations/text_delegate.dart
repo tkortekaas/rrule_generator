@@ -43,31 +43,6 @@ class RRuleTextDelegate {
         'Last',
       ];
 
-  List<String> get allMonths => [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ];
-
-  List<String> get weekdays => [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ];
-
   List<String> get periods => [
         'Yearly',
         'Monthly',

@@ -67,33 +67,6 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Januari',
-        'Februari',
-        'Maart',
-        'April',
-        'Mei',
-        'Juni',
-        'Juli',
-        'Augustus',
-        'September',
-        'Oktober',
-        'November',
-        'December',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Maandag',
-        'Dinsdag',
-        'Woensdag',
-        'Donderdag',
-        'Vrijdag',
-        'Zaterdag',
-        'Zondag',
-      ];
-
-  @override
   List<String> get periods => [
         'Jaarlijks',
         'Maandelijks',

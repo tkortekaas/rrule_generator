@@ -62,33 +62,6 @@ class CroatianRRuleTextDelegate implements RRuleTextDelegate {
       ['Prvi', 'Drugi', 'Treći', 'Četvrti', 'Zadnji'];
 
   @override
-  List<String> get allMonths => [
-        'Siječanj',
-        'Veljača',
-        'Ožujak',
-        'Travanj',
-        'Svibanj',
-        'Lipanj',
-        'Srpanj',
-        'Kolovoz',
-        'Rujan',
-        'Listopad',
-        'Studeni',
-        'Prosinac'
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Ponedjeljak',
-        'Utorak',
-        'Srijeda',
-        'Četvrtak',
-        'Petak',
-        'Subota',
-        'Nedjelja'
-      ];
-
-  @override
   List<String> get periods =>
       ['Dnevno', 'Tjedno', 'Mjesečno', 'Godišnje', 'Nikada'];
 }

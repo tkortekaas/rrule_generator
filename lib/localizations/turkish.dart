@@ -67,33 +67,6 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Ocak',
-        'Februari',
-        'Mart',
-        'Nisan',
-        'Mayıs',
-        'Haziran',
-        'Temmuz',
-        'Ağustos',
-        'Eylül',
-        'Ekim',
-        'Kasım',
-        'Aralık',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Pazartesi',
-        'Salı',
-        'Çarşamba',
-        'Perşembe',
-        'Cuma',
-        'Cumartesi',
-        'Pazar',
-      ];
-
-  @override
   List<String> get periods => [
         'Yıllık',
         'Aylık',

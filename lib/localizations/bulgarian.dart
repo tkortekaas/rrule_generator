@@ -67,33 +67,6 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Януари',
-        'Февруари',
-        'Март',
-        'Април',
-        'Май',
-        'Юни',
-        'Юли',
-        'Август',
-        'Семтември',
-        'Октомври',
-        'Ноември',
-        'Декември',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Понеделник',
-        'Вторник',
-        'Сряда',
-        'Четвъртък',
-        'Петък',
-        'Събота',
-        'Неделя',
-      ];
-
-  @override
   List<String> get periods => [
         'Годишно',
         'Месечно',

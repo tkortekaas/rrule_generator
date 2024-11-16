@@ -67,33 +67,6 @@ class LatvianRRuleTextDelegate implements RRuleTextDelegate {
       ];
 
   @override
-  List<String> get allMonths => [
-        'Janvāris',
-        'Februāris',
-        'Marts',
-        'Aprīlis',
-        'Maijs',
-        'Jūnijs',
-        'Jūlijs',
-        'Augusts',
-        'Septembris',
-        'Oktobris',
-        'Novembris',
-        'Decembris',
-      ];
-
-  @override
-  List<String> get weekdays => [
-        'Pirmdiena',
-        'Otrdiena',
-        'Trešdiena',
-        'Ceturtdiena',
-        'Piektdiena',
-        'Sestdiena',
-        'Svētdiena',
-      ];
-
-  @override
   List<String> get periods => [
         'Ik gadu',
         'Ikmēneša',
