@@ -106,6 +106,7 @@ class Yearly extends StatelessWidget implements Period {
           buildToggleItem(
             onChanged: (selected) {
               monthTypeNotifier.value = selected ? 0 : 1;
+              onChange();
             },
             title: textDelegate.byDayInMonth,
             style: config.textStyle,
@@ -182,6 +183,7 @@ class Yearly extends StatelessWidget implements Period {
           buildToggleItem(
             onChanged: (selected) {
               monthTypeNotifier.value = selected ? 1 : 0;
+              onChange();
             },
             title: textDelegate.byNthDayInMonth,
             style: config.textStyle,

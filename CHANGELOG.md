@@ -1,3 +1,6 @@
+# 0.8.9
+- FIX: Trigger onChange on Monthly and Yearly toggles
+
 # 0.8.8
 - Add Polish
 

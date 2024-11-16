@@ -135,6 +135,7 @@ class Monthly extends StatelessWidget implements Period {
                 value: monthType == 0,
                 onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 0 : 1;
+                  onChange();
                 },
                 child: buildElement(
                   title: textDelegate.on,
@@ -171,6 +172,7 @@ class Monthly extends StatelessWidget implements Period {
                 value: monthType == 1,
                 onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 1 : 0;
+                  onChange();
                 },
                 child: Column(
                   children: [
