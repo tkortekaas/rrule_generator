@@ -25,7 +25,9 @@ class Monthly extends StatelessWidget implements Period {
   final dayNotifier = ValueNotifier(1);
   final intervalController = TextEditingController(text: '1');
 
-  Monthly(this.config, this.textDelegate, this.onChange, this.initialRRule, this.initialDate, {super.key}) {
+  Monthly(this.config, this.textDelegate, this.onChange, this.initialRRule,
+      this.initialDate,
+      {super.key}) {
     if (initialRRule.contains('MONTHLY')) {
       handleInitialRRule();
     } else {
@@ -39,7 +41,8 @@ class Monthly extends StatelessWidget implements Period {
     if (initialRRule.contains('BYMONTHDAY')) {
       monthTypeNotifier.value = 0;
       int dayIndex = initialRRule.indexOf('BYMONTHDAY=') + 11;
-      String day = initialRRule.substring(dayIndex, dayIndex + (initialRRule.length > dayIndex + 1 ? 2 : 1));
+      String day = initialRRule.substring(
+          dayIndex, dayIndex + (initialRRule.length > dayIndex + 1 ? 2 : 1));
       if (day.length == 1 || day[1] != ';') {
         dayNotifier.value = int.parse(day);
       } else {
@@ -50,7 +53,8 @@ class Monthly extends StatelessWidget implements Period {
         final intervalIndex = initialRRule.indexOf('INTERVAL=') + 9;
         int intervalEnd = initialRRule.indexOf(';', intervalIndex);
         intervalEnd = intervalEnd == -1 ? initialRRule.length : intervalEnd;
-        String interval = initialRRule.substring(intervalIndex, intervalEnd == -1 ? initialRRule.length : intervalEnd);
+        String interval = initialRRule.substring(intervalIndex,
+            intervalEnd == -1 ? initialRRule.length : intervalEnd);
         intervalController.text = interval;
       }
     } else {
@@ -58,7 +62,8 @@ class Monthly extends StatelessWidget implements Period {
 
       if (initialRRule.contains('BYSETPOS=')) {
         int monthDayIndex = initialRRule.indexOf('BYSETPOS=') + 9;
-        String monthDay = initialRRule.substring(monthDayIndex, monthDayIndex + 1);
+        String monthDay =
+            initialRRule.substring(monthDayIndex, monthDayIndex + 1);
 
         if (monthDay == '-') {
           monthDayNotifier.value = 4;
@@ -78,12 +83,16 @@ class Monthly extends StatelessWidget implements Period {
   @override
   String getRRule() {
     if (monthTypeNotifier.value == 0) {
-      final byMonthDay = dayNotifier.value == 32 ? -1 : dayNotifier.value; // Handle "Last day"
+      final byMonthDay =
+          dayNotifier.value == 32 ? -1 : dayNotifier.value; // Handle "Last day"
       final interval = int.tryParse(intervalController.text) ?? 0;
       return 'FREQ=MONTHLY;BYMONTHDAY=$byMonthDay;INTERVAL=${interval > 0 ? interval : 1}';
     } else {
-      final byDay = weekdaysShort[weekdayNotifier.value]; // e.g., "MO" for Monday
-      final bySetPos = (monthDayNotifier.value < 4) ? monthDayNotifier.value + 1 : -1; // Week position
+      final byDay =
+          weekdaysShort[weekdayNotifier.value]; // e.g., "MO" for Monday
+      final bySetPos = (monthDayNotifier.value < 4)
+          ? monthDayNotifier.value + 1
+          : -1; // Week position
       final interval = int.tryParse(intervalController.text) ?? 0;
       return 'FREQ=MONTHLY;INTERVAL=${interval > 0 ? interval : 1};'
           'BYDAY=$byDay;BYSETPOS=$bySetPos';
@@ -150,9 +159,10 @@ class Monthly extends StatelessWidget implements Period {
                           (index) {
                             if (index == 31) {
                               return DropdownMenuItem(
-                                value: 32, // Use a distinct value for "Last"
+                                value: -1,
+                                // Use a distinct value for "Last"
                                 child: Text(
-                                  'Last',
+                                  textDelegate.daysInMonth.last,
                                   style: config.textStyle,
                                 ),
                               );
@@ -223,7 +233,8 @@ class Monthly extends StatelessWidget implements Period {
                               child: buildDropdown(
                                 child: ValueListenableBuilder(
                                   valueListenable: weekdayNotifier,
-                                  builder: (context, weekday, _) => DropdownButton(
+                                  builder: (context, weekday, _) =>
+                                      DropdownButton(
                                     isExpanded: true,
                                     value: weekday,
                                     onChanged: (newWeekday) {
@@ -234,8 +245,11 @@ class Monthly extends StatelessWidget implements Period {
                                       7,
                                       (index) {
                                         // Start with Monday as per ISO-8601 (Monday = 1, Sunday = 7)
-                                        final date = DateTime(2023, 1, 2 + index);
-                                        final weekday = DateFormat.EEEE(textDelegate.locale).format(date);
+                                        final date =
+                                            DateTime(2023, 1, 2 + index);
+                                        final weekday =
+                                            DateFormat.EEEE(textDelegate.locale)
+                                                .format(date);
                                         return DropdownMenuItem(
                                           value: index,
                                           child: Text(
