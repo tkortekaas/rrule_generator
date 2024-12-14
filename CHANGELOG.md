@@ -1,3 +1,6 @@
+# 0.9.0
+- Add support for last day of the month, thanks to @InspectlyMads and @MadsStolt!
+
 # 0.8.9
 - FIX: Trigger onChange on Monthly and Yearly toggles
 - Add Persian translation
