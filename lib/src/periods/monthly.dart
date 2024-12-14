@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rrule_generator/localizations/text_delegate.dart';
+import 'package:rrule_generator/src/periods/period.dart';
 import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
-import 'package:rrule_generator/src/periods/period.dart';
 
 import '../rrule_generator_config.dart';
 
@@ -83,13 +83,16 @@ class Monthly extends StatelessWidget implements Period {
   @override
   String getRRule() {
     if (monthTypeNotifier.value == 0) {
-      final byMonthDay = dayNotifier.value;
+      final byMonthDay =
+          dayNotifier.value == 32 ? -1 : dayNotifier.value; // Handle "Last day"
       final interval = int.tryParse(intervalController.text) ?? 0;
       return 'FREQ=MONTHLY;BYMONTHDAY=$byMonthDay;INTERVAL=${interval > 0 ? interval : 1}';
     } else {
-      final byDay = weekdaysShort[weekdayNotifier.value];
-      final bySetPos =
-          (monthDayNotifier.value < 4) ? monthDayNotifier.value + 1 : -1;
+      final byDay =
+          weekdaysShort[weekdayNotifier.value]; // e.g., "MO" for Monday
+      final bySetPos = (monthDayNotifier.value < 4)
+          ? monthDayNotifier.value + 1
+          : -1; // Week position
       final interval = int.tryParse(intervalController.text) ?? 0;
       return 'FREQ=MONTHLY;INTERVAL=${interval > 0 ? interval : 1};'
           'BYDAY=$byDay;BYSETPOS=$bySetPos';
@@ -152,14 +155,27 @@ class Monthly extends StatelessWidget implements Period {
                           onChange();
                         },
                         items: List.generate(
-                          31,
-                          (index) => DropdownMenuItem(
-                            value: index + 1,
-                            child: Text(
-                              '${index + 1}',
-                              style: config.textStyle,
-                            ),
-                          ),
+                          32, // One extra item for the "Last" option
+                          (index) {
+                            if (index == 31) {
+                              return DropdownMenuItem(
+                                value: -1,
+                                // Use a distinct value for "Last"
+                                child: Text(
+                                  textDelegate.daysInMonth.last,
+                                  style: config.textStyle,
+                                ),
+                              );
+                            } else {
+                              return DropdownMenuItem(
+                                value: index + 1,
+                                child: Text(
+                                  '${index + 1}',
+                                  style: config.textStyle,
+                                ),
+                              );
+                            }
+                          },
                         ),
                       ),
                     ),
