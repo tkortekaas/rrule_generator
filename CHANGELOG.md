@@ -1,3 +1,6 @@
+# 0.9.1
+- Widen intl dependency
+
 # 0.9.0
 - Add support for last day of the month, thanks to @InspectlyMads and @MadsStolt!
 
