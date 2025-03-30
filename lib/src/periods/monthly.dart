@@ -106,7 +106,7 @@ class Monthly extends StatelessWidget implements Period {
         buildContainer(
           child: buildElement(
             title: textDelegate.every,
-            style: config.textStyle,
+            style: config.labelStyle,
             child: Row(
               children: [
                 Expanded(
@@ -116,10 +116,10 @@ class Monthly extends StatelessWidget implements Period {
                   config: config,
                 )),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8),
+                  padding: EdgeInsets.zero,
                   child: Text(
                     textDelegate.months,
-                    style: config.textStyle,
+                    style: config.labelStyle,
                   ),
                 ),
               ],
@@ -135,7 +135,7 @@ class Monthly extends StatelessWidget implements Period {
             children: [
               buildToggleItem(
                 title: textDelegate.byDayInMonth,
-                style: config.textStyle,
+                switchTextStyle: config.switchStyle.switchTextStyle,
                 value: monthType == 0,
                 onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 0 : 1;
@@ -143,7 +143,7 @@ class Monthly extends StatelessWidget implements Period {
                 },
                 child: buildElement(
                   title: textDelegate.on,
-                  style: config.textStyle,
+                  style: config.labelStyle,
                   child: buildDropdown(
                     child: ValueListenableBuilder(
                       valueListenable: dayNotifier,
@@ -163,7 +163,7 @@ class Monthly extends StatelessWidget implements Period {
                                 // Use a distinct value for "Last"
                                 child: Text(
                                   textDelegate.daysInMonth.last,
-                                  style: config.textStyle,
+                                  style: config.labelStyle,
                                 ),
                               );
                             } else {
@@ -171,7 +171,8 @@ class Monthly extends StatelessWidget implements Period {
                                 value: index + 1,
                                 child: Text(
                                   '${index + 1}',
-                                  style: config.textStyle,
+                                  style: config
+                                      .dropdownStyle.dropdownMenuItemTextStyle,
                                 ),
                               );
                             }
@@ -179,13 +180,14 @@ class Monthly extends StatelessWidget implements Period {
                         ),
                       ),
                     ),
+                    dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
                   ),
                 ),
               ),
-              const Divider(),
+              config.divider,
               buildToggleItem(
                 title: textDelegate.byNthDayInMonth,
-                style: config.textStyle,
+                switchTextStyle: config.switchStyle.switchTextStyle,
                 value: monthType == 1,
                 onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 1 : 0;
@@ -200,7 +202,7 @@ class Monthly extends StatelessWidget implements Period {
                           Expanded(
                             child: buildElement(
                               title: textDelegate.on,
-                              style: config.textStyle,
+                              style: config.labelStyle,
                               child: buildDropdown(
                                 child: DropdownButton(
                                   isExpanded: true,
@@ -215,11 +217,14 @@ class Monthly extends StatelessWidget implements Period {
                                       value: index,
                                       child: Text(
                                         textDelegate.daysInMonth[index],
-                                        style: config.textStyle,
+                                        style: config.dropdownStyle
+                                            .dropdownMenuItemTextStyle,
                                       ),
                                     ),
                                   ),
                                 ),
+                                dropdownMenuStyle:
+                                    config.dropdownStyle.dropdownMenuStyle,
                               ),
                             ),
                           ),
@@ -229,7 +234,7 @@ class Monthly extends StatelessWidget implements Period {
                           Expanded(
                             child: buildElement(
                               title: textDelegate.day,
-                              style: config.textStyle,
+                              style: config.labelStyle,
                               child: buildDropdown(
                                 child: ValueListenableBuilder(
                                   valueListenable: weekdayNotifier,
@@ -254,13 +259,16 @@ class Monthly extends StatelessWidget implements Period {
                                           value: index,
                                           child: Text(
                                             weekday,
-                                            style: config.textStyle,
+                                            style: config.dropdownStyle
+                                                .dropdownMenuItemTextStyle,
                                           ),
                                         );
                                       },
                                     ),
                                   ),
                                 ),
+                                dropdownMenuStyle:
+                                    config.dropdownStyle.dropdownMenuStyle,
                               ),
                             ),
                           ),

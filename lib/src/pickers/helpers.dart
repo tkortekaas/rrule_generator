@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-Container buildDropdown({required Widget child}) {
+Container buildDropdown({
+  required Widget child,
+  required BoxDecoration dropdownMenuStyle,
+}) {
   return Container(
-    decoration: BoxDecoration(
-      border: Border.all(),
-      borderRadius: BorderRadius.circular(8),
-    ),
-    width: double.maxFinite,
-    padding: const EdgeInsets.all(8),
+    decoration: dropdownMenuStyle,
     child: DropdownButtonHideUnderline(
       child: child,
     ),
@@ -36,7 +34,7 @@ Column buildElement({
 
 Padding buildContainer({required Widget child}) {
   return Padding(
-    padding: const EdgeInsets.all(8),
+    padding: const EdgeInsets.all(0),
     child: child,
   );
 }
@@ -46,19 +44,19 @@ Widget buildToggleItem({
   required void Function(bool) onChanged,
   required String title,
   required bool value,
-  required TextStyle style,
+  required TextStyle switchTextStyle,
 }) {
   if (!value) {
     return buildContainer(
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              title,
-              style: style.copyWith(fontSize: 16),
-            ),
+            child: Text(title, style: switchTextStyle),
           ),
-          Switch(value: value, onChanged: onChanged),
+          SwitchTheme(
+            data: SwitchThemeData(),
+            child: Switch(value: value, onChanged: onChanged),
+          ),
         ],
       ),
     );
@@ -69,12 +67,12 @@ Widget buildToggleItem({
         Row(
           children: [
             Expanded(
-              child: Text(
-                title,
-                style: style.copyWith(fontSize: 16),
-              ),
+              child: Text(title, style: switchTextStyle),
             ),
-            Switch(value: value, onChanged: onChanged),
+            SwitchTheme(
+              data: SwitchThemeData(),
+              child: Switch(value: value, onChanged: onChanged),
+            ),
           ],
         ),
         child,

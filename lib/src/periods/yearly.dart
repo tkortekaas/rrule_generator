@@ -110,7 +110,7 @@ class Yearly extends StatelessWidget implements Period {
               onChange();
             },
             title: textDelegate.byDayInMonth,
-            style: config.textStyle,
+            switchTextStyle: config.switchStyle.switchTextStyle,
             value: monthType == 0,
             child: buildContainer(
               child: Row(
@@ -118,7 +118,7 @@ class Yearly extends StatelessWidget implements Period {
                   Expanded(
                     child: buildElement(
                       title: textDelegate.months,
-                      style: config.textStyle,
+                      style: config.labelStyle,
                       child: buildDropdown(
                         child: ValueListenableBuilder(
                           valueListenable: monthNotifier,
@@ -142,13 +142,16 @@ class Yearly extends StatelessWidget implements Period {
                                   value: index + 1,
                                   child: Text(
                                     month,
-                                    style: config.textStyle,
+                                    style: config.dropdownStyle
+                                        .dropdownMenuItemTextStyle,
                                   ),
                                 );
                               },
                             ),
                           ),
                         ),
+                        dropdownMenuStyle:
+                            config.dropdownStyle.dropdownMenuStyle,
                       ),
                     ),
                   ),
@@ -158,7 +161,7 @@ class Yearly extends StatelessWidget implements Period {
                   Expanded(
                     child: buildElement(
                       title: textDelegate.day,
-                      style: config.textStyle,
+                      style: config.labelStyle,
                       child: buildDropdown(
                         child: ValueListenableBuilder(
                           valueListenable: dayNotifier,
@@ -175,12 +178,15 @@ class Yearly extends StatelessWidget implements Period {
                                 value: index + 1,
                                 child: Text(
                                   '${index + 1}.',
-                                  style: config.textStyle,
+                                  style: config
+                                      .dropdownStyle.dropdownMenuItemTextStyle,
                                 ),
                               ),
                             ),
                           ),
                         ),
+                        dropdownMenuStyle:
+                            config.dropdownStyle.dropdownMenuStyle,
                       ),
                     ),
                   ),
@@ -195,7 +201,7 @@ class Yearly extends StatelessWidget implements Period {
               onChange();
             },
             title: textDelegate.byNthDayInMonth,
-            style: config.textStyle,
+            switchTextStyle: config.switchStyle.switchTextStyle,
             value: monthType == 1,
             child: Column(
               children: [
@@ -204,7 +210,7 @@ class Yearly extends StatelessWidget implements Period {
                     Expanded(
                       child: buildElement(
                         title: textDelegate.on,
-                        style: config.textStyle,
+                        style: config.labelStyle,
                         child: buildDropdown(
                           child: ValueListenableBuilder(
                             valueListenable: monthDayNotifier,
@@ -221,12 +227,15 @@ class Yearly extends StatelessWidget implements Period {
                                   value: index,
                                   child: Text(
                                     textDelegate.daysInMonth[index],
-                                    style: config.textStyle,
+                                    style: config.dropdownStyle
+                                        .dropdownMenuItemTextStyle,
                                   ),
                                 ),
                               ),
                             ),
                           ),
+                          dropdownMenuStyle:
+                              config.dropdownStyle.dropdownMenuStyle,
                         ),
                       ),
                     ),
@@ -236,7 +245,7 @@ class Yearly extends StatelessWidget implements Period {
                     Expanded(
                       child: buildElement(
                         title: textDelegate.day,
-                        style: config.textStyle,
+                        style: config.labelStyle,
                         child: buildDropdown(
                           child: ValueListenableBuilder(
                             valueListenable: weekdayNotifier,
@@ -260,13 +269,16 @@ class Yearly extends StatelessWidget implements Period {
                                     value: index,
                                     child: Text(
                                       weekday,
-                                      style: config.textStyle,
+                                      style: config.dropdownStyle
+                                          .dropdownMenuItemTextStyle,
                                     ),
                                   );
                                 },
                               ),
                             ),
                           ),
+                          dropdownMenuStyle:
+                              config.dropdownStyle.dropdownMenuStyle,
                         ),
                       ),
                     ),
@@ -274,7 +286,7 @@ class Yearly extends StatelessWidget implements Period {
                 ),
                 buildElement(
                   title: textDelegate.of,
-                  style: config.textStyle,
+                  style: config.labelStyle,
                   child: buildDropdown(
                     child: ValueListenableBuilder(
                       valueListenable: monthNotifier,
@@ -296,13 +308,14 @@ class Yearly extends StatelessWidget implements Period {
                               value: index + 1,
                               child: Text(
                                 month,
-                                style: config.textStyle,
+                                style: config.labelStyle,
                               ),
                             );
                           },
                         ),
                       ),
                     ),
+                    dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
                   ),
                 ),
               ],

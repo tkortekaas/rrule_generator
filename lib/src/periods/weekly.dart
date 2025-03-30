@@ -78,7 +78,7 @@ class Weekly extends StatelessWidget implements Period {
   Widget build(BuildContext context) => buildContainer(
         child: buildElement(
           title: textDelegate.every,
-          style: config.textStyle,
+          style: config.headerTextStyle,
           child: Column(
             children: [
               Row(
@@ -91,10 +91,10 @@ class Weekly extends StatelessWidget implements Period {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: EdgeInsets.zero,
                     child: Text(
                       textDelegate.weeks,
-                      style: config.textStyle,
+                      style: config.labelStyle,
                     ),
                   ),
                 ],
