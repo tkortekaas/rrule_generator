@@ -28,6 +28,9 @@ class ArabicRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'أشهر';
 
   @override
+  String get month => 'شهر';
+
+  @override
   String get weeks => 'أسابيع';
 
   @override

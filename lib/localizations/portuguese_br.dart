@@ -28,6 +28,9 @@ class PortugueseRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mês(es)';
 
   @override
+  String get month => 'Mês';
+
+  @override
   String get weeks => 'Semana(s)';
 
   @override

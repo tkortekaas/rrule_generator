@@ -28,6 +28,9 @@ class PersianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'ماه';
 
   @override
+  String get month => 'ماه';
+
+  @override
   String get weeks => 'هفته';
 
   @override

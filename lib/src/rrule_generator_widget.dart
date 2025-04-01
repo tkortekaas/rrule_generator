@@ -292,17 +292,25 @@ class RRuleGenerator extends StatelessWidget {
                           builder: (context, countType, child) {
                             switch (countType) {
                               case 1:
-                                return SizedBox(
-                                  width: 80,
-                                  child: buildElement(
-                                    title: textDelegate.instances,
-                                    style: config.labelStyle,
-                                    child: IntervalPicker(
-                                      instancesController,
-                                      valueChanged,
-                                      config: config,
+                                return Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 30,
+                                      child: buildElement(
+                                        style: config.labelStyle,
+                                        child: IntervalPicker(
+                                          instancesController,
+                                          valueChanged,
+                                          config: config,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      textDelegate.instances,
+                                      style: config.labelStyle,
+                                    ),
+                                  ],
                                 );
                               case 2:
                                 return SizedBox(
@@ -332,15 +340,12 @@ class RRuleGenerator extends StatelessWidget {
                                         },
                                         style: config.datePickerStyle
                                             .datePickerButtonStyle,
-                                        child: SizedBox(
-                                          width: double.maxFinite,
-                                          child: Text(
-                                            DateFormat.yMd(locale.toString())
-                                                .format(pickedDate),
-                                            style: config.datePickerStyle
-                                                .datePickerTextStyle,
-                                            textAlign: TextAlign.center,
-                                          ),
+                                        child: Text(
+                                          DateFormat.yMd(locale.toString())
+                                              .format(pickedDate),
+                                          style: config.datePickerStyle
+                                              .datePickerTextStyle,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),

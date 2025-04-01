@@ -28,6 +28,9 @@ class SpanishRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mes(es)';
 
   @override
+  String get month => 'Mes';
+
+  @override
   String get weeks => 'Semana(s)';
 
   @override

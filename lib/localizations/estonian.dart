@@ -28,6 +28,9 @@ class EstonianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Kuud';
 
   @override
+  String get month => 'Kuud';
+
+  @override
   String get weeks => 'Nädalad';
 
   @override

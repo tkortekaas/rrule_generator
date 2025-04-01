@@ -28,6 +28,9 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mesiacov';
 
   @override
+  String get month => 'Mesiac';
+
+  @override
   String get weeks => 'Týždňov';
 
   @override

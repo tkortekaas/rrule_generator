@@ -115,7 +115,9 @@ class RRuleDropdownStyle {
 
 class RRuleInputTextStyle {
   const RRuleInputTextStyle({
-    this.inputTextDecoration = const InputDecoration(),
+    this.inputTextDecoration = const InputDecoration(
+      isDense: true,
+    ),
     this.inputTextStyle = const TextStyle(),
   });
 
@@ -124,12 +126,34 @@ class RRuleInputTextStyle {
 }
 
 class RRuleSwitchStyle {
+  /// Creates a style configuration for switches in the RRule generator.
+  ///
+  /// [isCupertinoStyle] determines whether to use Cupertino or Material switch style.
+  ///
+  /// [thumbColor] sets the color of the switch thumb/knob.
+  ///
+  /// [thumbSize] sets the size of the thumb icon when using Material style.
+  ///
+  /// [inactiveThumbSize] sets the size of the thumb icon when disabled in Material style.
+  ///
+  /// [activeTrackColor] sets the track color when the switch is on.
+  ///
+  /// [inactiveTrackColor] sets the track color when the switch is off.
+  ///
+  /// [trackOutlineWidth] sets the width of the track outline in Material style.
+  ///
+  /// [trackOutlineColor] sets the color of the track outline in Material style.
+  ///
+  /// [switchTextStyle] sets the text style for the switch label.
   const RRuleSwitchStyle({
     this.isCupertinoStyle = false,
     this.thumbColor = Colors.white,
-    this.trackColor = Colors.grey,
-    this.trackOutlineColor = Colors.grey,
-    this.trackOutlineWidth = 1.0,
+    this.thumbSize = 14.0,
+    this.inactiveThumbSize = 12.0,
+    this.activeTrackColor = Colors.green,
+    this.inactiveTrackColor = Colors.grey,
+    this.trackOutlineWidth = 2.0,
+    this.trackOutlineColor = Colors.red,
     this.switchTextStyle = const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.bold,
@@ -138,9 +162,12 @@ class RRuleSwitchStyle {
 
   final bool isCupertinoStyle;
   final Color thumbColor;
-  final Color trackColor;
-  final Color trackOutlineColor;
+  final double thumbSize;
+  final double inactiveThumbSize;
+  final Color activeTrackColor;
+  final Color inactiveTrackColor;
   final double trackOutlineWidth;
+  final Color trackOutlineColor;
   final TextStyle switchTextStyle;
 }
 
@@ -164,7 +191,7 @@ class RRuleSelectDayStyle {
 
 class RRuleDatePickerStyle {
   const RRuleDatePickerStyle({
-    this.datePickerTextStyle = const TextStyle(),
+    this.datePickerTextStyle = const TextStyle(fontSize: 13),
     this.datePickerButtonStyle = const ButtonStyle(),
   });
   final TextStyle datePickerTextStyle;

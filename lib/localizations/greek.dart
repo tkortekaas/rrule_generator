@@ -28,6 +28,9 @@ class GreekRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Μήνες';
 
   @override
+  String get month => 'Μήνας';
+
+  @override
   String get weeks => 'Εβδομάδες';
 
   @override

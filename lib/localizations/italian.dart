@@ -28,6 +28,9 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mesi';
 
   @override
+  String get month => 'Mese';
+
+  @override
   String get weeks => 'Settimane';
 
   @override

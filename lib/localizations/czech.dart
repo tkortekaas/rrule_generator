@@ -28,6 +28,9 @@ class CzechRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Měsíců';
 
   @override
+  String get month => 'Měsíc';
+
+  @override
   String get weeks => 'Týdnů';
 
   @override

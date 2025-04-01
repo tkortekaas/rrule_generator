@@ -28,6 +28,9 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Ay(lar)';
 
   @override
+  String get month => 'Ay';
+
+  @override
   String get weeks => 'Haftalar';
 
   @override

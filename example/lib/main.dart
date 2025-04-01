@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  child: const Text('Custom'),
+                  child: const Text('German'),
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -58,11 +58,65 @@ class MyApp extends StatelessWidget {
                             initialRRule:
                                 'RRULE:FREQ=MONTHLY;BYMONTHDAY=-1;INTERVAL=1;UNTIL=20231211;EXDATE=20240322T000000',
                             localeBuilder: (locale) {
-                              if (locale.languageCode == 'de') {
-                                return GermanRRuleTextDelegate();
-                              }
-                              return FrenchRRuleTextDelegate();
+                              // Do something with locale
+                              return GermanRRuleTextDelegate();
                             },
+                            withExcludeDates: true,
+                            onChange: print,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  child: const Text('Custom style'),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        content: SingleChildScrollView(
+                          child: RRuleGenerator(
+                            config: RRuleGeneratorConfig(
+                              headerStyle: const RRuleHeaderStyle(
+                                textStyle: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              switchStyle: RRuleSwitchStyle(
+                                isCupertinoStyle: true,
+                                activeTrackColor: Colors.blue,
+                                inactiveTrackColor: Colors.grey,
+                              ),
+                              datePickerStyle: RRuleDatePickerStyle(
+                                datePickerButtonStyle: ButtonStyle(
+                                  shape: WidgetStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  side: WidgetStateProperty.all(
+                                    BorderSide(
+                                      color: Colors.blue,
+                                      width: 1,
+                                    ),
+                                  ),
+                                ),
+                                datePickerTextStyle: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              divider: Divider(
+                                thickness: 0.5,
+                                color: Colors.blue,
+                              ),
+                            ),
+                            initialRRule:
+                                'RRULE:FREQ=MONTHLY;BYMONTHDAY=-1;INTERVAL=1;UNTIL=20231211;EXDATE=20240322T000000',
                             withExcludeDates: true,
                             onChange: print,
                           ),

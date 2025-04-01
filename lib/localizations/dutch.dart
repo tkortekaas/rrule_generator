@@ -28,6 +28,9 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Maand(en)';
 
   @override
+  String get month => 'Maand';
+
+  @override
   String get weeks => 'Weken';
 
   @override

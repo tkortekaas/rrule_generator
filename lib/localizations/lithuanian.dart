@@ -28,6 +28,9 @@ class LithuanianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mėnesių';
 
   @override
+  String get month => 'Mėnuo';
+
+  @override
   String get weeks => 'Kad suminkštėtų';
 
   @override

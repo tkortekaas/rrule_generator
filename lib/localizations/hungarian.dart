@@ -28,6 +28,9 @@ class HungarianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Hónap(ok)';
 
   @override
+  String get month => 'Hónap';
+
+  @override
   String get weeks => 'Puhítani';
 
   @override

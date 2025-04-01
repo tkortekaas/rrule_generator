@@ -28,6 +28,9 @@ class GermanRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Monate';
 
   @override
+  String get month => 'Monat';
+
+  @override
   String get weeks => 'Wochen';
 
   @override

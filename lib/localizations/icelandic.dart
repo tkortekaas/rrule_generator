@@ -28,6 +28,9 @@ class IcelandicRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mánuðir';
 
   @override
+  String get month => 'Mánuður';
+
+  @override
   String get weeks => 'Vikur';
 
   @override

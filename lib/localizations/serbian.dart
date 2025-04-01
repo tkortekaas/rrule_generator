@@ -28,6 +28,9 @@ class SerbianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Месец(и)';
 
   @override
+  String get month => 'Месец';
+
+  @override
   String get weeks => 'Недеља/е';
 
   @override
@@ -58,20 +61,10 @@ class SerbianRRuleTextDelegate implements RRuleTextDelegate {
   String get excludeDate => 'Искључи датум';
 
   @override
-  List<String> get daysInMonth => [
-    'Први',
-    'Други',
-    'Трећи',
-    'Четврти',
-    'Последњи'
-  ];
+  List<String> get daysInMonth =>
+      ['Први', 'Други', 'Трећи', 'Четврти', 'Последњи'];
 
   @override
-  List<String> get periods => [
-    'Годишње',
-    'Месечно',
-    'Недељно',
-    'Дневно',
-    'Никада'
-  ];
+  List<String> get periods =>
+      ['Годишње', 'Месечно', 'Недељно', 'Дневно', 'Никада'];
 }
