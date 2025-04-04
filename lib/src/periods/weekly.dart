@@ -75,38 +75,36 @@ class Weekly extends StatelessWidget implements Period {
   }
 
   @override
-  Widget build(BuildContext context) => buildContainer(
-        child: buildElement(
-          title: textDelegate.every,
-          style: config.headerTextStyle,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: IntervalPicker(
-                      intervalController,
-                      onChange,
-                      config: config,
-                    ),
+  Widget build(BuildContext context) => buildElement(
+        title: textDelegate.every,
+        style: config.headerTextStyle,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: IntervalPicker(
+                    intervalController,
+                    onChange,
+                    config: config,
                   ),
-                  Padding(
-                    padding: EdgeInsets.zero,
-                    child: Text(
-                      textDelegate.weeks,
-                      style: config.labelStyle,
-                    ),
+                ),
+                Padding(
+                  padding: EdgeInsets.zero,
+                  child: Text(
+                    textDelegate.weeks,
+                    style: config.labelStyle,
                   ),
-                ],
-              ),
-              WeekdayPicker(
-                weekdayNotifiers,
-                textDelegate,
-                onChange,
-                config: config,
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            WeekdayPicker(
+              weekdayNotifiers,
+              textDelegate,
+              onChange,
+              config: config,
+            ),
+          ],
         ),
       );
 }

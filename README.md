@@ -31,7 +31,8 @@ RRuleGenerator(
 ```
 
 #### Support language:
-![Language](https://github.com/duy84/rrule_generator/blob/master/example/screenshots/custom_language.png?raw=true)
+
+![Language](/example/screenshots/custom_language.png)
 ```dart
 RRuleGenerator(
   config: RRuleGeneratorConfig(),
@@ -57,7 +58,8 @@ RRuleGenerator(
 );
 ```
 #### Custom your style:
-![Language](https://github.com/duy84/rrule_generator/blob/master/example/screenshots/custom_style.png?raw=true)
+
+![Language](/example/screenshots/custom_style.png)
 ```dart
 RRuleGenerator(
   config: RRuleGeneratorConfig(
@@ -102,7 +104,7 @@ RRuleGenerator(
 );
 ```
 
-#### Check out [example](https://github.com/tkortekaas/rrule_generator/tree/master/example) for more details.
+#### Check out the [example](https://github.com/tkortekaas/rrule_generator/tree/master/example) for more details.
 
 #### The current version of the widget has 30 text delegates that you can already use:
 - English (default)

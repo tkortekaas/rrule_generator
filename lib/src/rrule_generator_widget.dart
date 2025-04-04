@@ -36,19 +36,21 @@ class RRuleGenerator extends StatelessWidget {
   final pickedDateNotifier = ValueNotifier(DateTime.now());
   final instancesController = TextEditingController(text: '1');
   final List<Period> _periodWidgets = [];
+  final List<DateTime> excludeDates = [];
   late final ExcludeDates? _excludeDatesPicker;
 
   RRuleGenerator({
     super.key,
     RRuleGeneratorConfig? config,
     @Deprecated(
-        'Use locale or custom via localeBuilder instead. This parameter will be removed in future versions.')
+      'Use locale or custom via localeBuilder instead. This parameter will be removed in future versions.',
+    )
     this.textDelegate,
     this.locale,
     this.localeBuilder,
     this.onChange,
     this.initialRRule = '',
-    this.withExcludeDates = false,
+    this.withExcludeDates = true,
     this.initialDate,
   }) {
     this.config = config ?? RRuleGeneratorConfig();
@@ -119,6 +121,7 @@ class RRuleGenerator extends StatelessWidget {
               valueChanged,
               initialRRule,
               initialDate ?? DateTime.now(),
+              excludeDates,
             )
           : null;
     }
@@ -149,6 +152,16 @@ class RRuleGenerator extends StatelessWidget {
         initialRRule.substring(
             dateIndex, dateEnd == -1 ? initialRRule.length : dateEnd),
       );
+    }
+
+    final exDateIndex = initialRRule.indexOf('EXDATE=') + 7;
+    if (exDateIndex == 6) return;
+    final exDateEnd = initialRRule.indexOf(';', exDateIndex);
+    final exDateString = initialRRule.substring(
+        exDateIndex, exDateEnd == -1 ? initialRRule.length : exDateEnd);
+    final exDateList = exDateString.split(',');
+    for (final exDate in exDateList) {
+      excludeDates.add(DateTime.parse(exDate));
     }
   }
 
@@ -194,152 +207,149 @@ class RRuleGenerator extends StatelessWidget {
         builder: (context, period, child) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildContainer(
-              child: buildElement(
-                title: config.headerStyle.enabled ? textDelegate.repeat : null,
-                style: config.headerStyle.textStyle,
-                child: buildDropdown(
-                  child: DropdownButton(
-                    isExpanded: true,
-                    value: period,
-                    onChanged: (newPeriod) {
-                      frequencyNotifier.value = newPeriod!;
-                      valueChanged();
-                    },
-                    items: List.generate(
-                      5,
-                      (index) => DropdownMenuItem(
-                        value: index,
-                        child: Text(
-                          textDelegate.periods[index],
-                          style: config.dropdownStyle.dropdownMenuItemTextStyle,
-                        ),
+            buildElement(
+              title: config.headerStyle.enabled ? textDelegate.repeat : null,
+              style: config.headerStyle.textStyle,
+              child: buildDropdown(
+                child: DropdownButton(
+                  isExpanded: true,
+                  value: period,
+                  onChanged: (newPeriod) {
+                    frequencyNotifier.value = newPeriod!;
+                    valueChanged();
+                  },
+                  items: List.generate(
+                    5,
+                    (index) => DropdownMenuItem(
+                      value: index,
+                      child: Text(
+                        textDelegate.periods[index],
+                        style: config.dropdownStyle.dropdownMenuItemTextStyle,
                       ),
                     ),
                   ),
-                  dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
                 ),
+                dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
               ),
             ),
             if (period != 4) ...[
               config.divider,
               _periodWidgets[period],
               config.divider,
-              buildContainer(
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(textDelegate.end, style: config.labelStyle),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: buildElement(
-                            style: config.labelStyle,
-                            child: buildDropdown(
-                              child: ValueListenableBuilder(
-                                valueListenable: countTypeNotifier,
-                                builder: (context, countType, child) =>
-                                    DropdownButton(
-                                  isExpanded: true,
-                                  value: countType,
-                                  onChanged: (newCountType) {
-                                    countTypeNotifier.value = newCountType!;
-                                    valueChanged();
-                                  },
-                                  items: [
-                                    DropdownMenuItem(
-                                      value: 0,
-                                      child: Text(
-                                        textDelegate.neverEnds,
-                                        style: config.dropdownStyle
-                                            .dropdownMenuItemTextStyle,
-                                      ),
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(textDelegate.end, style: config.labelStyle),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: buildElement(
+                          style: config.labelStyle,
+                          child: buildDropdown(
+                            child: ValueListenableBuilder(
+                              valueListenable: countTypeNotifier,
+                              builder: (context, countType, child) =>
+                                  DropdownButton(
+                                isExpanded: true,
+                                value: countType,
+                                onChanged: (newCountType) {
+                                  countTypeNotifier.value = newCountType!;
+                                  valueChanged();
+                                },
+                                items: [
+                                  DropdownMenuItem(
+                                    value: 0,
+                                    child: Text(
+                                      textDelegate.neverEnds,
+                                      style: config.dropdownStyle
+                                          .dropdownMenuItemTextStyle,
                                     ),
-                                    DropdownMenuItem(
-                                      value: 1,
-                                      child: Text(
-                                        textDelegate.endsAfter,
-                                        style: config.dropdownStyle
-                                            .dropdownMenuItemTextStyle,
-                                      ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 1,
+                                    child: Text(
+                                      textDelegate.endsAfter,
+                                      style: config.dropdownStyle
+                                          .dropdownMenuItemTextStyle,
                                     ),
-                                    DropdownMenuItem(
-                                      value: 2,
-                                      child: Text(
-                                        textDelegate.endsOnDate,
-                                        style: config.dropdownStyle
-                                            .dropdownMenuItemTextStyle,
-                                      ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 2,
+                                    child: Text(
+                                      textDelegate.endsOnDate,
+                                      style: config.dropdownStyle
+                                          .dropdownMenuItemTextStyle,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              dropdownMenuStyle:
-                                  config.dropdownStyle.dropdownMenuStyle,
                             ),
+                            dropdownMenuStyle:
+                                config.dropdownStyle.dropdownMenuStyle,
                           ),
                         ),
-                        ValueListenableBuilder(
-                          valueListenable: countTypeNotifier,
-                          builder: (context, countType, child) => SizedBox(
-                            width: countType == 0 ? 0 : 8,
-                          ),
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: countTypeNotifier,
+                        builder: (context, countType, child) => SizedBox(
+                          width: countType == 0 ? 0 : 8,
                         ),
-                        ValueListenableBuilder(
-                          valueListenable: countTypeNotifier,
-                          builder: (context, countType, child) {
-                            switch (countType) {
-                              case 1:
-                                return Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 30,
-                                      child: buildElement(
-                                        style: config.labelStyle,
-                                        child: IntervalPicker(
-                                          instancesController,
-                                          valueChanged,
-                                          config: config,
-                                        ),
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: countTypeNotifier,
+                        builder: (context, countType, child) {
+                          switch (countType) {
+                            case 1:
+                              return Row(
+                                children: [
+                                  SizedBox(
+                                    width: 30,
+                                    child: buildElement(
+                                      style: config.labelStyle,
+                                      child: IntervalPicker(
+                                        instancesController,
+                                        valueChanged,
+                                        config: config,
                                       ),
                                     ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      textDelegate.instances,
-                                      style: config.labelStyle,
-                                    ),
-                                  ],
-                                );
-                              case 2:
-                                return SizedBox(
-                                  width: 120,
-                                  child: buildElement(
-                                    // title: textDelegate.date,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    textDelegate.instances,
                                     style: config.labelStyle,
-                                    child: ValueListenableBuilder(
-                                      valueListenable: pickedDateNotifier,
-                                      builder: (context, pickedDate, child) =>
-                                          OutlinedButton(
-                                        onPressed: () async {
-                                          final picked = await showDatePicker(
-                                            context: context,
-                                            locale: locale,
-                                            initialDate: pickedDate,
-                                            firstDate:
-                                                DateTime.utc(2020, 10, 24),
-                                            lastDate: DateTime(2100),
-                                          );
+                                  ),
+                                ],
+                              );
+                            case 2:
+                              return SizedBox(
+                                width: 120,
+                                child: buildElement(
+                                  // title: textDelegate.date,
+                                  style: config.labelStyle,
+                                  child: ValueListenableBuilder(
+                                    valueListenable: pickedDateNotifier,
+                                    builder: (context, pickedDate, child) =>
+                                        OutlinedButton(
+                                      onPressed: () async {
+                                        final picked = await showDatePicker(
+                                          context: context,
+                                          locale: locale,
+                                          initialDate: pickedDate,
+                                          firstDate: DateTime.utc(2020, 10, 24),
+                                          lastDate: DateTime(2100),
+                                        );
 
-                                          if (picked != null &&
-                                              picked != pickedDate) {
-                                            pickedDateNotifier.value = picked;
-                                            valueChanged();
-                                          }
-                                        },
-                                        style: config.datePickerStyle
-                                            .datePickerButtonStyle,
+                                        if (picked != null &&
+                                            picked != pickedDate) {
+                                          pickedDateNotifier.value = picked;
+                                          valueChanged();
+                                        }
+                                      },
+                                      style: config.datePickerStyle
+                                          .datePickerButtonStyle,
+                                      child: FittedBox(
                                         child: Text(
                                           DateFormat.yMd(locale.toString())
                                               .format(pickedDate),
@@ -350,20 +360,20 @@ class RRuleGenerator extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                );
-                              default:
-                                return Container();
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                                ),
+                              );
+                            default:
+                              return Container();
+                          }
+                        },
+                      )
+                    ],
+                  ),
+                  if (child != null) config.divider,
+                  if (child != null) child,
+                ],
               ),
             ],
-            if (child != null) config.divider,
-            if (child != null) child,
           ],
         ),
         child: _excludeDatesPicker,

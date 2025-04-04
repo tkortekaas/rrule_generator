@@ -1,6 +1,7 @@
 # 0.9.2
+Thanks @duy84 for the PR!
 - Add more support for custom style
-- Switch to use `local` or `localBuilder`
+- Switch to use `locale` or `localeBuilder`
 
 # 0.9.1
 - Widen intl dependency

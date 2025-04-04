@@ -45,24 +45,22 @@ class Daily extends StatelessWidget implements Period {
   }
 
   @override
-  Widget build(BuildContext context) => buildContainer(
-        child: buildElement(
-          title: textDelegate.every,
-          style: config.textStyle,
-          child: Row(
-            children: [
-              Expanded(
-                  child: IntervalPicker(
-                intervalController,
-                onChange,
-                config: config,
-              )),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(textDelegate.days),
-              ),
-            ],
-          ),
+  Widget build(BuildContext context) => buildElement(
+        title: textDelegate.every,
+        style: config.textStyle,
+        child: Row(
+          children: [
+            Expanded(
+                child: IntervalPicker(
+              intervalController,
+              onChange,
+              config: config,
+            )),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(textDelegate.days),
+            ),
+          ],
         ),
       );
 }

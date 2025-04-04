@@ -100,28 +100,26 @@ class Monthly extends StatelessWidget implements Period {
   }
 
   Widget _buildIntervalPicker() {
-    return buildContainer(
-      child: buildElement(
-        title: textDelegate.every,
-        style: config.labelStyle,
-        child: Row(
-          children: [
-            Expanded(
-              child: IntervalPicker(
-                intervalController,
-                onChange,
-                config: config,
-              ),
+    return buildElement(
+      title: textDelegate.every,
+      style: config.labelStyle,
+      child: Row(
+        children: [
+          Expanded(
+            child: IntervalPicker(
+              intervalController,
+              onChange,
+              config: config,
             ),
-            Padding(
-              padding: EdgeInsets.zero,
-              child: Text(
-                textDelegate.months,
-                style: config.labelStyle,
-              ),
+          ),
+          Padding(
+            padding: EdgeInsets.zero,
+            child: Text(
+              textDelegate.months,
+              style: config.labelStyle,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

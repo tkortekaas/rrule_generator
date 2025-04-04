@@ -228,36 +228,34 @@ class Yearly extends StatelessWidget implements Period {
   }
 
   Widget _buildMonthDateRow() {
-    return buildContainer(
-      child: Row(
-        children: [
-          ...(() {
-            final pattern = DateFormat.yMd(textDelegate.locale).pattern;
-            final isMonthFirst = pattern?.contains('M') == true &&
-                pattern!.indexOf('M') < pattern.indexOf('d');
+    return Row(
+      children: [
+        ...(() {
+          final pattern = DateFormat.yMd(textDelegate.locale).pattern;
+          final isMonthFirst = pattern?.contains('M') == true &&
+              pattern!.indexOf('M') < pattern.indexOf('d');
 
-            final widgets = [
-              Expanded(
-                child: buildElement(
-                  title: textDelegate.month,
-                  style: config.labelStyle,
-                  child: _buildMonthDropdown(),
-                ),
+          final widgets = [
+            Expanded(
+              child: buildElement(
+                title: textDelegate.month,
+                style: config.labelStyle,
+                child: _buildMonthDropdown(),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: buildElement(
-                  title: textDelegate.date,
-                  style: config.labelStyle,
-                  child: _buildDateDropdown(),
-                ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: buildElement(
+                title: textDelegate.date,
+                style: config.labelStyle,
+                child: _buildDateDropdown(),
               ),
-            ];
+            ),
+          ];
 
-            return isMonthFirst ? widgets : widgets.reversed.toList();
-          })(),
-        ],
-      ),
+          return isMonthFirst ? widgets : widgets.reversed.toList();
+        })(),
+      ],
     );
   }
 
