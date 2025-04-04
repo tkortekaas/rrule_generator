@@ -57,49 +57,53 @@ class _ExcludeDatesState extends State<ExcludeDates> {
   @override
   Widget build(BuildContext context) {
     return buildContainer(
-      child: buildElement(
-        title: widget.textDelegate.excludeDate,
-        style: widget.config.textStyle,
-        child: Column(
-          children: [
-            IconButton(
-              onPressed: () async {
-                final date = await showDatePicker(
-                  context: context,
-                  initialDate: widget.initialDate,
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2100),
-                );
-                if (date != null && !widget.excludeDates.contains(date)) {
-                  widget.excludeDates.add(date);
-                  widget.onChange();
-                  setState(() {});
-                }
-              },
-              icon: const Icon(Icons.add),
-            ),
-            if (widget.excludeDates.isNotEmpty)
-              Column(
-                children: [
-                  for (final date in widget.excludeDates)
-                    ListTile(
-                      title: Text(
-                        DateFormat.yMMMd(widget.textDelegate.locale)
-                            .format(date),
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () {
-                          widget.excludeDates.remove(date);
-                          widget.onChange();
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                ],
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                widget.textDelegate.excludeDate,
+                style: widget.config.labelStyle,
               ),
-          ],
-        ),
+              IconButton(
+                onPressed: () async {
+                  final date = await showDatePicker(
+                    context: context,
+                    initialDate: widget.initialDate,
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2100),
+                  );
+                  if (date != null && !widget.excludeDates.contains(date)) {
+                    widget.excludeDates.add(date);
+                    widget.onChange();
+                    setState(() {});
+                  }
+                },
+                icon: const Icon(Icons.add),
+              )
+            ],
+          ),
+          Column(
+            children: [
+              for (final date in widget.excludeDates)
+                ListTile(
+                  titleAlignment: ListTileTitleAlignment.center,
+                  title: Text(
+                    DateFormat.yMMMd(widget.textDelegate.locale).format(date),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete, size: 20),
+                    onPressed: () {
+                      widget.excludeDates.remove(date);
+                      widget.onChange();
+                      setState(() {});
+                    },
+                  ),
+                ),
+            ],
+          ),
+        ],
       ),
     );
   }

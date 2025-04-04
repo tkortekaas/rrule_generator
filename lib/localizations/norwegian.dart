@@ -28,6 +28,9 @@ class NorwegianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Måned(er)';
 
   @override
+  String get month => 'Måned';
+
+  @override
   String get weeks => 'Uke(r)';
 
   @override

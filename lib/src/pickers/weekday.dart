@@ -34,22 +34,21 @@ class WeekdayPicker extends StatelessWidget {
 
                 return Expanded(
                   child: InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     child: Container(
                       margin: const EdgeInsets.only(right: 2),
                       alignment: Alignment.center,
                       height: 50,
-                      decoration: BoxDecoration(
-                          color: value
-                              ? config.weekdaySelectedBackgroundColor
-                              : config.weekdayBackgroundColor,
-                          borderRadius: BorderRadius.circular(5)),
+                      decoration: value
+                          ? config.selectDayStyle.selectedDayStyle
+                          : config.selectDayStyle.dayStyle,
                       child: FittedBox(
                         child: Text(
                           weekday,
-                          style: config.textStyle.copyWith(
-                              color: value
-                                  ? config.weekdaySelectedColor
-                                  : config.weekdayColor),
+                          style: value
+                              ? config.selectDayStyle.selectedDayTextStyle
+                              : config.selectDayStyle.dayTextStyle,
                         ),
                       ),
                     ),

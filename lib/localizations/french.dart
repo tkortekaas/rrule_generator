@@ -28,6 +28,9 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mois';
 
   @override
+  String get month => 'Mois';
+
+  @override
   String get weeks => 'Semaines';
 
   @override

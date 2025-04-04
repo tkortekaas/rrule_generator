@@ -28,6 +28,9 @@ class PolishRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Miesiące';
 
   @override
+  String get month => 'Miesiąc';
+
+  @override
   String get weeks => 'Tygodnie';
 
   @override

@@ -28,6 +28,9 @@ class LatvianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mēnešus';
 
   @override
+  String get month => 'Mēnesis';
+
+  @override
   String get weeks => 'Nedēļas';
 
   @override

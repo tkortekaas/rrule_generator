@@ -28,6 +28,9 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Bulan';
 
   @override
+  String get month => 'Bulan';
+
+  @override
   String get weeks => 'Minggu';
 
   @override

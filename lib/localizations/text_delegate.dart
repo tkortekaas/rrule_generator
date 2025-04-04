@@ -15,6 +15,8 @@ class RRuleTextDelegate {
 
   String get months => 'Month(s)';
 
+  String get month => 'Month';
+
   String get weeks => 'Week(s)';
 
   String get days => 'Day(s)';

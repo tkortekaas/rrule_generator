@@ -28,6 +28,9 @@ class CroatianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Mjeseci';
 
   @override
+  String get month => 'Mjesec';
+
+  @override
   String get weeks => 'Tjedni';
 
   @override

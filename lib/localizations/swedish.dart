@@ -28,6 +28,9 @@ class SwedishRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Månader';
 
   @override
+  String get month => 'Månad';
+
+  @override
   String get weeks => 'Veckor';
 
   @override

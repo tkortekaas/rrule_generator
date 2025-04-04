@@ -28,6 +28,9 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Месец(и)';
 
   @override
+  String get month => 'Месец';
+
+  @override
   String get weeks => 'Седмица/и';
 
   @override

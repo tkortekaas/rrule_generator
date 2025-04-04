@@ -1,3 +1,7 @@
+# 0.9.2
+- Add more support for custom style
+- Switch to use `local` or `localBuilder`
+
 # 0.9.1
 - Widen intl dependency
 

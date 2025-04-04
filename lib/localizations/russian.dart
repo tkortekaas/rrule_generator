@@ -28,6 +28,9 @@ class RussianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Месяц(ы)';
 
   @override
+  String get month => 'Месяц';
+
+  @override
   String get weeks => 'Неделя(и)';
 
   @override

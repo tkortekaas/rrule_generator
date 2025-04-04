@@ -28,6 +28,9 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Kuukausi';
 
   @override
+  String get month => 'Kuukausi';
+
+  @override
   String get weeks => 'Viikko';
 
   @override

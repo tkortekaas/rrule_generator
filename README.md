@@ -7,31 +7,104 @@ This widget is based on the [rrule](https://pub.dev/packages/rrule) and [teno_rr
 
 The widget is actively used in the [Calendar Clock](https://calendarclock.app) app.
 
-![Example one](https://jelter.net/rrule_example.jpg)
+![Default](https://github.com/duy84/rrule_generator/blob/master/example/screenshots/default.png?raw=true)
 
 ## Installation
 
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.9.1
+rrule_generator: ^0.9.2
 ```
 
 ## How to use
 
-Add the widget to your app like this:
+#### Add the widget to your app like this:
 
 ```dart
 RRuleGenerator(
   config: RRuleGeneratorConfig(),
   initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
-  textDelegate: const EnglishRRuleTextDelegate(),
   withExcludeDates: true,
   onChange: print,
 );
 ```
 
-The current version of the widget has 30 text delegates that you can already use:
+#### Support language:
+![Language](https://github.com/duy84/rrule_generator/blob/master/example/screenshots/custom_language.png?raw=true)
+```dart
+RRuleGenerator(
+  config: RRuleGeneratorConfig(),
+  initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+  locale: RRuleLocale.de_DE, // <- Choose your language
+  withExcludeDates: true,
+  onChange: print,
+);
+```
+
+#### Define your language with localeBuilder:
+
+```dart
+RRuleGenerator(
+  config: RRuleGeneratorConfig(),
+  initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+  localeBuilder: (locale) {
+    // Make your locale by implements RRuleTextDelegate class
+    return YourLocale();
+  },
+  withExcludeDates: true,
+  onChange: print,
+);
+```
+#### Custom your style:
+![Language](https://github.com/duy84/rrule_generator/blob/master/example/screenshots/custom_style.png?raw=true)
+```dart
+RRuleGenerator(
+  config: RRuleGeneratorConfig(
+    headerStyle: const RRuleHeaderStyle(
+      textStyle: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.blue,
+      ),
+    ),
+    switchStyle: RRuleSwitchStyle(
+      isCupertinoStyle: true,
+      activeTrackColor: Colors.blue,
+      inactiveTrackColor: Colors.grey,
+    ),
+    datePickerStyle: RRuleDatePickerStyle(
+      datePickerButtonStyle: ButtonStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        side: WidgetStateProperty.all(
+          BorderSide(
+            color: Colors.blue,
+            width: 1,
+          ),
+        ),
+      ),
+      datePickerTextStyle: TextStyle(
+        fontSize: 13,
+        color: Colors.blue,
+      ),
+    ),
+    divider: Divider(
+      thickness: 0.5,
+      color: Colors.blue,
+    ),
+  ),
+  initialRRule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1;COUNT=9',
+  onChange: print,
+);
+```
+
+#### Check out [example](https://github.com/tkortekaas/rrule_generator/tree/master/example) for more details.
+
+#### The current version of the widget has 30 text delegates that you can already use:
 - English (default)
 - Dutch
 - Turkish
@@ -62,4 +135,5 @@ The current version of the widget has 30 text delegates that you can already use
 - Serbian
 - Arabic
 - Albanian
+
 You can easily create your own ones as well!

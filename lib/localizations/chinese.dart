@@ -28,6 +28,9 @@ class ChineseRRuleTextDelegate implements RRuleTextDelegate {
   String get months => '几个月';
 
   @override
+  String get month => '月';
+
+  @override
   String get weeks => '软化';
 
   @override

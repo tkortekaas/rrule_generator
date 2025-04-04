@@ -99,43 +99,178 @@ class Monthly extends StatelessWidget implements Period {
     }
   }
 
+  Widget _buildIntervalPicker() {
+    return buildContainer(
+      child: buildElement(
+        title: textDelegate.every,
+        style: config.labelStyle,
+        child: Row(
+          children: [
+            Expanded(
+              child: IntervalPicker(
+                intervalController,
+                onChange,
+                config: config,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.zero,
+              child: Text(
+                textDelegate.months,
+                style: config.labelStyle,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDayDropdown() {
+    return buildDropdown(
+      child: ValueListenableBuilder(
+        valueListenable: dayNotifier,
+        builder: (context, day, _) => DropdownButton(
+          isExpanded: true,
+          value: day,
+          onChanged: (newDay) {
+            dayNotifier.value = newDay!;
+            onChange();
+          },
+          items: List.generate(
+            32,
+            (index) {
+              if (index == 31) {
+                return DropdownMenuItem(
+                  value: -1,
+                  child: Text(
+                    textDelegate.daysInMonth.last,
+                    style: config.labelStyle,
+                  ),
+                );
+              } else {
+                return DropdownMenuItem(
+                  value: index + 1,
+                  child: Text(
+                    '${index + 1}',
+                    style: config.dropdownStyle.dropdownMenuItemTextStyle,
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+      ),
+      dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
+    );
+  }
+
+  Widget _buildDayInMonthDropdown() {
+    return buildDropdown(
+      child: ValueListenableBuilder(
+        valueListenable: monthDayNotifier,
+        builder: (context, dayInMonth, _) => DropdownButton(
+          isExpanded: true,
+          value: dayInMonth,
+          onChanged: (dayInMonth) {
+            monthDayNotifier.value = dayInMonth!;
+            onChange();
+          },
+          items: List.generate(
+            5,
+            (index) => DropdownMenuItem(
+              value: index,
+              child: Text(
+                textDelegate.daysInMonth[index],
+                style: config.dropdownStyle.dropdownMenuItemTextStyle,
+              ),
+            ),
+          ),
+        ),
+      ),
+      dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
+    );
+  }
+
+  Widget _buildWeekdayDropdown() {
+    return buildDropdown(
+      child: ValueListenableBuilder(
+        valueListenable: weekdayNotifier,
+        builder: (context, weekday, _) => DropdownButton(
+          isExpanded: true,
+          value: weekday,
+          onChanged: (newWeekday) {
+            weekdayNotifier.value = newWeekday!;
+            onChange();
+          },
+          items: List.generate(
+            7,
+            (index) {
+              final date = DateTime(2023, 1, 2 + index);
+              final weekday = DateFormat.EEEE(textDelegate.locale).format(date);
+              return DropdownMenuItem(
+                value: index,
+                child: Text(
+                  weekday,
+                  style: config.dropdownStyle.dropdownMenuItemTextStyle,
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+      dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
+    );
+  }
+
+  Widget _buildDayWeekdayRow() {
+    return ValueListenableBuilder(
+      valueListenable: monthDayNotifier,
+      builder: (context, dayInMonth, _) => Row(
+        children: [
+          ...(() {
+            final pattern = DateFormat.yMd(textDelegate.locale).pattern;
+            final isMonthFirst = pattern?.contains('M') == true &&
+                pattern!.indexOf('M') < pattern.indexOf('d');
+
+            final widgets = [
+              Expanded(
+                child: buildElement(
+                  title: textDelegate.on,
+                  style: config.labelStyle,
+                  child: _buildDayInMonthDropdown(),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: buildElement(
+                  title: textDelegate.day,
+                  style: config.labelStyle,
+                  child: _buildWeekdayDropdown(),
+                ),
+              ),
+            ];
+
+            return isMonthFirst ? widgets : widgets.reversed.toList();
+          })(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        buildContainer(
-          child: buildElement(
-            title: textDelegate.every,
-            style: config.textStyle,
-            child: Row(
-              children: [
-                Expanded(
-                    child: IntervalPicker(
-                  intervalController,
-                  onChange,
-                  config: config,
-                )),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    textDelegate.months,
-                    style: config.textStyle,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
+        _buildIntervalPicker(),
+        const SizedBox(height: 10),
         ValueListenableBuilder(
           valueListenable: monthTypeNotifier,
           builder: (context, monthType, child) => Column(
             children: [
               buildToggleItem(
                 title: textDelegate.byDayInMonth,
-                style: config.textStyle,
+                switchStyle: config.switchStyle,
                 value: monthType == 0,
                 onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 0 : 1;
@@ -143,136 +278,26 @@ class Monthly extends StatelessWidget implements Period {
                 },
                 child: buildElement(
                   title: textDelegate.on,
-                  style: config.textStyle,
-                  child: buildDropdown(
-                    child: ValueListenableBuilder(
-                      valueListenable: dayNotifier,
-                      builder: (context, day, _) => DropdownButton(
-                        isExpanded: true,
-                        value: day,
-                        onChanged: (newDay) {
-                          dayNotifier.value = newDay!;
-                          onChange();
-                        },
-                        items: List.generate(
-                          32, // One extra item for the "Last" option
-                          (index) {
-                            if (index == 31) {
-                              return DropdownMenuItem(
-                                value: -1,
-                                // Use a distinct value for "Last"
-                                child: Text(
-                                  textDelegate.daysInMonth.last,
-                                  style: config.textStyle,
-                                ),
-                              );
-                            } else {
-                              return DropdownMenuItem(
-                                value: index + 1,
-                                child: Text(
-                                  '${index + 1}',
-                                  style: config.textStyle,
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                  style: config.labelStyle,
+                  child: _buildDayDropdown(),
                 ),
               ),
-              const Divider(),
+              config.divider,
               buildToggleItem(
                 title: textDelegate.byNthDayInMonth,
-                style: config.textStyle,
+                switchStyle: config.switchStyle,
                 value: monthType == 1,
                 onChanged: (selected) {
                   monthTypeNotifier.value = selected ? 1 : 0;
                   onChange();
                 },
                 child: Column(
-                  children: [
-                    ValueListenableBuilder(
-                      valueListenable: monthDayNotifier,
-                      builder: (context, dayInMonth, _) => Row(
-                        children: [
-                          Expanded(
-                            child: buildElement(
-                              title: textDelegate.on,
-                              style: config.textStyle,
-                              child: buildDropdown(
-                                child: DropdownButton(
-                                  isExpanded: true,
-                                  value: dayInMonth,
-                                  onChanged: (dayInMonth) {
-                                    monthDayNotifier.value = dayInMonth!;
-                                    onChange();
-                                  },
-                                  items: List.generate(
-                                    5,
-                                    (index) => DropdownMenuItem(
-                                      value: index,
-                                      child: Text(
-                                        textDelegate.daysInMonth[index],
-                                        style: config.textStyle,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Expanded(
-                            child: buildElement(
-                              title: textDelegate.day,
-                              style: config.textStyle,
-                              child: buildDropdown(
-                                child: ValueListenableBuilder(
-                                  valueListenable: weekdayNotifier,
-                                  builder: (context, weekday, _) =>
-                                      DropdownButton(
-                                    isExpanded: true,
-                                    value: weekday,
-                                    onChanged: (newWeekday) {
-                                      weekdayNotifier.value = newWeekday!;
-                                      onChange();
-                                    },
-                                    items: List.generate(
-                                      7,
-                                      (index) {
-                                        // Start with Monday as per ISO-8601 (Monday = 1, Sunday = 7)
-                                        final date =
-                                            DateTime(2023, 1, 2 + index);
-                                        final weekday =
-                                            DateFormat.EEEE(textDelegate.locale)
-                                                .format(date);
-                                        return DropdownMenuItem(
-                                          value: index,
-                                          child: Text(
-                                            weekday,
-                                            style: config.textStyle,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  children: [_buildDayWeekdayRow()],
                 ),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

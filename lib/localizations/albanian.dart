@@ -28,6 +28,9 @@ class AlbanianRRuleTextDelegate implements RRuleTextDelegate {
   String get months => 'Muaj(ë)';
 
   @override
+  String get month => 'Muaj';
+
+  @override
   String get weeks => 'Javë(ë)';
 
   @override
@@ -59,19 +62,19 @@ class AlbanianRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-    'pare',
-    'dytë',
-    'tretë',
-    'katërt',
-    'fundit',
-  ];
+        'pare',
+        'dytë',
+        'tretë',
+        'katërt',
+        'fundit',
+      ];
 
   @override
   List<String> get periods => [
-    'Vjetor',
-    'Mujor',
-    'Javor',
-    'Ditor',
-    'Kurrë',
-  ];
+        'Vjetor',
+        'Mujor',
+        'Javor',
+        'Ditor',
+        'Kurrë',
+      ];
 }
