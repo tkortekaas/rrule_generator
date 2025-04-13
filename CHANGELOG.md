@@ -1,3 +1,6 @@
+# 0.9.3
+- Reverts to using the deprecated activeColor and inactiveColor properties to allow for Flutter <3.25 compatibility.
+
 # 0.9.2
 Thanks @duy84 for the PR!
 - Add more support for custom style
