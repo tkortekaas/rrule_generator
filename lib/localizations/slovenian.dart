@@ -55,6 +55,9 @@ class SlovenianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Končí sa dátumom';
 
   @override
+  String get timeOfDay => 'Čas dňa';
+
+  @override
   String get excludeDate => 'Vylúčiť dátum';
 
   @override

@@ -55,6 +55,9 @@ class ItalianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Termina in data';
 
   @override
+  String get timeOfDay => 'Ora del giorno';
+
+  @override
   String get excludeDate => 'Escludi data';
 
   @override

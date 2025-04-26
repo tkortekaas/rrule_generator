@@ -55,6 +55,9 @@ class BulgarianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Приключва на';
 
   @override
+  String get timeOfDay => 'Час от деня';
+
+  @override
   String get excludeDate => 'Изключи дата';
 
   @override

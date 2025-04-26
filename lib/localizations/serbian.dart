@@ -55,6 +55,9 @@ class SerbianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Завршава на датум';
 
   @override
+  String get timeOfDay => 'Време у току дана';
+
+  @override
   String get excludeDate => 'Искључи датум';
 
   @override

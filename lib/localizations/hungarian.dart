@@ -55,6 +55,9 @@ class HungarianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'A dátumon véget ért';
 
   @override
+  String get timeOfDay => 'A nap időpontja';
+
+  @override
   String get excludeDate => 'Kizárja a dátumot';
 
   @override

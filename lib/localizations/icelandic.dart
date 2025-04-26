@@ -55,6 +55,9 @@ class IcelandicRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Endar á dagsetningu';
 
   @override
+  String get timeOfDay => 'Tími dagsins';
+
+  @override
   String get excludeDate => 'Undanskil dagsetningu';
 
   @override

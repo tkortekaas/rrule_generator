@@ -55,6 +55,9 @@ class CzechRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Končí na datum';
 
   @override
+  String get timeOfDay => 'Čas dne';
+
+  @override
   String get excludeDate => 'Vyloučit datum';
 
   @override

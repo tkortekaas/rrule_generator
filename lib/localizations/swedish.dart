@@ -55,6 +55,9 @@ class SwedishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Slutar på datum';
 
   @override
+  String get timeOfDay => 'Tid på dagen';
+
+  @override
   String get excludeDate => 'Exkludera datum';
 
   @override

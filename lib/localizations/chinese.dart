@@ -55,6 +55,9 @@ class ChineseRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => '结束日期';
 
   @override
+  String get timeOfDay => '一天中的时间';
+
+  @override
   String get excludeDate => '排除日期';
 
   @override

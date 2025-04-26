@@ -55,6 +55,9 @@ class IndonesianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Berakhir pada tanggal';
 
   @override
+  String get timeOfDay => 'Waktu dalam sehari';
+
+  @override
   String get excludeDate => 'Kecualikan tanggal';
 
   @override

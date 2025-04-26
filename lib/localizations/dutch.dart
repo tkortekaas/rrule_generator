@@ -55,6 +55,9 @@ class DutchRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Herhaal t/m';
 
   @override
+  String get timeOfDay => 'Tijd van de dag';
+
+  @override
   String get excludeDate => 'Sluit datum uit';
 
   @override

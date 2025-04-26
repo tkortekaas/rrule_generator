@@ -55,6 +55,9 @@ class GreekRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Λήγει στην ημερομηνία';
 
   @override
+  String get timeOfDay => 'Ώρα της ημέρας';
+
+  @override
   String get excludeDate => 'Εξαίρεση ημερομηνίας';
 
   @override

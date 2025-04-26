@@ -55,6 +55,9 @@ class TurkishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Tarihte biter';
 
   @override
+  String get timeOfDay => 'Gündüz saati';
+
+  @override
   String get excludeDate => 'Tarihi hariç tut';
 
   @override

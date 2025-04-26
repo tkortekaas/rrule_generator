@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                       child: RRuleGenerator(
                         config: RRuleGeneratorConfig(),
                         initialRRule:
-                            'RRULE:FREQ=MONTHLY;BYMONTHDAY=-1;INTERVAL=1;UNTIL=20231211;EXDATE=20240322T000000',
+                            'RRULE:FREQ=MONTHLY;BYMONTHDAY=-1;INTERVAL=1;UNTIL=20231211;BYHOUR=15;BYMINUTE=20;EXDATE=20240322T000000',
                         textDelegate: const EnglishRRuleTextDelegate(),
                         withExcludeDates: true,
                         onChange: print,

@@ -23,6 +23,7 @@ class RRuleGenerator extends StatelessWidget {
   final countTypeNotifier = ValueNotifier(0);
   final pickedDateNotifier = ValueNotifier(DateTime.now());
   final instancesController = TextEditingController(text: '1');
+  final timeOfDayNotifier = ValueNotifier<TimeOfDay?>(null);
   final List<Period> periodWidgets = [];
   late final ExcludeDates? _excludeDatesPicker;
 
@@ -105,6 +106,23 @@ class RRuleGenerator extends StatelessWidget {
             dateIndex, dateEnd == -1 ? initialRRule.length : dateEnd),
       );
     }
+
+    if (initialRRule.contains('BYHOUR')) {
+      final hourIndex = initialRRule.indexOf('BYHOUR=') + 7;
+      final hourEnd = initialRRule.indexOf(';', hourIndex);
+      final hour = int.parse(
+        initialRRule.substring(hourIndex, hourEnd == -1 ? initialRRule.length : hourEnd),
+      );
+      int minute = 0;
+      if (initialRRule.contains('BYMINUTE')) {
+        final minuteIndex = initialRRule.indexOf('BYMINUTE=') + 9;
+        final minuteEnd = initialRRule.indexOf(';', minuteIndex);
+        minute = int.parse(
+          initialRRule.substring(minuteIndex, minuteEnd == -1 ? initialRRule.length : minuteEnd),
+        );
+      }
+      timeOfDayNotifier.value = TimeOfDay(hour: hour, minute: minute);
+    }
   }
 
   void valueChanged() {
@@ -118,11 +136,15 @@ class RRuleGenerator extends StatelessWidget {
     }
 
     final String excludeDates = _excludeDatesPicker?.getRRule() ?? '';
+    final String timeOfDay = timeOfDayNotifier.value != null
+        ? ';BYHOUR=${timeOfDayNotifier.value!.hour};BYMINUTE=${timeOfDayNotifier.value!.minute}'
+        : '';
+
     if (countTypeNotifier.value == 0) {
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}$excludeDates';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()}$timeOfDay$excludeDates';
     } else if (countTypeNotifier.value == 1) {
       final instances = int.tryParse(instancesController.text) ?? 0;
-      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}$excludeDates';
+      return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};COUNT=${instances > 0 ? instances : 1}$timeOfDay$excludeDates';
     }
     final pickedDate = pickedDateNotifier.value;
 
@@ -130,7 +152,7 @@ class RRuleGenerator extends StatelessWidget {
     final month =
         pickedDate.month > 9 ? '${pickedDate.month}' : '0${pickedDate.month}';
 
-    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day$excludeDates';
+    return 'RRULE:${periodWidgets[frequencyNotifier.value].getRRule()};UNTIL=${pickedDate.year}$month$day$timeOfDay$excludeDates';
   }
 
   @override
@@ -141,6 +163,7 @@ class RRuleGenerator extends StatelessWidget {
           builder: (context, period, child) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Frequency dropdown
               buildContainer(
                 child: buildElement(
                   title: config.headerEnabled ? textDelegate.repeat : null,
@@ -167,6 +190,7 @@ class RRuleGenerator extends StatelessWidget {
                   ),
                 ),
               ),
+              // If period != Never
               if (period != 4) ...[
                 const Divider(),
                 periodWidgets[period],
@@ -174,6 +198,7 @@ class RRuleGenerator extends StatelessWidget {
                 buildContainer(
                   child: Column(
                     children: [
+                      // Count type: never ends, ends after, ends on
                       Row(
                         children: [
                           Expanded(
@@ -309,6 +334,67 @@ class RRuleGenerator extends StatelessWidget {
                         ],
                       ),
                     ],
+                  ),
+                ),
+                const Divider(),
+                // ByHour, ByMinute, BySecond picker
+                // should be a field that when clicked opens a time picker dialog
+                buildContainer(
+                  child: buildElement(
+                    title: textDelegate.timeOfDay,
+                    style: config.headerTextStyle,
+                    child: Row(
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: timeOfDayNotifier,
+                          builder: (context, timeOfDay, child) =>
+                              OutlinedButton(
+                            onPressed: () async {
+                              final picked = await showTimePicker(
+                                context: context,
+                                initialTime:
+                                    timeOfDay ?? TimeOfDay(hour: 0, minute: 0),
+                              );
+
+                              if (picked != null) {
+                                timeOfDayNotifier.value = picked;
+                                valueChanged();
+                              }
+                            },
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(
+                                color: Colors.black,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 24),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                timeOfDay == null
+                                    ? '--:--'
+                                    : timeOfDay.format(context),
+                                style: config.textStyle
+                                    .copyWith(color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Icon button to clear the set time
+                        const SizedBox(width: 8),
+                        IconButton(
+                          onPressed: () {
+                            timeOfDayNotifier.value = null;
+                            valueChanged();
+                          },
+                          icon: const Icon(Icons.clear),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

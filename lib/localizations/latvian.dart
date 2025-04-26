@@ -55,6 +55,9 @@ class LatvianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Beidzas datā';
 
   @override
+  String get timeOfDay => 'Dienas laiks';
+
+  @override
   String get excludeDate => 'Izslēgt datumu';
 
   @override

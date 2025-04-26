@@ -55,6 +55,9 @@ class ArabicRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'تنتهي في تاريخ';
 
   @override
+  String get timeOfDay => 'وقت اليوم';
+
+  @override
   String get excludeDate => 'استثناء التاريخ';
 
   @override

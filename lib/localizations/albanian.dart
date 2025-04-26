@@ -55,6 +55,9 @@ class AlbanianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Mbaron në datë';
 
   @override
+  String get timeOfDay => 'Koha e ditës';
+
+  @override
   String get excludeDate => 'Përjashto datën';
 
   @override

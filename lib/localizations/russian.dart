@@ -55,6 +55,9 @@ class RussianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Заканчивается на дату';
 
   @override
+  String get timeOfDay => 'Время суток';
+
+  @override
   String get excludeDate => 'Исключить дату';
 
   @override

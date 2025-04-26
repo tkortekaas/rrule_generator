@@ -55,6 +55,9 @@ class PersianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'پایان در تاریخ';
 
   @override
+  String get timeOfDay => 'زمان روز';
+
+  @override
   String get excludeDate => 'محروم کردن تاریخ';
 
   @override

@@ -55,6 +55,9 @@ class NorwegianRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Avsluttes';
 
   @override
+  String get timeOfDay => 'Tid på dagen';
+
+  @override
   String get excludeDate => 'Ekskluder dato';
 
   @override

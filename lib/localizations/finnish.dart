@@ -55,6 +55,9 @@ class FinnishRRuleTextDelegate implements RRuleTextDelegate {
   String get endsOnDate => 'Päättyy päivämäärään';
 
   @override
+  String get timeOfDay => 'Päivän aika';
+
+  @override
   String get excludeDate => 'Poissulje päivämäärä';
 
   @override
