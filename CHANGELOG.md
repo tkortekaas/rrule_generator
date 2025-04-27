@@ -1,3 +1,7 @@
+# 0.9.4
+- Fix: DatePicker shows the wrong language
+- Fix: Web compilation
+
 # 0.9.3
 - Reverts to using the deprecated activeColor and inactiveColor properties to allow for Flutter <3.25 compatibility.
 

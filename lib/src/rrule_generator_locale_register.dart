@@ -46,7 +46,7 @@ enum RRuleLocale {
   }
 
   static RRuleLocale? fromLocale(Locale locale) {
-    final localeCode = locale.toLanguageTag();
+    final localeCode = locale.toLanguageTag().replaceFirst('-', '_');
     return RRuleLocale.values.firstWhere(
       (l) => l.code == localeCode,
       orElse: () => RRuleLocale.en_GB,
