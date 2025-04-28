@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rrule_generator/rrule_generator.dart';
@@ -61,12 +59,7 @@ class RRuleGenerator extends StatelessWidget {
     // Priority 1: Use deprecated textDelegate if provided
     if (textDelegate != null) return textDelegate!;
 
-    var localeParts = Platform.localeName.split('_');
-
-    Locale contextLocale = Locale(
-      localeParts[0],
-      localeParts.length > 1 ? localeParts.elementAt(1) : '',
-    );
+    final contextLocale = Localizations.localeOf(context);
 
     // Priority 2: Use localeBuilder if provided
     if (localeBuilder != null) {
@@ -194,8 +187,8 @@ class RRuleGenerator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Use custom locale if provided, otherwise use context locale
-    final locale = Localizations.localeOf(context);
     final textDelegate = _getTextDelegate(context);
+    final locale = this.locale?.toLocale() ?? Locale(textDelegate.locale);
 
     // Initialize period widgets with the correct locale
     _initPeriodWidgets(context);
