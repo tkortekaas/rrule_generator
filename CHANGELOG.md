@@ -1,6 +1,10 @@
+# 0.9.6
+Thanks @RicardoMartinhoGO for the PR!
+- Fix: French dropdown recurrence options order
+
 # 0.9.5
 - Add Slovak translation
-- 
+
 # 0.9.4
 - Fix: DatePicker shows the wrong language
 - Fix: Web compilation

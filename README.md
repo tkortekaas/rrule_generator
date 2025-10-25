@@ -14,7 +14,7 @@ The widget is actively used in the [Calendar Clock](https://calendarclock.app) a
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.9.5
+rrule_generator: ^0.9.6
 ```
 
 ## How to use
@@ -108,35 +108,35 @@ RRuleGenerator(
 
 #### The current version of the widget has 30 text delegates that you can already use:
 - English (default)
-- Dutch
-- Turkish
-- French
-- Danish
-- Chinese
-- Finnish
-- Estonian
+- Albanian
+- Arabic
+- Brazilian Portuguese
 - Bulgarian
-- Polish
+- Chinese
+- Croatian
+- Czech
+- Danish
+- Dutch
+- Estonian
+- Finnish
+- French
 - German
 - Greek
 - Hungarian
-- Spanish
-- Slovenian
-- Norwegian
-- Italian
+- Icelandic
 - Indonesian
-- Czech
-- Swedish
+- Italian
 - Latvian
 - Lithuanian
-- Croatian
-- Brazilian Portuguese
+- Norwegian
 - Persian
+- Polish
 - Russian
-- Icelandic
 - Serbian
 - Slovak
-- Arabic
-- Albanian
+- Slovenian
+- Spanish
+- Swedish
+- Turkish
 
 You can easily create your own ones as well!
