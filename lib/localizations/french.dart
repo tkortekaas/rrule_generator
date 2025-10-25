@@ -71,10 +71,10 @@ class FrenchRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get periods => [
-        'Jamais',
         'Annuel',
         'Mensuel',
         'Hebdomadaire',
         'Quotidien',
+        'Jamais',
       ];
 }
