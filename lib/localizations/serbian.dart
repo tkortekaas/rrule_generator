@@ -7,64 +7,64 @@ class SerbianRRuleTextDelegate implements RRuleTextDelegate {
   String get locale => 'sr';
 
   @override
-  String get repeat => 'Понови';
+  String get repeat => 'Ponovi';
 
   @override
-  String get day => 'Дан';
+  String get day => 'Dan';
 
   @override
-  String get byDayInMonth => 'Понови';
+  String get byDayInMonth => 'Ponovi na';
 
   @override
-  String get byNthDayInMonth => 'На сваки';
+  String get byNthDayInMonth => 'Ponovi svaki';
 
   @override
-  String get every => 'Сваког';
+  String get every => 'Svaki';
 
   @override
-  String get of => 'у';
+  String get of => 'od';
 
   @override
-  String get months => 'Месец(и)';
+  String get months => 'Mjeseci';
 
   @override
-  String get month => 'Месец';
+  String get month => 'Mjesec';
 
   @override
-  String get weeks => 'Недеља/е';
+  String get weeks => 'Tjedni';
 
   @override
-  String get days => 'Дан(а)';
+  String get days => 'Dani';
 
   @override
-  String get date => 'Датум';
+  String get date => 'Datum';
 
   @override
-  String get on => '';
+  String get on => 'Na';
 
   @override
-  String get instances => 'пут(а)';
+  String get instances => 'ponavljanja';
 
   @override
-  String get end => 'Край';
+  String get end => 'Kraj';
 
   @override
-  String get neverEnds => 'Никад не завршава';
+  String get neverEnds => 'Nikad ne završava';
 
   @override
-  String get endsAfter => 'Завршава после';
+  String get endsAfter => 'Završava nakon';
 
   @override
-  String get endsOnDate => 'Завршава на датум';
+  String get endsOnDate => 'Završava na datum';
 
   @override
-  String get excludeDate => 'Искључи датум';
+  String get excludeDate => 'Isključi datum';
 
   @override
   List<String> get daysInMonth =>
-      ['Први', 'Други', 'Трећи', 'Четврти', 'Последњи'];
+      ['Prvi', 'Drugi', 'Treći', 'Četvrti', 'Zadnji'];
 
   @override
   List<String> get periods =>
-      ['Годишње', 'Месечно', 'Недељно', 'Дневно', 'Никада'];
+      ['Dnevno', 'Tjedno', 'Mjesečno', 'Godišnje', 'Nikada'];
 }

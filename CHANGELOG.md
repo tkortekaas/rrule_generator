@@ -1,3 +1,6 @@
+# 0.9.7
+- Fix: Change Serbian to use Latin script instead of Cyrillic
+
 # 0.9.6
 Thanks @RicardoMartinhoGO for the PR!
 - Fix: French dropdown recurrence options order
