@@ -18,6 +18,8 @@ export 'package:rrule_generator/localizations/hungarian.dart';
 export 'package:rrule_generator/localizations/icelandic.dart';
 export 'package:rrule_generator/localizations/indonesian.dart';
 export 'package:rrule_generator/localizations/italian.dart';
+export 'package:rrule_generator/localizations/japanese.dart';
+export 'package:rrule_generator/localizations/korean.dart';
 export 'package:rrule_generator/localizations/latvian.dart';
 export 'package:rrule_generator/localizations/lithuanian.dart';
 export 'package:rrule_generator/localizations/norwegian.dart';

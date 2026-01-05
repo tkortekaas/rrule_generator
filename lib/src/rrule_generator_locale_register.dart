@@ -22,6 +22,8 @@ enum RRuleLocale {
   hu_HU('hu_HU'),
   id_ID('id_ID'),
   it_IT('it_IT'),
+  ja_JP('ja_JP'),
+  ko_KR('ko_KR'),
   lv_LV('lv_LV'),
   lt_LT('lt_LT'),
   nb_NO('nb_NO'),
@@ -38,6 +40,7 @@ enum RRuleLocale {
   // Add more supported locales here
 
   final String code;
+
   const RRuleLocale(this.code);
 
   Locale toLocale() {
@@ -73,6 +76,8 @@ class RRuleTextDelegateRegistry {
     RRuleLocale.hu_HU: const HungarianRRuleTextDelegate(),
     RRuleLocale.id_ID: const IndonesianRRuleTextDelegate(),
     RRuleLocale.it_IT: const ItalianRRuleTextDelegate(),
+    RRuleLocale.ja_JP: const JapaneseRRuleTextDelegate(),
+    RRuleLocale.ko_KR: const KoreanRRuleTextDelegate(),
     RRuleLocale.lv_LV: const LatvianRRuleTextDelegate(),
     RRuleLocale.lt_LT: const LithuanianRRuleTextDelegate(),
     RRuleLocale.nb_NO: const NorwegianRRuleTextDelegate(),

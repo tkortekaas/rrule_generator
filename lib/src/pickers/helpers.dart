@@ -52,8 +52,8 @@ Widget buildToggleItem({
               ? CupertinoSwitch(
                   value: value,
                   onChanged: onChanged,
-                  activeColor: switchStyle.activeTrackColor,
-                  trackColor: switchStyle.inactiveTrackColor,
+                  activeTrackColor: switchStyle.activeTrackColor,
+                  inactiveTrackColor: switchStyle.inactiveTrackColor,
                   thumbColor: value ? switchStyle.thumbColor : null,
                 )
               : SwitchTheme(

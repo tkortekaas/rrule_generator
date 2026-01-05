@@ -1,3 +1,7 @@
+# 0.9.8
+- Add Japanese translation
+- Add Korean translation
+
 # 0.9.7
 - Fix: Change Serbian to use Latin script instead of Cyrillic
 
