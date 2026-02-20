@@ -26,6 +26,7 @@ export 'package:rrule_generator/localizations/norwegian.dart';
 export 'package:rrule_generator/localizations/persian.dart';
 export 'package:rrule_generator/localizations/polish.dart';
 export 'package:rrule_generator/localizations/portuguese_br.dart';
+export 'package:rrule_generator/localizations/romanian.dart';
 export 'package:rrule_generator/localizations/russian.dart';
 export 'package:rrule_generator/localizations/serbian.dart';
 export 'package:rrule_generator/localizations/slovak.dart';
