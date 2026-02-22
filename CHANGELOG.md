@@ -1,3 +1,6 @@
+# 0.9.9
+- Add Romanian translation
+
 # 0.9.8
 - Add Japanese translation
 - Add Korean translation
