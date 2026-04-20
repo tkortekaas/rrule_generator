@@ -106,7 +106,7 @@ RRuleGenerator(
 
 #### Check out the [example](https://github.com/tkortekaas/rrule_generator/tree/master/example) for more details.
 
-#### The current version of the widget has 31 text delegates that you can already use:
+#### The current version of the widget has 32 text delegates that you can already use:
 - English (default)
 - Albanian
 - Arabic
@@ -130,6 +130,7 @@ RRuleGenerator(
 - Korean
 - Latvian
 - Lithuanian
+- Northern Sámi
 - Norwegian
 - Persian
 - Polish

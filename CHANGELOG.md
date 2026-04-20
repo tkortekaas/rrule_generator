@@ -1,3 +1,6 @@
+# 0.9.10
+- Add Northern Sámi translation
+
 # 0.9.9
 - Add Romanian translation
 
