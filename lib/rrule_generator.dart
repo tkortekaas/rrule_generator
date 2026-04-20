@@ -22,6 +22,7 @@ export 'package:rrule_generator/localizations/japanese.dart';
 export 'package:rrule_generator/localizations/korean.dart';
 export 'package:rrule_generator/localizations/latvian.dart';
 export 'package:rrule_generator/localizations/lithuanian.dart';
+export 'package:rrule_generator/localizations/northern_sami.dart';
 export 'package:rrule_generator/localizations/norwegian.dart';
 export 'package:rrule_generator/localizations/persian.dart';
 export 'package:rrule_generator/localizations/polish.dart';
