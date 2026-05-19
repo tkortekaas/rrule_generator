@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rrule_generator/src/pickers/enabled_period.dart';
+import 'package:rrule_generator/rrule_generator.dart';
 
 /// @deprecated Use RRuleTextDelegateRegistry instead. This class will be removed in future versions.
 class RRuleGeneratorConfig {

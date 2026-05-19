@@ -1,4 +1,4 @@
-import 'package:rrule_generator/localizations/text_delegate.dart';
+import 'package:rrule_generator/rrule_generator.dart';
 
 enum RRulePeriod {
   never,
