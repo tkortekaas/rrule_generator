@@ -1,11 +1,11 @@
 import 'package:rrule_generator/rrule_generator.dart';
 
 enum RRulePeriod {
-  never,
-  daily,
-  weekly,
-  monthly,
   yearly,
+  monthly,
+  weekly,
+  daily,
+  never,
 }
 
 extension RRulePeriodExtension on RRulePeriod {
