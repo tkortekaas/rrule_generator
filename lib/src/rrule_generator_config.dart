@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rrule_generator/src/pickers/enabled_periods.dart';
+import 'package:rrule_generator/src/pickers/enabled_period.dart';
 
 /// @deprecated Use RRuleTextDelegateRegistry instead. This class will be removed in future versions.
 class RRuleGeneratorConfig {
@@ -47,11 +47,11 @@ class RRuleGeneratorConfig {
     this.datePickerStyle = const RRuleDatePickerStyle(),
     this.divider = const Divider(),
     this.enabledPeriods = const [
-      EnabledPeriod.yearly,
-      EnabledPeriod.monthly,
-      EnabledPeriod.weekly,
-      EnabledPeriod.daily,
-      EnabledPeriod.never,
+      RRulePeriod.yearly,
+      RRulePeriod.monthly,
+      RRulePeriod.weekly,
+      RRulePeriod.daily,
+      RRulePeriod.never,
     ],
   });
 
@@ -90,7 +90,7 @@ class RRuleGeneratorConfig {
   final RRuleSelectDayStyle selectDayStyle;
   final RRuleDatePickerStyle datePickerStyle;
   final Widget divider;
-  final List<EnabledPeriod> enabledPeriods;
+  final List<RRulePeriod> enabledPeriods;
 }
 
 class RRuleHeaderStyle {

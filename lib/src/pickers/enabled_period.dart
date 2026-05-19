@@ -1,6 +1,6 @@
 import 'package:rrule_generator/localizations/text_delegate.dart';
 
-enum EnabledPeriod {
+enum RRulePeriod {
   never,
   daily,
   weekly,
@@ -8,18 +8,18 @@ enum EnabledPeriod {
   yearly,
 }
 
-extension EnabledPeriodExtension on EnabledPeriod {
+extension RRulePeriodExtension on RRulePeriod {
   String toText(RRuleTextDelegate textDelegate) {
     switch (this) {
-      case EnabledPeriod.never:
+      case RRulePeriod.never:
         return textDelegate.periods[4];
-      case EnabledPeriod.daily:
+      case RRulePeriod.daily:
         return textDelegate.periods[3];
-      case EnabledPeriod.weekly:
+      case RRulePeriod.weekly:
         return textDelegate.periods[2];
-      case EnabledPeriod.monthly:
+      case RRulePeriod.monthly:
         return textDelegate.periods[1];
-      case EnabledPeriod.yearly:
+      case RRulePeriod.yearly:
         return textDelegate.periods[0];
     }
   }
