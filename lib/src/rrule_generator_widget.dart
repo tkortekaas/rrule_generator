@@ -217,13 +217,17 @@ class RRuleGenerator extends StatelessWidget {
                   },
                   items: List.generate(
                     config.enabledPeriods.length,
-                    (index) => DropdownMenuItem(
-                      value: index,
-                      child: Text(
-                        config.enabledPeriods[index].toText(textDelegate),
-                        style: config.dropdownStyle.dropdownMenuItemTextStyle,
-                      ),
-                    ),
+                    (index) {
+                      final periodEnum = config.enabledPeriods[index];
+
+                      return DropdownMenuItem(
+                        value: periodEnum.index,
+                        child: Text(
+                          periodEnum.toText(textDelegate),
+                          style: config.dropdownStyle.dropdownMenuItemTextStyle,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
