@@ -6,6 +6,7 @@ import 'package:rrule_generator/src/periods/monthly.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 import 'package:rrule_generator/src/periods/weekly.dart';
 import 'package:rrule_generator/src/periods/yearly.dart';
+import 'package:rrule_generator/src/pickers/enabled_periods.dart';
 import 'package:rrule_generator/src/pickers/exclude_dates.dart';
 import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
@@ -212,11 +213,11 @@ class RRuleGenerator extends StatelessWidget {
                     valueChanged();
                   },
                   items: List.generate(
-                    5,
+                    config.enabledPeriods.length,
                     (index) => DropdownMenuItem(
                       value: index,
                       child: Text(
-                        textDelegate.periods[index],
+                        config.enabledPeriods[index].toText(textDelegate),
                         style: config.dropdownStyle.dropdownMenuItemTextStyle,
                       ),
                     ),
