@@ -25,13 +25,13 @@ class PolishRRuleTextDelegate implements RRuleTextDelegate {
   String get of => 'co';
 
   @override
-  String get months => 'Miesiące';
+  String get months => 'Miesięcy';
 
   @override
   String get month => 'Miesiąc';
 
   @override
-  String get weeks => 'Tygodnie';
+  String get weeks => 'Tygodni';
 
   @override
   String get days => 'Dni';
@@ -43,13 +43,13 @@ class PolishRRuleTextDelegate implements RRuleTextDelegate {
   String get on => 'Dnia';
 
   @override
-  String get instances => 'instancji';
+  String get instances => 'wystąpieniach';
 
   @override
   String get end => 'Koniec';
 
   @override
-  String get neverEnds => 'Nigdy nie kończy się';
+  String get neverEnds => 'Nigdy się nie kończy';
 
   @override
   String get endsAfter => 'Kończy się po';
@@ -62,11 +62,11 @@ class PolishRRuleTextDelegate implements RRuleTextDelegate {
 
   @override
   List<String> get daysInMonth => [
-        '1szy',
-        '2gi',
-        '3ci',
-        '4ty',
-        'Ostatni',
+        '1.',
+        '2.',
+        '3.',
+        '4.',
+        'Ostatni/-a',
       ];
 
   @override
