@@ -1,3 +1,7 @@
+# 0.10.0
+- Feature: Being able to display specific periods by @MSMLinscho
+- Fix: Polish translation by @0rzech
+
 # 0.9.10
 - Add Northern Sámi translation
 

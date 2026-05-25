@@ -14,12 +14,12 @@ The widget is actively used in the [Calendar Clock](https://calendarclock.app) a
 Add this to your `pubspec.yaml` dependencies:
 
 ```
-rrule_generator: ^0.9.9
+rrule_generator: ^0.10.0
 ```
 
 ## How to use
 
-#### Add the widget to your app like this:
+Add the widget to your app like this:
 
 ```dart
 RRuleGenerator(
@@ -30,7 +30,22 @@ RRuleGenerator(
 );
 ```
 
-#### Support language:
+## Customization
+
+### Periods
+
+Currently, the following periods are supported:
+- Yearly
+- Monthly
+- Weekly
+- Daily
+- Never
+
+You can customize which periods are shown in the widget by using the `enabledPeriods` property of the `RRuleGeneratorConfig`.
+
+### Language
+
+#### Support language
 
 ![Language](/example/screenshots/custom_language.png)
 ```dart
@@ -57,7 +72,7 @@ RRuleGenerator(
   onChange: print,
 );
 ```
-#### Custom your style:
+## Styling
 
 ![Language](/example/screenshots/custom_style.png)
 ```dart

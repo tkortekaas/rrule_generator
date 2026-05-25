@@ -6,7 +6,6 @@ import 'package:rrule_generator/src/periods/monthly.dart';
 import 'package:rrule_generator/src/periods/period.dart';
 import 'package:rrule_generator/src/periods/weekly.dart';
 import 'package:rrule_generator/src/periods/yearly.dart';
-import 'package:rrule_generator/src/pickers/enabled_period.dart';
 import 'package:rrule_generator/src/pickers/exclude_dates.dart';
 import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
