@@ -54,7 +54,13 @@ class MyApp extends StatelessWidget {
                       builder: (BuildContext context) => AlertDialog(
                         content: SingleChildScrollView(
                           child: RRuleGenerator(
-                            config: RRuleGeneratorConfig(),
+                            config: RRuleGeneratorConfig(
+                              enabledPeriods: [
+                                RRulePeriod.daily,
+                                RRulePeriod.weekly,
+                                RRulePeriod.monthly,
+                              ],
+                            ),
                             initialRRule:
                                 'RRULE:FREQ=MONTHLY;BYMONTHDAY=-1;INTERVAL=1;UNTIL=20231211;EXDATE=20240322T000000',
                             localeBuilder: (locale) {

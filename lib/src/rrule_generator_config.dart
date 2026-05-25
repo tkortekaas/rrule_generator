@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rrule_generator/rrule_generator.dart';
 
 /// @deprecated Use RRuleTextDelegateRegistry instead. This class will be removed in future versions.
 class RRuleGeneratorConfig {
@@ -45,6 +46,13 @@ class RRuleGeneratorConfig {
     this.selectDayStyle = const RRuleSelectDayStyle(),
     this.datePickerStyle = const RRuleDatePickerStyle(),
     this.divider = const Divider(),
+    this.enabledPeriods = const [
+      RRulePeriod.yearly,
+      RRulePeriod.monthly,
+      RRulePeriod.weekly,
+      RRulePeriod.daily,
+      RRulePeriod.never,
+    ],
   });
 
   /// @deprecated Use inputTextStyle.borderColor instead
@@ -82,6 +90,7 @@ class RRuleGeneratorConfig {
   final RRuleSelectDayStyle selectDayStyle;
   final RRuleDatePickerStyle datePickerStyle;
   final Widget divider;
+  final List<RRulePeriod> enabledPeriods;
 }
 
 class RRuleHeaderStyle {

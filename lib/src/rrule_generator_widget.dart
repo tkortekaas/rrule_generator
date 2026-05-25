@@ -29,7 +29,7 @@ class RRuleGenerator extends StatelessWidget {
   final String initialRRule;
   final DateTime? initialDate;
   final bool withExcludeDates;
-  final frequencyNotifier = ValueNotifier(0);
+  final frequencyNotifier = ValueNotifier(RRulePeriod.never.index);
   final countTypeNotifier = ValueNotifier(0);
   final pickedDateNotifier = ValueNotifier(DateTime.now());
   final instancesController = TextEditingController(text: '1');
@@ -121,14 +121,17 @@ class RRuleGenerator extends StatelessWidget {
   }
 
   void handleInitialRRule() {
-    if (initialRRule.contains('MONTHLY')) {
-      frequencyNotifier.value = 1;
-    } else if (initialRRule.contains('WEEKLY')) {
-      frequencyNotifier.value = 2;
-    } else if (initialRRule.contains('DAILY')) {
-      frequencyNotifier.value = 3;
+    if (initialRRule.contains('MONTHLY') &&
+        config.enabledPeriods.contains(RRulePeriod.monthly)) {
+      frequencyNotifier.value = RRulePeriod.monthly.index;
+    } else if (initialRRule.contains('WEEKLY') &&
+        config.enabledPeriods.contains(RRulePeriod.weekly)) {
+      frequencyNotifier.value = RRulePeriod.weekly.index;
+    } else if (initialRRule.contains('DAILY') &&
+        config.enabledPeriods.contains(RRulePeriod.daily)) {
+      frequencyNotifier.value = RRulePeriod.daily.index;
     } else if (initialRRule == '') {
-      frequencyNotifier.value = 4;
+      frequencyNotifier.value = config.enabledPeriods.last.index;
     }
 
     if (initialRRule.contains('COUNT')) {
@@ -212,14 +215,18 @@ class RRuleGenerator extends StatelessWidget {
                     valueChanged();
                   },
                   items: List.generate(
-                    5,
-                    (index) => DropdownMenuItem(
-                      value: index,
-                      child: Text(
-                        textDelegate.periods[index],
-                        style: config.dropdownStyle.dropdownMenuItemTextStyle,
-                      ),
-                    ),
+                    config.enabledPeriods.length,
+                    (index) {
+                      final periodEnum = config.enabledPeriods[index];
+
+                      return DropdownMenuItem(
+                        value: periodEnum.index,
+                        child: Text(
+                          periodEnum.toText(textDelegate),
+                          style: config.dropdownStyle.dropdownMenuItemTextStyle,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
