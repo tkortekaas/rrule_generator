@@ -10,12 +10,13 @@ import 'package:rrule_generator/src/pickers/exclude_dates.dart';
 import 'package:rrule_generator/src/pickers/helpers.dart';
 import 'package:rrule_generator/src/pickers/interval.dart';
 
-class RRuleGenerator extends StatelessWidget {
+class RRuleGenerator extends StatefulWidget {
   late final RRuleGeneratorConfig config;
 
   /// @deprecated Use locale or custom via localeBuilder instead. This parameter will be removed in future versions.
   @Deprecated(
-      'Use locale or custom via localeBuilder instead. This parameter will be removed in future versions.')
+    'Use locale or custom via localeBuilder instead. This parameter will be removed in future versions.',
+  )
   final RRuleTextDelegate? textDelegate;
 
   /// The locale to use for text translations. If not provided, will use the system locale.
@@ -27,15 +28,8 @@ class RRuleGenerator extends StatelessWidget {
 
   final void Function(String newValue)? onChange;
   final String initialRRule;
-  final DateTime? initialDate;
+  late final DateTime initialDate;
   final bool withExcludeDates;
-  final frequencyNotifier = ValueNotifier(RRulePeriod.never.index);
-  final countTypeNotifier = ValueNotifier(0);
-  final pickedDateNotifier = ValueNotifier(DateTime.now());
-  final instancesController = TextEditingController(text: '1');
-  final List<Period> _periodWidgets = [];
-  final List<DateTime> excludeDates = [];
-  late final ExcludeDates? _excludeDatesPicker;
 
   RRuleGenerator({
     super.key,
@@ -49,26 +43,55 @@ class RRuleGenerator extends StatelessWidget {
     this.onChange,
     this.initialRRule = '',
     this.withExcludeDates = true,
-    this.initialDate,
+    final DateTime? initialDate,
   }) {
     this.config = config ?? RRuleGeneratorConfig();
+    this.initialDate = initialDate ?? DateTime.now();
+  }
+
+  @override
+  State<RRuleGenerator> createState() => _RRuleGeneratorState();
+}
+
+class _RRuleGeneratorState extends State<RRuleGenerator> {
+  final frequencyNotifier = ValueNotifier(RRulePeriod.never.index);
+  final countTypeNotifier = ValueNotifier(0);
+  final pickedDateNotifier = ValueNotifier(DateTime.now());
+  final instancesController = TextEditingController(text: '1');
+  final List<Period> _periodWidgets = [];
+  final List<DateTime> excludeDates = [];
+  late final ExcludeDates? _excludeDatesPicker;
+
+  @override
+  void initState() {
+    super.initState();
     handleInitialRRule();
+  }
+
+  @override
+  void dispose() {
+    frequencyNotifier.dispose();
+    countTypeNotifier.dispose();
+    pickedDateNotifier.dispose();
+    instancesController.dispose();
+    super.dispose();
   }
 
   RRuleTextDelegate _getTextDelegate(BuildContext context) {
     // Priority 1: Use deprecated textDelegate if provided
-    if (textDelegate != null) return textDelegate!;
+    if (widget.textDelegate != null) return widget.textDelegate!;
 
     final contextLocale = Localizations.localeOf(context);
 
     // Priority 2: Use localeBuilder if provided
-    if (localeBuilder != null) {
-      return localeBuilder!(contextLocale);
+    if (widget.localeBuilder != null) {
+      return widget.localeBuilder!(contextLocale);
     }
 
     // Priority 3: Use built-in delegates based on locale
-    final currentLocale =
-        locale ?? RRuleLocale.fromLocale(contextLocale) ?? RRuleLocale.en_GB;
+    final currentLocale = widget.locale ??
+        RRuleLocale.fromLocale(contextLocale) ??
+        RRuleLocale.en_GB;
     return RRuleTextDelegateRegistry.getDelegateForLocale(currentLocale);
   }
 
@@ -78,42 +101,42 @@ class RRuleGenerator extends StatelessWidget {
 
       _periodWidgets.addAll([
         Yearly(
-          config,
+          widget.config,
           textDelegate,
           valueChanged,
-          initialRRule,
-          initialDate ?? DateTime.now(),
+          widget.initialRRule,
+          widget.initialDate,
         ),
         Monthly(
-          config,
+          widget.config,
           textDelegate,
           valueChanged,
-          initialRRule,
-          initialDate ?? DateTime.now(),
+          widget.initialRRule,
+          widget.initialDate,
         ),
         Weekly(
-          config,
+          widget.config,
           textDelegate,
           valueChanged,
-          initialRRule,
-          initialDate ?? DateTime.now(),
+          widget.initialRRule,
+          widget.initialDate,
         ),
         Daily(
-          config,
+          widget.config,
           textDelegate,
           valueChanged,
-          initialRRule,
-          initialDate ?? DateTime.now(),
-        )
+          widget.initialRRule,
+          widget.initialDate,
+        ),
       ]);
 
-      _excludeDatesPicker = withExcludeDates
+      _excludeDatesPicker = widget.withExcludeDates
           ? ExcludeDates(
-              config,
+              widget.config,
               textDelegate,
               valueChanged,
-              initialRRule,
-              initialDate ?? DateTime.now(),
+              widget.initialRRule,
+              widget.initialDate,
               excludeDates,
             )
           : null;
@@ -121,40 +144,45 @@ class RRuleGenerator extends StatelessWidget {
   }
 
   void handleInitialRRule() {
-    if (initialRRule.contains('MONTHLY') &&
-        config.enabledPeriods.contains(RRulePeriod.monthly)) {
+    if (widget.initialRRule.contains('MONTHLY') &&
+        widget.config.enabledPeriods.contains(RRulePeriod.monthly)) {
       frequencyNotifier.value = RRulePeriod.monthly.index;
-    } else if (initialRRule.contains('WEEKLY') &&
-        config.enabledPeriods.contains(RRulePeriod.weekly)) {
+    } else if (widget.initialRRule.contains('WEEKLY') &&
+        widget.config.enabledPeriods.contains(RRulePeriod.weekly)) {
       frequencyNotifier.value = RRulePeriod.weekly.index;
-    } else if (initialRRule.contains('DAILY') &&
-        config.enabledPeriods.contains(RRulePeriod.daily)) {
+    } else if (widget.initialRRule.contains('DAILY') &&
+        widget.config.enabledPeriods.contains(RRulePeriod.daily)) {
       frequencyNotifier.value = RRulePeriod.daily.index;
-    } else if (initialRRule == '') {
-      frequencyNotifier.value = config.enabledPeriods.last.index;
+    } else if (widget.initialRRule == '') {
+      frequencyNotifier.value = widget.config.enabledPeriods.last.index;
     }
 
-    if (initialRRule.contains('COUNT')) {
+    if (widget.initialRRule.contains('COUNT')) {
       countTypeNotifier.value = 1;
-      final countIndex = initialRRule.indexOf('COUNT=') + 6;
-      int countEnd = initialRRule.indexOf(';', countIndex);
-      countEnd = countEnd == -1 ? initialRRule.length : countEnd;
-      instancesController.text = initialRRule.substring(countIndex, countEnd);
-    } else if (initialRRule.contains('UNTIL')) {
+      final countIndex = widget.initialRRule.indexOf('COUNT=') + 6;
+      int countEnd = widget.initialRRule.indexOf(';', countIndex);
+      countEnd = countEnd == -1 ? widget.initialRRule.length : countEnd;
+      instancesController.text =
+          widget.initialRRule.substring(countIndex, countEnd);
+    } else if (widget.initialRRule.contains('UNTIL')) {
       countTypeNotifier.value = 2;
-      final dateIndex = initialRRule.indexOf('UNTIL=') + 6;
-      final dateEnd = initialRRule.indexOf(';', dateIndex);
+      final dateIndex = widget.initialRRule.indexOf('UNTIL=') + 6;
+      final dateEnd = widget.initialRRule.indexOf(';', dateIndex);
       pickedDateNotifier.value = DateTime.parse(
-        initialRRule.substring(
-            dateIndex, dateEnd == -1 ? initialRRule.length : dateEnd),
+        widget.initialRRule.substring(
+          dateIndex,
+          dateEnd == -1 ? widget.initialRRule.length : dateEnd,
+        ),
       );
     }
 
-    final exDateIndex = initialRRule.indexOf('EXDATE=') + 7;
+    final exDateIndex = widget.initialRRule.indexOf('EXDATE=') + 7;
     if (exDateIndex == 6) return;
-    final exDateEnd = initialRRule.indexOf(';', exDateIndex);
-    final exDateString = initialRRule.substring(
-        exDateIndex, exDateEnd == -1 ? initialRRule.length : exDateEnd);
+    final exDateEnd = widget.initialRRule.indexOf(';', exDateIndex);
+    final exDateString = widget.initialRRule.substring(
+      exDateIndex,
+      exDateEnd == -1 ? widget.initialRRule.length : exDateEnd,
+    );
     final exDateList = exDateString.split(',');
     for (final exDate in exDateList) {
       excludeDates.add(DateTime.parse(exDate));
@@ -162,8 +190,7 @@ class RRuleGenerator extends StatelessWidget {
   }
 
   void valueChanged() {
-    final fun = onChange;
-    if (fun != null) fun(getRRule());
+    widget.onChange?.call(getRRule());
   }
 
   String getRRule() {
@@ -191,7 +218,7 @@ class RRuleGenerator extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use custom locale if provided, otherwise use context locale
     final textDelegate = _getTextDelegate(context);
-    final locale = this.locale?.toLocale() ?? Locale(textDelegate.locale);
+    final locale = widget.locale?.toLocale() ?? Locale(textDelegate.locale);
 
     // Initialize period widgets with the correct locale
     _initPeriodWidgets(context);
@@ -204,8 +231,10 @@ class RRuleGenerator extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildElement(
-              title: config.headerStyle.enabled ? textDelegate.repeat : null,
-              style: config.headerStyle.textStyle,
+              title: widget.config.headerStyle.enabled
+                  ? textDelegate.repeat
+                  : null,
+              style: widget.config.headerStyle.textStyle,
               child: buildDropdown(
                 child: DropdownButton(
                   isExpanded: true,
@@ -214,39 +243,40 @@ class RRuleGenerator extends StatelessWidget {
                     frequencyNotifier.value = newPeriod!;
                     valueChanged();
                   },
-                  items: List.generate(
-                    config.enabledPeriods.length,
-                    (index) {
-                      final periodEnum = config.enabledPeriods[index];
+                  items: List.generate(widget.config.enabledPeriods.length,
+                      (index) {
+                    final periodEnum = widget.config.enabledPeriods[index];
 
-                      return DropdownMenuItem(
-                        value: periodEnum.index,
-                        child: Text(
-                          periodEnum.toText(textDelegate),
-                          style: config.dropdownStyle.dropdownMenuItemTextStyle,
-                        ),
-                      );
-                    },
-                  ),
+                    return DropdownMenuItem(
+                      value: periodEnum.index,
+                      child: Text(
+                        periodEnum.toText(textDelegate),
+                        style: widget
+                            .config.dropdownStyle.dropdownMenuItemTextStyle,
+                      ),
+                    );
+                  }),
                 ),
-                dropdownMenuStyle: config.dropdownStyle.dropdownMenuStyle,
+                dropdownMenuStyle:
+                    widget.config.dropdownStyle.dropdownMenuStyle,
               ),
             ),
             if (period != 4) ...[
-              config.divider,
+              widget.config.divider,
               _periodWidgets[period],
-              config.divider,
+              widget.config.divider,
               Column(
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(textDelegate.end, style: config.labelStyle),
+                    child:
+                        Text(textDelegate.end, style: widget.config.labelStyle),
                   ),
                   Row(
                     children: [
                       Expanded(
                         child: buildElement(
-                          style: config.labelStyle,
+                          style: widget.config.labelStyle,
                           child: buildDropdown(
                             child: ValueListenableBuilder(
                               valueListenable: countTypeNotifier,
@@ -263,7 +293,7 @@ class RRuleGenerator extends StatelessWidget {
                                     value: 0,
                                     child: Text(
                                       textDelegate.neverEnds,
-                                      style: config.dropdownStyle
+                                      style: widget.config.dropdownStyle
                                           .dropdownMenuItemTextStyle,
                                     ),
                                   ),
@@ -271,7 +301,7 @@ class RRuleGenerator extends StatelessWidget {
                                     value: 1,
                                     child: Text(
                                       textDelegate.endsAfter,
-                                      style: config.dropdownStyle
+                                      style: widget.config.dropdownStyle
                                           .dropdownMenuItemTextStyle,
                                     ),
                                   ),
@@ -279,7 +309,7 @@ class RRuleGenerator extends StatelessWidget {
                                     value: 2,
                                     child: Text(
                                       textDelegate.endsOnDate,
-                                      style: config.dropdownStyle
+                                      style: widget.config.dropdownStyle
                                           .dropdownMenuItemTextStyle,
                                     ),
                                   ),
@@ -287,15 +317,14 @@ class RRuleGenerator extends StatelessWidget {
                               ),
                             ),
                             dropdownMenuStyle:
-                                config.dropdownStyle.dropdownMenuStyle,
+                                widget.config.dropdownStyle.dropdownMenuStyle,
                           ),
                         ),
                       ),
                       ValueListenableBuilder(
                         valueListenable: countTypeNotifier,
-                        builder: (context, countType, child) => SizedBox(
-                          width: countType == 0 ? 0 : 8,
-                        ),
+                        builder: (context, countType, child) =>
+                            SizedBox(width: countType == 0 ? 0 : 8),
                       ),
                       ValueListenableBuilder(
                         valueListenable: countTypeNotifier,
@@ -307,18 +336,18 @@ class RRuleGenerator extends StatelessWidget {
                                   SizedBox(
                                     width: 30,
                                     child: buildElement(
-                                      style: config.labelStyle,
+                                      style: widget.config.labelStyle,
                                       child: IntervalPicker(
                                         instancesController,
                                         valueChanged,
-                                        config: config,
+                                        config: widget.config,
                                       ),
                                     ),
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
                                     textDelegate.instances,
-                                    style: config.labelStyle,
+                                    style: widget.config.labelStyle,
                                   ),
                                 ],
                               );
@@ -327,7 +356,7 @@ class RRuleGenerator extends StatelessWidget {
                                 width: 120,
                                 child: buildElement(
                                   // title: textDelegate.date,
-                                  style: config.labelStyle,
+                                  style: widget.config.labelStyle,
                                   child: ValueListenableBuilder(
                                     valueListenable: pickedDateNotifier,
                                     builder: (context, pickedDate, child) =>
@@ -337,7 +366,11 @@ class RRuleGenerator extends StatelessWidget {
                                           context: context,
                                           locale: locale,
                                           initialDate: pickedDate,
-                                          firstDate: DateTime.utc(2020, 10, 24),
+                                          firstDate: DateTime.utc(
+                                            2020,
+                                            10,
+                                            24,
+                                          ),
                                           lastDate: DateTime(2100),
                                         );
 
@@ -347,13 +380,14 @@ class RRuleGenerator extends StatelessWidget {
                                           valueChanged();
                                         }
                                       },
-                                      style: config.datePickerStyle
+                                      style: widget.config.datePickerStyle
                                           .datePickerButtonStyle,
                                       child: FittedBox(
                                         child: Text(
-                                          DateFormat.yMd(locale.toString())
-                                              .format(pickedDate),
-                                          style: config.datePickerStyle
+                                          DateFormat.yMd(
+                                            locale.toString(),
+                                          ).format(pickedDate),
+                                          style: widget.config.datePickerStyle
                                               .datePickerTextStyle,
                                           textAlign: TextAlign.center,
                                         ),
@@ -366,10 +400,10 @@ class RRuleGenerator extends StatelessWidget {
                               return Container();
                           }
                         },
-                      )
+                      ),
                     ],
                   ),
-                  if (child != null) config.divider,
+                  if (child != null) widget.config.divider,
                   if (child != null) child,
                 ],
               ),
