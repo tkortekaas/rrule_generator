@@ -1,3 +1,8 @@
+# 0.10.1
+- Fix: User input is repeatedly unfocused when typing instances by @jonasbadstuebner
+- Add Somali translation
+- Add Tigrinya translation
+
 # 0.10.0
 - Feature: Being able to display specific periods by @MSMLinscho
 - Fix: Polish translation by @0rzech

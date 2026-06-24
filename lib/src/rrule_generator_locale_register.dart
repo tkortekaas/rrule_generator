@@ -41,7 +41,9 @@ enum RRuleLocale {
   es_ES('es_ES'),
   sv_SE('sv_SE'),
   tr_TR('tr_TR'),
-  fa_IR('fa_IR');
+  fa_IR('fa_IR'),
+  ti_ER('ti_ER'),
+  so_SO('so_SO');
   // Add more supported locales here
 
   final String code;
@@ -101,6 +103,8 @@ class RRuleTextDelegateRegistry {
     RRuleLocale.sv_SE: const SwedishRRuleTextDelegate(),
     RRuleLocale.tr_TR: const TurkishRRuleTextDelegate(),
     RRuleLocale.fa_IR: const PersianRRuleTextDelegate(),
+    RRuleLocale.ti_ER: const TigrinyaRRuleTextDelegate(),
+    RRuleLocale.so_SO: const SomaliRRuleTextDelegate(),
     // Add more supported locales here
   };
 
