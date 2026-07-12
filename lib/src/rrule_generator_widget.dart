@@ -144,7 +144,10 @@ class _RRuleGeneratorState extends State<RRuleGenerator> {
   }
 
   void handleInitialRRule() {
-    if (widget.initialRRule.contains('MONTHLY') &&
+    if (widget.initialRRule.contains('YEARLY') &&
+        widget.config.enabledPeriods.contains(RRulePeriod.yearly)) {
+      frequencyNotifier.value = RRulePeriod.yearly.index;
+    } else if (widget.initialRRule.contains('MONTHLY') &&
         widget.config.enabledPeriods.contains(RRulePeriod.monthly)) {
       frequencyNotifier.value = RRulePeriod.monthly.index;
     } else if (widget.initialRRule.contains('WEEKLY') &&

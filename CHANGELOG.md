@@ -1,3 +1,6 @@
+# 0.10.1+1
+- Fix: The Yearly period is ignored as initial rrule
+
 # 0.10.1
 - Fix: User input is repeatedly unfocused when typing instances by @jonasbadstuebner
 - Add Somali translation
