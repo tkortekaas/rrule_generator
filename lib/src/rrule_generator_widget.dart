@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rrule_generator/rrule_generator.dart';
@@ -337,7 +339,19 @@ class _RRuleGeneratorState extends State<RRuleGenerator> {
                               return Row(
                                 children: [
                                   SizedBox(
-                                    width: 30,
+                                    width: math.max(
+                                        (Theme.of(context)
+                                                    .inputDecorationTheme
+                                                    .contentPadding
+                                                    ?.horizontal ??
+                                                24) +
+                                            (Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge
+                                                        ?.fontSize ??
+                                                    16) *
+                                                2,
+                                        50),
                                     child: buildElement(
                                       style: widget.config.labelStyle,
                                       child: IntervalPicker(

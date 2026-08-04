@@ -1,3 +1,6 @@
+# 0.10.1+2
+- Fix: Detect the size of the "ends after x instances" TextField dynamically
+
 # 0.10.1+1
 - Fix: The Yearly period is ignored as initial rrule
 
